@@ -1,0 +1,1722 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.7.32">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="An open source textbook for psychology students learning programming and online research methods.Primary Author: Nicholaus P. Brosowsky Co-Authors: Liam Yeo, Jackie Spear">
+
+<title>1&nbsp; HTML – Online Behavioural Research Methods: Programming with jsPsych</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./02-css.html" rel="next">
+<link href="./index.html" rel="prev">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-e9b5551c1c55c86b42a831a3c09ea90c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-b63434c4eca3d65156f11477424d0b79.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar docked quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-html.html">UNIT 1: Fundamentals (I)</a></li><li class="breadcrumb-item"><a href="./01-html.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HTML</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="./">Online Behavioural Research Methods: Programming with jsPsych</a> 
+        <div class="sidebar-tools-main">
+    <a href="https://https://github.com/icoglab/online-behavioural-research-methods" title="Source Code" class="quarto-navigation-tool px-1" aria-label="Source Code"><i class="bi bi-github"></i></a>
+</div>
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Introduction</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">UNIT 1: Fundamentals (I)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./01-html.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HTML</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./02-css.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">CSS</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./03-L01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Lab 1: About Me</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">UNIT 2: Fundamentals (II)</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./04-javascript.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Javascript</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./05-debugging-javascript.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Debugging JavaScript</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./06-L02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Lab 2: JS Exercises</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">UNIT 3: Intro to JsPsych</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./07-jspsych.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">jsPsych</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./08-L03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Lab 3: Language &amp; Thought</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">UNIT 4: Timelines</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./09-timelines.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Timelines</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./10-plugins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">More Plugins</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11-L04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Lab 4: Memory</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./A01_JS_Builtins.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">JavaScript Built-in Functions</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+<div class="quarto-sidebar-footer"><div class="sidebar-footer-item">
+<p>© 2024. This work is openly licensed via <a href="https://creativecommons.org/licenses/by-nc/4.0">CC BY NC 4.0</a>.</p>
+</div></div></nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#how-websites-work-the-basics" id="toc-how-websites-work-the-basics" class="nav-link active" data-scroll-target="#how-websites-work-the-basics"><span class="header-section-number">1.1</span> How Websites Work: The Basics</a></li>
+  <li><a href="#introduction-to-html" id="toc-introduction-to-html" class="nav-link" data-scroll-target="#introduction-to-html"><span class="header-section-number">1.2</span> Introduction to HTML</a></li>
+  <li><a href="#html-tags" id="toc-html-tags" class="nav-link" data-scroll-target="#html-tags"><span class="header-section-number">1.3</span> HTML Tags</a></li>
+  <li><a href="#comments-vs.-code" id="toc-comments-vs.-code" class="nav-link" data-scroll-target="#comments-vs.-code"><span class="header-section-number">1.4</span> Comments vs.&nbsp;Code</a></li>
+  <li><a href="#essential-tags" id="toc-essential-tags" class="nav-link" data-scroll-target="#essential-tags"><span class="header-section-number">1.5</span> Essential Tags</a>
+  <ul class="collapse">
+  <li><a href="#headings" id="toc-headings" class="nav-link" data-scroll-target="#headings"><span class="header-section-number">1.5.1</span> Headings</a></li>
+  <li><a href="#paragraphs" id="toc-paragraphs" class="nav-link" data-scroll-target="#paragraphs"><span class="header-section-number">1.5.2</span> Paragraphs</a></li>
+  <li><a href="#div" id="toc-div" class="nav-link" data-scroll-target="#div"><span class="header-section-number">1.5.3</span> Div</a></li>
+  <li><a href="#span" id="toc-span" class="nav-link" data-scroll-target="#span"><span class="header-section-number">1.5.4</span> Span</a></li>
+  <li><a href="#images" id="toc-images" class="nav-link" data-scroll-target="#images"><span class="header-section-number">1.5.5</span> Images</a></li>
+  <li><a href="#links-anchors" id="toc-links-anchors" class="nav-link" data-scroll-target="#links-anchors"><span class="header-section-number">1.5.6</span> Links (Anchors)</a></li>
+  <li><a href="#lists" id="toc-lists" class="nav-link" data-scroll-target="#lists"><span class="header-section-number">1.5.7</span> Lists</a></li>
+  </ul></li>
+  <li><a href="#attributes" id="toc-attributes" class="nav-link" data-scroll-target="#attributes"><span class="header-section-number">1.6</span> Attributes</a>
+  <ul class="collapse">
+  <li><a href="#classes-and-ids-reference-labels" id="toc-classes-and-ids-reference-labels" class="nav-link" data-scroll-target="#classes-and-ids-reference-labels"><span class="header-section-number">1.6.1</span> Classes and IDs: Reference Labels</a></li>
+  <li><a href="#classes-vs-ids-when-to-use-which" id="toc-classes-vs-ids-when-to-use-which" class="nav-link" data-scroll-target="#classes-vs-ids-when-to-use-which"><span class="header-section-number">1.6.2</span> Classes vs IDs: When to Use Which?</a></li>
+  </ul></li>
+  <li><a href="#organizing-html" id="toc-organizing-html" class="nav-link" data-scroll-target="#organizing-html"><span class="header-section-number">1.7</span> Organizing HTML</a>
+  <ul class="collapse">
+  <li><a href="#basic-organization-with-divs" id="toc-basic-organization-with-divs" class="nav-link" data-scroll-target="#basic-organization-with-divs"><span class="header-section-number">1.7.1</span> Basic Organization with Divs</a></li>
+  <li><a href="#adding-labels-for-future-reference" id="toc-adding-labels-for-future-reference" class="nav-link" data-scroll-target="#adding-labels-for-future-reference"><span class="header-section-number">1.7.2</span> Adding Labels for Future Reference</a></li>
+  </ul></li>
+  <li><a href="#html-document-structure" id="toc-html-document-structure" class="nav-link" data-scroll-target="#html-document-structure"><span class="header-section-number">1.8</span> HTML Document Structure</a>
+  <ul class="collapse">
+  <li><a href="#document-type-declaration" id="toc-document-type-declaration" class="nav-link" data-scroll-target="#document-type-declaration"><span class="header-section-number">1.8.1</span> Document Type Declaration</a></li>
+  <li><a href="#root-html-element" id="toc-root-html-element" class="nav-link" data-scroll-target="#root-html-element"><span class="header-section-number">1.8.2</span> Root HTML Element</a></li>
+  <li><a href="#the-head-section" id="toc-the-head-section" class="nav-link" data-scroll-target="#the-head-section"><span class="header-section-number">1.8.3</span> The Head Section</a></li>
+  <li><a href="#the-body-section" id="toc-the-body-section" class="nav-link" data-scroll-target="#the-body-section"><span class="header-section-number">1.8.4</span> The Body Section</a></li>
+  </ul></li>
+  <li><a href="#putting-it-all-together-a-live-coding-exercise" id="toc-putting-it-all-together-a-live-coding-exercise" class="nav-link" data-scroll-target="#putting-it-all-together-a-live-coding-exercise"><span class="header-section-number">1.9</span> Putting it All Together: A Live Coding Exercise</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://https://github.com/icoglab/online-behavioural-research-methods/edit/main/01-html.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./01-html.html">UNIT 1: Fundamentals (I)</a></li><li class="breadcrumb-item"><a href="./01-html.html"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HTML</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HTML</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="learning goals">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+learning goals
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Understand the fundamental structure of web pages and how HTML creates content</li>
+<li>Learn essential HTML tags for building psychology experiments</li>
+<li>Master HTML document structure and organization principles</li>
+<li>Apply HTML attributes, classes, and IDs for element identification and styling preparation</li>
+<li>Create well-structured, accessible web content using semantic markup</li>
+</ul>
+</div>
+</div>
+</div>
+<section id="how-websites-work-the-basics" class="level2" data-number="1.1">
+<h2 data-number="1.1" class="anchored" data-anchor-id="how-websites-work-the-basics"><span class="header-section-number">1.1</span> How Websites Work: The Basics</h2>
+<p>Think of a website like a digital magazine. Just as a magazine is made up of text, images, and layout instructions, a website consists of files that tell your browser what to display and how to display it.</p>
+<p>Every website you visit is built from simple <strong>text files</strong> that contain instructions written in special languages:</p>
+<p><strong>HTML</strong> (HyperText Markup Language) is like the skeleton of a webpage. It defines the structure and content like headings, paragraphs, buttons, and forms.</p>
+<p><strong>CSS</strong> (Cascading Style Sheets) is like the clothing and makeup. It controls how things look, including colors, fonts, spacing, and layout.</p>
+<p><strong>JavaScript</strong> is like the nervous system. It makes things interactive and responsive to user actions.</p>
+<p>The remarkable thing is that these are all just <strong>plain text files</strong>, no different from a document you might write in Notepad. The “magic” happens when your web browser reads these text files and interprets the instructions to create the visual, interactive experience you see.</p>
+<p>When you create an online behavioural study, here’s the simplified journey your experiment takes to reach participants:</p>
+<p>First, you create your experiment files using HTML for structure, CSS for appearance, and JavaScript for interactivity. These files are then stored on a web server, which is essentially a computer that’s always connected to the internet, ready to share your files.</p>
+<p>When participants visit your experiment’s web address (URL), their browser requests your files from the server. The server sends your files to their browser instantaneously, like mailing a package but much faster. Their browser then interprets your files and transforms your text instructions into the interactive experiment they see. Finally, when participants respond, their answers are sent back to be stored for your analysis.</p>
+</section>
+<section id="introduction-to-html" class="level2" data-number="1.2">
+<h2 data-number="1.2" class="anchored" data-anchor-id="introduction-to-html"><span class="header-section-number">1.2</span> Introduction to HTML</h2>
+<p>All the web experiments you might encounter are simply websites, built using the same building blocks that all websites are made with. To start, we’re going to be using the language HTML, or hypertext markup language.</p>
+<p>HTML isn’t a programming language since it doesn’t actually <em>do</em> anything. It doesn’t, for example, perform calculations, make decisions, or respond to user input. Think of HTML like the blueprint or skeleton of a house: it defines the structure and layout, but it doesn’t make the lights turn on or the water flow.</p>
+<p>More specifically, HTML is a <strong>markup language</strong>. Just like how you might use a highlighter to mark up a printed document like underlining important parts, circling key terms, or adding notes in the margin, HTML “marks up” text to give it meaning and structure. It tells the browser “this text is a heading,” “this text is a paragraph,” “this text is a link,” and so on.</p>
+<p>You can think of HTML as providing the <strong>content and structure</strong> of a webpage. It contains the actual text, images, and media that appear on the page. It defines how that content is organized through headings, paragraphs, lists, and other elements. It establishes the basic layout and hierarchy of information that users will see.</p>
+<p>HTML creates static content, meaning it doesn’t change or respond on its own. It’s like a printed page—the words and pictures stay exactly where you put them. Later, we’ll add CSS to make it look better and JavaScript to make it interactive, but HTML provides the foundation that everything else builds upon.</p>
+<p>In psychology experiments, HTML creates the basic structure: the instructions participants read, the buttons they click, the areas where stimuli appear, and the forms where they enter responses.</p>
+</section>
+<section id="html-tags" class="level2" data-number="1.3">
+<h2 data-number="1.3" class="anchored" data-anchor-id="html-tags"><span class="header-section-number">1.3</span> HTML Tags</h2>
+<p>HTML’s base building block is the <strong>tag</strong>. A tag is a building block. It describes what’s inside it. Every tag has an opening and a closing tag (some tags open and close at the same point.) I think the easiest way to learn it is just to show a bunch of examples.</p>
+<p>You can see the <code>&lt;h1&gt;</code> and the <code>&lt;/h1&gt;</code> surrounding the text “This is the title to my document”. This is how HTML operates. You can have an opening tag which has information or more tags inside of it. In this case we have an <code>h1</code> tag which is a heading tag: it’s used for the biggest title on the page, typically a title. If you rendered that using the browser, it looks like:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="sourceCode" id="cb1"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb1-1"><a href="#cb1-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>This is the title to my document<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+  <h1>This is the title to my document</h1
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+<p>It’s bigger and bolder because that’s what browsers do with h1s, it makes them look important on the page. However it does more than that too. Browsers aren’t the only thing reading websites. Blind and people who can’t see well will use screen readers to read web pages out loud to them; it uses things like headers to understand what information is important to read to the users. It’s also how Google and Bing will understand the important details of your website. In other words, it’s important which type of tag you use. More than just the visual aesthetic is using those tags.</p>
+<p>A tag, whether it’s opening or closing, is surrounded by angle brackets, <code>&lt;</code> and <code>&gt;</code>. Closing tags always have a slash, <code>/</code>, after the opening angle bracket, so it looks like <code>&lt;/h1&gt;</code>. There are things called “self-closing tags” or “void tags” that open and close themselves. These will look like this: <code>&lt;input /&gt;</code> (I’ll explain in a sec what inputs are.) That slash at the end means it is self-closing. To make it more confusing, that last slash is optional, so <code>&lt;input&gt;</code> (with no closing tag ever) is valid too since input tags are always self-closing.</p>
+<p>Tags are also opened and closed in a specific order too. The most recently opened tag must be the next closed tag. For example, if I have an h1 instead of a div, the h1 must be closed first.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb2-1"><a href="#cb2-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Hi<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above is correct.</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb3-1"><a href="#cb3-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3"></a>    Hi</span>
+<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a><span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The above is incorrect. I can’t close the div <em>before</em> I close the h1 since the h1 was the last one I opened.</p>
+</section>
+<section id="comments-vs.-code" class="level2" data-number="1.4">
+<h2 data-number="1.4" class="anchored" data-anchor-id="comments-vs.-code"><span class="header-section-number">1.4</span> Comments vs.&nbsp;Code</h2>
+<p>One important note before going through the essential HTML tags: All programming languages allow us to write ‘comments’ inside our code. These comments are ignored when the code is run. It’s a way for us to make notes to ourselves or future readers of our code to help document our code as we write it. Each language has it’s own way of marking something as a comment. In HTML, the way you mark some text as a comment (and not code) is by putting the text inside a <code>&lt;!--</code> and <code>--&gt;</code>.</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">&lt;!-- This is a comment that will be ignored by the browser --&gt;</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>This is HTML code that the browser will run<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="co">&lt;!-- </span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="co">Comments </span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="co">can </span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="co">be </span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="co">multiple </span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="co">lines</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="co">--&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Commenting is also a useful way of removing some code without deleting it. Let’s say you want to see what the page looks like without some HTML, you can ‘comment it out’ like this:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">&lt;!-- This is a comment that will be ignored by the browser --&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>This is HTML code that the browser will run<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="co">&lt;!-- </span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="co">&lt;p&gt;This HTML will be ignored because it's inside a comment&lt;/p&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">--&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Ok, now that we have that settled, let’s explore some of the essential tag types that we will be using to make our experiments.</p>
+</section>
+<section id="essential-tags" class="level2" data-number="1.5">
+<h2 data-number="1.5" class="anchored" data-anchor-id="essential-tags"><span class="header-section-number">1.5</span> Essential Tags</h2>
+<section id="headings" class="level3" data-number="1.5.1">
+<h3 data-number="1.5.1" class="anchored" data-anchor-id="headings"><span class="header-section-number">1.5.1</span> Headings</h3>
+<p>“h1”, “h2”, “h3”, “h4”, “h5”, and “h6” – Headings. These are the six levels of headings and subheadings you can have. You can see up top of this page we have “HTML” which is an h1 and then below that we have “Types of Tags” which is an h2. An h2 is a subheading to an h1. An h3 is a subheading to a h2. Some schools of thought say each page should only have one h1. I’m of the opinion that just use these as it feels appropriate to. Like formatting a Microsoft Word document, there’s no “correct” way to do it, just different ways that make more or less sense.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<div class="sourceCode" id="cb6"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb6-1"><a href="#cb6-1"></a><span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>This is an h1!<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="dt">&lt;</span><span class="kw">h2</span><span class="dt">&gt;</span>This is an h2!<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="dt">&lt;</span><span class="kw">h3</span><span class="dt">&gt;</span>This is an h3!<span class="dt">&lt;/</span><span class="kw">h3</span><span class="dt">&gt;</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="dt">&lt;</span><span class="kw">h4</span><span class="dt">&gt;</span>This is an h4!<span class="dt">&lt;/</span><span class="kw">h4</span><span class="dt">&gt;</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="dt">&lt;</span><span class="kw">h5</span><span class="dt">&gt;</span>This is an h5!<span class="dt">&lt;/</span><span class="kw">h5</span><span class="dt">&gt;</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="dt">&lt;</span><span class="kw">h6</span><span class="dt">&gt;</span>This is an h6!<span class="dt">&lt;/</span><span class="kw">h6</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+  <h1>This is an h1!</h1>
+  <h2>This is an h2!</h2>
+  <h3>This is an h3!</h3>
+  <h4>This is an h4!</h4>
+  <h5>This is an h5!</h5>
+  <h6>This is an h6!</h6>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="paragraphs" class="level3" data-number="1.5.2">
+<h3 data-number="1.5.2" class="anchored" data-anchor-id="paragraphs"><span class="header-section-number">1.5.2</span> Paragraphs</h3>
+<p>“p” – Paragraph. You’ll put a paragraph of text together inside of a “p” tag. Only text goes in “p” tags. Each one of these paragraphs is a “p” tag.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="sourceCode" id="cb7"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb7-1"><a href="#cb7-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a>  Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt modi est</span>
+<span id="cb7-3"><a href="#cb7-3"></a>  sapiente in optio quia inventore quis maxime ullam tenetur?</span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>  Maxime quibusdam, dolorum quaerat ducimus inventore sunt pariatur et dolore</span>
+<span id="cb7-7"><a href="#cb7-7"></a>  ipsam. Distinctio eum nobis officiis quam quasi exercitationem eaque?</span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+  <p>
+  Lorem ipsum dolor sit amet consectetur adipisicing elit. Incidunt modi est
+  sapiente in optio quia inventore quis maxime ullam tenetur?
+</p>
+<p>
+  Maxime quibusdam, dolorum quaerat ducimus inventore sunt pariatur et dolore
+  ipsam. Distinctio eum nobis officiis quam quasi exercitationem eaque?
+</p>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="div" class="level3" data-number="1.5.3">
+<h3 data-number="1.5.3" class="anchored" data-anchor-id="div"><span class="header-section-number">1.5.3</span> Div</h3>
+<p>“div” – Short for division. A div is sort of like a cardboard box. It’s not really anything by itself; it’s more defined by what’s in it. It’s a generic container tag for grouping together other things. You’ll use a lot of divs. Very useful with CSS. In general, you want to group together “like” things into a containing tag (like a div) to keep them together. If you have a website with a list of blog posts that each have paragraphs, titles, images, etc. you’ll group each post together in a div or other container-type tag typically.</p>
+<p>Below are a few examples of using divs for organization. I’ve colored in the div backgrounds so that we can see then. You don’t need to pay attention to the styling, as we haven’t learned that part yet. But do pay attention to how divs provide structure</p>
+<section id="simple-div-example" class="level4" data-number="1.5.3.1">
+<h4 data-number="1.5.3.1" class="anchored" data-anchor-id="simple-div-example"><span class="header-section-number">1.5.3.1</span> Simple Div Example</h4>
+<p>First, here is a simple div that creates an empty container.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="sourceCode" id="cb8"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb8-1"><a href="#cb8-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"width: 100px; height: 100px; background-color: red;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <div style=&quot;width: 100px; height: 100px; background-color: red;&quot;></div>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="nested-containers-for-organization" class="level4" data-number="1.5.3.2">
+<h4 data-number="1.5.3.2" class="anchored" data-anchor-id="nested-containers-for-organization"><span class="header-section-number">1.5.3.2</span> Nested Containers for Organization</h4>
+<p>Divs become powerful when you nest them inside each other to create organized layouts. Think of it like organizing items in boxes within boxes:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div class="sourceCode" id="cb9"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb9-1"><a href="#cb9-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightgray; padding: 20px;"</span><span class="dt">&gt;</span></span>
+<span id="cb9-2"><a href="#cb9-2"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightblue; height: 60px; margin-bottom: 10px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightyellow; height: 80px; margin-bottom: 10px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightgreen; height: 40px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb9-5"><a href="#cb9-5"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>Nested Containers</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <div style=&quot;background-color: lightgray; padding: 20px;&quot;>
+      <div style=&quot;background-color: lightblue; height: 60px; margin-bottom: 10px;&quot;></div>
+      <div style=&quot;background-color: lightyellow; height: 80px; margin-bottom: 10px;&quot;></div>
+      <div style=&quot;background-color: lightgreen; height: 40px;&quot;></div>
+    </div>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="side-by-side-layout-with-divs" class="level4" data-number="1.5.3.3">
+<h4 data-number="1.5.3.3" class="anchored" data-anchor-id="side-by-side-layout-with-divs"><span class="header-section-number">1.5.3.3</span> Side-by-Side Layout with Divs</h4>
+<p>Divs are essential for creating layouts where content appears side-by-side:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="sourceCode" id="cb10"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightgray; padding: 20px; display: flex; gap: 15px;"</span><span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightcoral; width: 150px; height: 120px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: lightsteelblue; width: 150px; height: 120px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>Side-by-Side Layout</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <div style=&quot;background-color: lightgray; padding: 20px; display: flex; gap: 15px;&quot;>
+      <div style=&quot;background-color: lightcoral; width: 150px; height: 120px;&quot;></div>
+      <div style=&quot;background-color: lightsteelblue; width: 150px; height: 120px;&quot;></div>
+    </div>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="complex-nested-layout" class="level4" data-number="1.5.3.4">
+<h4 data-number="1.5.3.4" class="anchored" data-anchor-id="complex-nested-layout"><span class="header-section-number">1.5.3.4</span> Complex Nested Layout</h4>
+<p>You can combine vertical and horizontal organization by nesting divs in different ways:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="sourceCode" id="cb11"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: #f0f0f0; padding: 15px;"</span><span class="dt">&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: #ffcccb; height: 50px; margin-bottom: 10px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"display: flex; gap: 10px; margin-bottom: 10px;"</span><span class="dt">&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: #add8e6; width: 100px; height: 80px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: #90ee90; flex: 1; height: 80px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: #ffd700; width: 60px; height: 80px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-7"><a href="#cb11-7"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-8"><a href="#cb11-8"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> style</span><span class="op">=</span><span class="st">"background-color: #dda0dd; height: 40px;"</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="cell-output-display">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>Complex Layout</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <div style=&quot;background-color: #f0f0f0; padding: 15px;&quot;>
+      <div style=&quot;background-color: #ffcccb; height: 50px; margin-bottom: 10px;&quot;></div>
+      <div style=&quot;display: flex; gap: 10px; margin-bottom: 10px;&quot;>
+        <div style=&quot;background-color: #add8e6; width: 100px; height: 80px;&quot;></div>
+        <div style=&quot;background-color: #90ee90; flex: 1; height: 80px;&quot;></div>
+        <div style=&quot;background-color: #ffd700; width: 60px; height: 80px;&quot;></div>
+      </div>
+      <div style=&quot;background-color: #dda0dd; height: 40px;&quot;></div>
+    </div>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>This nested approach makes your HTML much more maintainable and your CSS much more powerful!</p>
+</section>
+</section>
+<section id="span" class="level3" data-number="1.5.4">
+<h3 data-number="1.5.4" class="anchored" data-anchor-id="span"><span class="header-section-number">1.5.4</span> Span</h3>
+<p>“span” – A container for small pieces of text. If a div is like a cardboard box, a span is like a Ziploc bag. It doesn’t change the styling of anything by itself but it allows you use CSS and JavaScript later to make that text different in some way.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="sourceCode" id="cb12"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> style</span><span class="op">=</span><span class="st">"text-decoration: underline"</span><span class="dt">&gt;</span>important<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span> text<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <p>This is <span style=&quot;text-decoration: underline&quot;>important</span> text</p>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="images" class="level3" data-number="1.5.5">
+<h3 data-number="1.5.5" class="anchored" data-anchor-id="images"><span class="header-section-number">1.5.5</span> Images</h3>
+<p>“img” – An image. You use this to load images onto the page. This can be confusing because you can use CSS to bring in images too. The key difference is that when the image is apart of the content, like a diagram that shows data you’re talking about or a picture that shows something from the article, it should be an “img” tag. If it’s a nice background image or something that’s for decoration of your website, use CSS. An “img” tag needs a “src” to say where the image is coming from and “alt” to say what is in the image for screen readers so that the image will still be useful to blind people, people who are hard of seeing, and Google and Bing search engines. “img” are always self-closing tags.</p>
+<p>Note that the image src can point to an online source which it fetches when the page loads or it can refer to a local image stored in your folder. When you want to refer to the online image, you need to provide the link: <code>&lt;img   src="http://pets-images.dev-apis.com/pets/dog25.jpg"   alt="an adorable puppy" /&gt;</code></p>
+<p>When you want to refer to the local image in your folder, you need to point to where it is located. If it’s located in the same folder than this will suffice: <code>&lt;img   src="dog25.jpg"   alt="an adorable puppy" /&gt;</code></p>
+<p>But if it’s in another folder, you’ll need to point there: <code>&lt;img   src="myImageFolder/dog25.jpg"   alt="an adorable puppy" /&gt;</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<div class="sourceCode" id="cb13"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb13-1"><a href="#cb13-1"></a><span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb13-2"><a href="#cb13-2"></a><span class="ot">  src</span><span class="op">=</span><span class="st">"http://pets-images.dev-apis.com/pets/dog25.jpg"</span></span>
+<span id="cb13-3"><a href="#cb13-3"></a><span class="ot">  alt</span><span class="op">=</span><span class="st">"an adorable puppy"</span></span>
+<span id="cb13-4"><a href="#cb13-4"></a><span class="dt">/&gt;</span></span>
+<span id="cb13-5"><a href="#cb13-5"></a><span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb13-6"><a href="#cb13-6"></a><span class="ot">  src</span><span class="op">=</span><span class="st">"http://pets-images.dev-apis.com/pets/dog26.jpg"</span></span>
+<span id="cb13-7"><a href="#cb13-7"></a><span class="ot">  alt</span><span class="op">=</span><span class="st">"an adorable puppy"</span></span>
+<span id="cb13-8"><a href="#cb13-8"></a><span class="dt">/&gt;</span></span>
+<span id="cb13-9"><a href="#cb13-9"></a><span class="dt">&lt;</span><span class="kw">img</span></span>
+<span id="cb13-10"><a href="#cb13-10"></a><span class="ot">  src</span><span class="op">=</span><span class="st">"http://pets-images.dev-apis.com/pets/dog27.jpg"</span></span>
+<span id="cb13-11"><a href="#cb13-11"></a><span class="ot">  alt</span><span class="op">=</span><span class="st">"an adorable puppy"</span></span>
+<span id="cb13-12"><a href="#cb13-12"></a><span class="dt">/&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+<img
+  src=&quot;http://pets-images.dev-apis.com/pets/dog25.jpg&quot;
+  alt=&quot;an adorable puppy&quot;
+/>
+<img
+  src=&quot;http://pets-images.dev-apis.com/pets/dog26.jpg&quot;
+  alt=&quot;an adorable puppy&quot;
+/>
+<img
+  src=&quot;http://pets-images.dev-apis.com/pets/dog27.jpg&quot;
+  alt=&quot;an adorable puppy&quot;
+/>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="links-anchors" class="level3" data-number="1.5.6">
+<h3 data-number="1.5.6" class="anchored" data-anchor-id="links-anchors"><span class="header-section-number">1.5.6</span> Links (Anchors)</h3>
+<p>“a” – Anchor. An “a” tag is a link to somewhere else. <a href="#">This is a link that goes nowhere</a>. Every “a” tag needs a destination of where the link should take you. We’ll talk about that in the <strong>Attributes</strong> section.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="sourceCode" id="cb14"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb14-1"><a href="#cb14-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.frontendmasters.com"</span><span class="dt">&gt;</span>Frontend Masters<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://aka.ms/visual-studio-code"</span><span class="dt">&gt;</span>Visual Studio Code<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.codepen.io"</span><span class="dt">&gt;</span>CodePen<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <a target=&quot;_blank&quot; href=&quot;https://www.frontendmasters.com&quot;>Frontend Masters</a>
+    <a target=&quot;_blank&quot; href=&quot;https://aka.ms/visual-studio-code&quot;>Visual Studio Code</a>
+    <a target=&quot;_blank&quot; href=&quot;https://www.codepen.io&quot;>CodePen</a>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+</section>
+<section id="lists" class="level3" data-number="1.5.7">
+<h3 data-number="1.5.7" class="anchored" data-anchor-id="lists"><span class="header-section-number">1.5.7</span> Lists</h3>
+<p>“ol”, “ul”, and “li” – Both “ol” and “ul” represent lists. In fact, this list of various tags is a “ul”! A “ul” is an unordered list: it’s a list of things that could be shuffled and still mean the same thing. If I asked you to list all the teams in a sports league, or all the characters on a TV show, those could be presented in any order. An “ol” is an ordered list: what comes first matters. If I ask you to list out the ten most populous cities in the world, there is an order to that and changing the order makes the list incorrect. In either list, each item in the list is an “li”.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div class="sourceCode" id="cb15"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb15-1"><a href="#cb15-1"></a><span class="dt">&lt;</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb15-2"><a href="#cb15-2"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>The First One<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb15-3"><a href="#cb15-3"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>The Second One<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>The Third One<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb15-5"><a href="#cb15-5"></a><span class="dt">&lt;/</span><span class="kw">ol</span><span class="dt">&gt;</span></span>
+<span id="cb15-6"><a href="#cb15-6"></a></span>
+<span id="cb15-7"><a href="#cb15-7"></a><span class="dt">&lt;</span><span class="kw">ul</span><span class="dt">&gt;</span></span>
+<span id="cb15-8"><a href="#cb15-8"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>An Item in the List<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb15-9"><a href="#cb15-9"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>Another Item in the List<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10"></a>  <span class="dt">&lt;</span><span class="kw">li</span><span class="dt">&gt;</span>A Yet Different Item in the List<span class="dt">&lt;/</span><span class="kw">li</span><span class="dt">&gt;</span></span>
+<span id="cb15-11"><a href="#cb15-11"></a><span class="dt">&lt;/</span><span class="kw">ul</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML Example</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; margin: 0; }
+  </style>
+</head>
+<body>
+    <ol>
+  <li>The First One</li>
+  <li>The Second One</li>
+  <li>The Third One</li>
+</ol>
+
+<ul>
+  <li>An Item in the List</li>
+  <li>Another Item in the List</li>
+  <li>A Yet Different Item in the List</li>
+</ul>
+</body>
+</html>
+" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+<p>There are many more tags (or HTML elements) that you can use to build a website. The ones we’ve just reviewed will be the essential tags needed to generate our experiments.</p>
+<p>To see the full list of HTML elements, you can go here: https://developer.mozilla.org/en-US/docs/Web/HTML/Reference/Elements</p>
+</section>
+</section>
+<section id="attributes" class="level2" data-number="1.6">
+<h2 data-number="1.6" class="anchored" data-anchor-id="attributes"><span class="header-section-number">1.6</span> Attributes</h2>
+<p>Attributes allow you to modify behavior of an HTML tag. You’ve already seen a few of them but we’ll go into a few more examples of them.</p>
+<p>A really good example we have seen already is the href attribute of the anchor tag:</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb16-1"><a href="#cb16-1"></a><span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"www.frontendmasters.com"</span><span class="dt">&gt;&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>By modifying the href we’re modifying what the tag does. It’s contextual as well: href only works on an anchor tags. You can’t add a href to a div and expect it to suddenly work as a link.</p>
+<p>Another example is the src attribute on images. The src tells the browser where to find the image file:</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb17-1"><a href="#cb17-1"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"happy-face.jpg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"A smiling face"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2"></a><span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"sad-face.jpg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"A frowning face"</span><span class="ot"> </span><span class="dt">/&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<section id="classes-and-ids-reference-labels" class="level3" data-number="1.6.1">
+<h3 data-number="1.6.1" class="anchored" data-anchor-id="classes-and-ids-reference-labels"><span class="header-section-number">1.6.1</span> Classes and IDs: Reference Labels</h3>
+<p>There are other attributes like class and id that are universal and can be applied to (nearly) all tags. These themselves don’t change how things look or behave - they’re like reference labels that allow other parts of your code to find and work with specific HTML elements later.</p>
+<p>Think of classes and IDs like name tags at a conference. The name tag doesn’t change what you look like, but it helps other people find and identify you. Similarly, classes and IDs help CSS (for styling) and JavaScript (for interactivity) find and work with specific HTML elements.</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb18-1"><a href="#cb18-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"experiment-instructions"</span><span class="dt">&gt;</span></span>
+<span id="cb18-2"><a href="#cb18-2"></a>  <span class="dt">&lt;</span><span class="kw">h2</span><span class="ot"> id</span><span class="op">=</span><span class="st">"main-title"</span><span class="dt">&gt;</span>Memory Task Instructions<span class="dt">&lt;/</span><span class="kw">h2</span><span class="dt">&gt;</span></span>
+<span id="cb18-3"><a href="#cb18-3"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"important-note"</span><span class="dt">&gt;</span>Please read carefully!<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb18-4"><a href="#cb18-4"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"important-note"</span><span class="dt">&gt;</span>This experiment will take 15 minutes.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb18-5"><a href="#cb18-5"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">"start-button"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"experiment.html"</span><span class="dt">&gt;</span>Begin<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb18-6"><a href="#cb18-6"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example:</p>
+<ul>
+<li>The experiment-instructions class labels the entire instruction section</li>
+<li>The main-title ID labels the specific heading (there’s only one main title)</li>
+<li>The important-note class labels both important paragraphs (reusable!)</li>
+<li>The start-button class labels the link</li>
+</ul>
+<p>You can give a single element multiple classes by separating them with spaces. This is really powerful because it lets you combine different labels:</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb19-1"><a href="#cb19-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"trial-display centered-content"</span><span class="dt">&gt;</span></span>
+<span id="cb19-2"><a href="#cb19-2"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stimulus-text large-font"</span><span class="dt">&gt;</span>BLUE<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stimulus-image rounded-corners"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"face1.jpg"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"Happy face"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> class</span><span class="op">=</span><span class="st">"response-button primary-button"</span><span class="ot"> href</span><span class="op">=</span><span class="st">"next-trial.html"</span><span class="dt">&gt;</span>Continue<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>In this example:</p>
+<ul>
+<li>The div has both trial-display and centered-content classes</li>
+<li>The p has both stimulus-text and large-font classes</li>
+<li>The img has both stimulus-image and rounded-corners classes</li>
+<li>The a has both response-button and primary-button classes</li>
+</ul>
+</section>
+<section id="classes-vs-ids-when-to-use-which" class="level3" data-number="1.6.2">
+<h3 data-number="1.6.2" class="anchored" data-anchor-id="classes-vs-ids-when-to-use-which"><span class="header-section-number">1.6.2</span> Classes vs IDs: When to Use Which?</h3>
+<p>Classes are like group labels - you can use the same class on multiple elements:</p>
+<ul>
+<li>Use when you might have multiple elements that should be treated the same way</li>
+<li>Perfect for things like “all warning messages” or “all response buttons”</li>
+<li>Can be reused as many times as you want on a page</li>
+</ul>
+<p>IDs are like unique identifiers - each ID can only be used once per page:</p>
+<ul>
+<li>Use when you have exactly one of something special</li>
+<li>Good for unique elements like “the main experiment area” or “the final results section”</li>
+<li>Must be unique - you can’t have two elements with the same ID</li>
+</ul>
+<div class="sourceCode" id="cb20"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">&lt;!-- Good use of classes - multiple elements that should be grouped --&gt;</span></span>
+<span id="cb20-2"><a href="#cb20-2"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"instruction-text"</span><span class="dt">&gt;</span>Read the word, ignore the color.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb20-3"><a href="#cb20-3"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"instruction-text"</span><span class="dt">&gt;</span>Respond as quickly as possible.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4"></a><span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"instruction-text"</span><span class="dt">&gt;</span>Press any key to begin.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb20-5"><a href="#cb20-5"></a></span>
+<span id="cb20-6"><a href="#cb20-6"></a><span class="co">&lt;!-- Good use of ID - unique element --&gt;</span></span>
+<span id="cb20-7"><a href="#cb20-7"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">"experiment-container"</span><span class="dt">&gt;</span></span>
+<span id="cb20-8"><a href="#cb20-8"></a>  <span class="co">&lt;!-- All experiment content goes here --&gt;</span></span>
+<span id="cb20-9"><a href="#cb20-9"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb20-10"><a href="#cb20-10"></a></span>
+<span id="cb20-11"><a href="#cb20-11"></a><span class="co">&lt;!-- Combining classes and IDs --&gt;</span></span>
+<span id="cb20-12"><a href="#cb20-12"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">"trial-area"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"centered-content trial-display"</span><span class="dt">&gt;</span></span>
+<span id="cb20-13"><a href="#cb20-13"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stimulus-word large-text"</span><span class="dt">&gt;</span>RED<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb20-14"><a href="#cb20-14"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Rule of thumb: Use classes 95% of the time. Only use IDs when you’re absolutely sure there will only ever be one of that element on the page, and you need to specifically target that unique element later in your code.</p>
+<p>For psychology experiments, classes are perfect for things like trial displays, response buttons, and instruction text that you’ll reuse across different parts of your experiment.</p>
+</section>
+</section>
+<section id="organizing-html" class="level2" data-number="1.7">
+<h2 data-number="1.7" class="anchored" data-anchor-id="organizing-html"><span class="header-section-number">1.7</span> Organizing HTML</h2>
+<p>Let’s talk about organizing HTML and how to make the most of it. This will help a ton once you get to the CSS section.</p>
+<p>HTML is like building with blocks in that you can put smaller elements inside bigger containers to organize your content. The <code>&lt;div&gt;</code> element is your most versatile container. It doesn’t have any special meaning by itself, but it’s perfect for grouping related elements together.</p>
+<section id="basic-organization-with-divs" class="level3" data-number="1.7.1">
+<h3 data-number="1.7.1" class="anchored" data-anchor-id="basic-organization-with-divs"><span class="header-section-number">1.7.1</span> Basic Organization with Divs</h3>
+<p>Let’s say you’re creating an instruction page for a psychology experiment. You need to welcome participants, explain the task, show them what they’ll see, and give them a button to start. Let’s put that together using HTML:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div class="sourceCode" id="cb21"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb21-1"><a href="#cb21-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome to the Experiment!<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4"></a>    In this experiment, you will see images of faces and need to identify </span>
+<span id="cb21-5"><a href="#cb21-5"></a>    the emotion being displayed. Each face will appear for 2 seconds.</span>
+<span id="cb21-6"><a href="#cb21-6"></a>  <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb21-7"><a href="#cb21-7"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Face-smile.svg/120px-Face-smile.svg.png"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"Example of a happy face"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb21-8"><a href="#cb21-8"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>Click the emotion you see as quickly and accurately as possible.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb21-9"><a href="#cb21-9"></a>  <span class="dt">&lt;</span><span class="kw">button</span><span class="dt">&gt;</span>Start Experiment<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb21-10"><a href="#cb21-10"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>Welcome to the Experiment!</h1>
+    <p>
+      In this experiment, you will see images of faces and need to identify 
+      the emotion being displayed. Each face will appear for 2 seconds.
+    </p>
+    <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Face-smile.svg/120px-Face-smile.svg.png' alt='Example of a happy face' />
+    <p>Click the emotion you see as quickly and accurately as possible.</p>
+    <button>Start Experiment</button>
+  </div>
+</body>
+</html>" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+    function resize() {
+      try {
+        const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+        const minHeight = 325;
+        iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+      } catch(e) {}
+    }
+    resize();
+    iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+    const observer = new MutationObserver(resize);
+    observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+  }(this));"></iframe>
+</div>
+</div>
+</div>
+<p>Let’s walk through what we did here and why.</p>
+<p>We wrapped everything in a <code>&lt;div&gt;</code> element. This creates a container that holds all our related content together. Think of it like putting all the instruction materials in one folder.</p>
+<p>Notice how every tag that we opened gets closed. We have: - <code>&lt;div&gt; ... &lt;/div&gt;</code> - <code>&lt;h1&gt; ... &lt;/h1&gt;</code> - <code>&lt;p&gt; ... &lt;/p&gt;</code> - <code>&lt;button&gt; ... &lt;/button&gt;</code> - Note that the <code>&lt;img&gt;</code> tag is self-closing, so it doesn’t need a separate closing tag.</p>
+<p>Look at how we formatted the HTML with indentation and line breaks. This makes it easier to read, but the browser ignores most of this whitespace. We could write it all on one line and it would look the same to users, but that would be much harder for us to read and edit! Good formatting makes your code maintainable.</p>
+<p>All of our content elements (<code>h1</code>, <code>p</code>, <code>img</code>, <code>button</code>) are inside the <code>div</code> container. This is called nesting. The <code>div</code> is the parent, and everything inside it are its children.</p>
+</section>
+<section id="adding-labels-for-future-reference" class="level3" data-number="1.7.2">
+<h3 data-number="1.7.2" class="anchored" data-anchor-id="adding-labels-for-future-reference"><span class="header-section-number">1.7.2</span> Adding Labels for Future Reference</h3>
+<p>Now, this HTML works perfectly fine, but when we get to CSS (in the next chapter), we’ll want to style different parts differently. Maybe we want the title to be bigger, or the button to be blue. To do that, we need a way to refer to specific elements. That’s where classes and IDs come in:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div class="sourceCode" id="cb22"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb22-1"><a href="#cb22-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> id</span><span class="op">=</span><span class="st">"instruction-page"</span><span class="dt">&gt;</span></span>
+<span id="cb22-2"><a href="#cb22-2"></a>  <span class="dt">&lt;</span><span class="kw">h1</span><span class="ot"> class</span><span class="op">=</span><span class="st">"page-title"</span><span class="dt">&gt;</span>Welcome to the Experiment!<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"instruction-text"</span><span class="dt">&gt;</span></span>
+<span id="cb22-4"><a href="#cb22-4"></a>    In this experiment, you will see images of faces and need to identify </span>
+<span id="cb22-5"><a href="#cb22-5"></a>    the emotion being displayed. Each face will appear for 2 seconds.</span>
+<span id="cb22-6"><a href="#cb22-6"></a>  <span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> class</span><span class="op">=</span><span class="st">"example-image"</span><span class="ot"> src</span><span class="op">=</span><span class="st">"https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Face-smile.svg/120px-Face-smile.svg.png"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"Example of a happy face"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb22-8"><a href="#cb22-8"></a>  <span class="dt">&lt;</span><span class="kw">p</span><span class="ot"> class</span><span class="op">=</span><span class="st">"instruction-text"</span><span class="dt">&gt;</span>Click the emotion you see as quickly and accurately as possible.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb22-9"><a href="#cb22-9"></a>  <span class="dt">&lt;</span><span class="kw">button</span><span class="ot"> class</span><span class="op">=</span><span class="st">"start-button"</span><span class="dt">&gt;</span>Start Experiment<span class="dt">&lt;/</span><span class="kw">button</span><span class="dt">&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; }
+  </style>
+</head>
+<body>
+  <div id='instruction-page'>
+    <h1 class='page-title'>Welcome to the Experiment!</h1>
+    <p class='instruction-text'>
+      In this experiment, you will see images of faces and need to identify 
+      the emotion being displayed. Each face will appear for 2 seconds.
+    </p>
+    <img class='example-image' src='https://upload.wikimedia.org/wikipedia/commons/thumb/7/79/Face-smile.svg/120px-Face-smile.svg.png' alt='Example of a happy face' />
+    <p class='instruction-text'>Click the emotion you see as quickly and accurately as possible.</p>
+    <button class='start-button'>Start Experiment</button>
+  </div>
+</body>
+</html>" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+    function resize() {
+      try {
+        const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+        const minHeight = 325;
+        iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+      } catch(e) {}
+    }
+    resize();
+    iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+    const observer = new MutationObserver(resize);
+    observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+  }(this));"></iframe>
+</div>
+</div>
+</div>
+<p>Notice that it looks exactly the same! The classes and IDs don’t change how things appear. They’re just labels that we can use later. Think of them like putting sticky notes on different parts of your content.</p>
+<p>We gave <code>id="instruction-page"</code> as a unique label for this specific page. The <code>class="page-title"</code> labels the main title. We used <code>class="instruction-text"</code> for instruction paragraphs (notice two elements have this same class). The <code>class="example-image"</code> labels the example image, and <code>class="start-button"</code> labels the start button.</p>
+<p>In the CSS chapter, we’ll use these labels to make the title bigger, color the button blue, or center the image. The key principle is that HTML defines the structure and content, while CSS (which we’ll learn next) handles the appearance. By organizing our HTML well and adding meaningful labels, we set ourselves up for success when we start styling our experiments.</p>
+</section>
+</section>
+<section id="html-document-structure" class="level2" data-number="1.8">
+<h2 data-number="1.8" class="anchored" data-anchor-id="html-document-structure"><span class="header-section-number">1.8</span> HTML Document Structure</h2>
+<p>So far we’ve been discussing snippets of HTML, using things like divs to build up “components” (or a group of tags that represents a higher level concept like a post or a navigation bar). But let’s talk about the overall structure of an HTML document.</p>
+<p>Every HTML page needs a basic skeleton that tells the browser important information about how to display and handle your content. Here’s the standard structure you should use for every HTML document:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true">HTML</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<div class="sourceCode" id="cb23"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb23-1"><a href="#cb23-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span>
+<span id="cb23-3"><a href="#cb23-3"></a>  <span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb23-4"><a href="#cb23-4"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb23-5"><a href="#cb23-5"></a>    <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb23-6"><a href="#cb23-6"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>My Psychology Experiment<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb23-7"><a href="#cb23-7"></a>  <span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb23-8"><a href="#cb23-8"></a>  <span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb23-9"><a href="#cb23-9"></a>    <span class="co">&lt;!-- All your visible content goes here --&gt;</span></span>
+<span id="cb23-10"><a href="#cb23-10"></a>    <span class="dt">&lt;</span><span class="kw">h1</span><span class="dt">&gt;</span>Welcome to the Study<span class="dt">&lt;/</span><span class="kw">h1</span><span class="dt">&gt;</span></span>
+<span id="cb23-11"><a href="#cb23-11"></a>    <span class="dt">&lt;</span><span class="kw">p</span><span class="dt">&gt;</span>This is where participants will see your experiment content.<span class="dt">&lt;/</span><span class="kw">p</span><span class="dt">&gt;</span></span>
+<span id="cb23-12"><a href="#cb23-12"></a>  <span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb23-13"><a href="#cb23-13"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<iframe srcdoc="<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8' />
+    <meta name='viewport' content='width=device-width, initial-scale=1.0' />
+    <title>My Psychology Experiment</title>
+  </head>
+  <body>
+    <h1>Welcome to the Study</h1>
+    <p>This is where participants will see your experiment content.</p>
+  </body>
+</html>" width="100%" height="325px" scrolling="no" onload="javascript:(function(iframe){
+  function resize() {
+    try {
+      const contentHeight = iframe.contentWindow.document.body.scrollHeight;
+      const minHeight = 325;
+      iframe.style.height = Math.max(contentHeight+50, minHeight) + &quot;px&quot;;
+    } catch(e) {}
+  }
+  resize();
+  iframe.contentWindow.addEventListener(&quot;resize&quot;, resize);
+  // Watch for content changes
+  const observer = new MutationObserver(resize);
+  observer.observe(iframe.contentWindow.document.body, {childList: true, subtree: true});
+}(this));"></iframe>
+</div>
+</div>
+</div>
+<p>Let’s break down each part of this structure:</p>
+<section id="document-type-declaration" class="level3" data-number="1.8.1">
+<h3 data-number="1.8.1" class="anchored" data-anchor-id="document-type-declaration"><span class="header-section-number">1.8.1</span> Document Type Declaration</h3>
+<div class="sourceCode" id="cb24"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb24-1"><a href="#cb24-1"></a><span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This tells the browser we’re using HTML5 (the current standard). There have been several versions of HTML over the years, and this declaration ensures the browser interprets your code using the latest, most reliable standards.</p>
+</section>
+<section id="root-html-element" class="level3" data-number="1.8.2">
+<h3 data-number="1.8.2" class="anchored" data-anchor-id="root-html-element"><span class="header-section-number">1.8.2</span> Root HTML Element</h3>
+<div class="sourceCode" id="cb25"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb25-1"><a href="#cb25-1"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="ot"> lang</span><span class="op">=</span><span class="st">"en"</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>This is the container for your entire document. The lang=“en” attribute tells browsers and search engines that your content is in English, which helps with accessibility and search indexing.</p>
+</section>
+<section id="the-head-section" class="level3" data-number="1.8.3">
+<h3 data-number="1.8.3" class="anchored" data-anchor-id="the-head-section"><span class="header-section-number">1.8.3</span> The Head Section</h3>
+<div class="sourceCode" id="cb26"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb26-1"><a href="#cb26-1"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb26-2"><a href="#cb26-2"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> charset</span><span class="op">=</span><span class="st">"UTF-8"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb26-3"><a href="#cb26-3"></a>  <span class="dt">&lt;</span><span class="kw">meta</span><span class="ot"> name</span><span class="op">=</span><span class="st">"viewport"</span><span class="ot"> content</span><span class="op">=</span><span class="st">"width=device-width, initial-scale=1.0"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb26-4"><a href="#cb26-4"></a>  <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>My Psychology Experiment<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb26-5"><a href="#cb26-5"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>The <code>&lt;head&gt;</code> contains metadata that is information about your page that doesn’t appear in the browser window.</p>
+<p>The <code>charset="UTF-8"</code> tells the browser which character set to use. UTF-8 supports all modern characters, emojis, and international text. Always include this.</p>
+<p>The viewport meta tag is essential for mobile devices. Without this, phones might display your page zoomed way out and tiny. This ensures your experiment works properly on all screen sizes.</p>
+<p>The <code>&lt;title&gt;</code> sets the text that appears in the browser tab and in search results.</p>
+</section>
+<section id="the-body-section" class="level3" data-number="1.8.4">
+<h3 data-number="1.8.4" class="anchored" data-anchor-id="the-body-section"><span class="header-section-number">1.8.4</span> The Body Section</h3>
+<div class="sourceCode" id="cb27"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb27-1"><a href="#cb27-1"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb27-2"><a href="#cb27-2"></a>  <span class="co">&lt;!-- All your visible content goes here --&gt;</span></span>
+<span id="cb27-3"><a href="#cb27-3"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<p>Everything participants actually see and interact with goes inside the <code>&lt;body&gt;</code> tags. This is where you’ll put your experiment instructions, stimuli, response buttons, and all other visible content.</p>
+</section>
+</section>
+<section id="putting-it-all-together-a-live-coding-exercise" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="putting-it-all-together-a-live-coding-exercise"><span class="header-section-number">1.9</span> Putting it All Together: A Live Coding Exercise</h2>
+<p>Throughout this textbook, you will find live coding exercise where you can directly edit some code and see the result right here in the book.</p>
+<p>Below is our simple HTML welcome page. Go ahead and edit the HTML below. The webpage, on the right, will update as you change the code. None of these changes are permanent. If you refresh the page, the codepen will revert back to the original code it started as.</p>
+<p>Some things to try:</p>
+<ol type="1">
+<li>Change the paragraph text inside <code>&lt;p&gt; &lt;/p&gt;</code></li>
+<li>Add a second header using <code>&lt;h2&gt; &lt;/h2&gt;</code></li>
+<li>Add an ordered list below the <code>&lt;p&gt;</code></li>
+<li>Add the smiley face image using the wikicommons link from the earlier examples.</li>
+</ol>
+<div class="callout callout-style-default callout-note callout-titled" title="Live Coding Exercise">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Live Coding Exercise
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<iframe height="400" style="width: 100%;" scrolling="no" title="Your Pen Title" src="https://codepen.io/nicholaus/embed/PwPWbqK?default-tab=html%2Cresult&amp;editable=true&amp;theme-id=dark" frameborder="no" loading="lazy" allowtransparency="true" allowfullscreen="true">
+</iframe>
+</div>
+</div>
+</div>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+        const codeEl = trigger.previousElementSibling.cloneNode(true);
+        for (const childEl of codeEl.children) {
+          if (isCodeAnnotation(childEl)) {
+            childEl.remove();
+          }
+        }
+        return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="./index.html" class="pagination-link" aria-label="Introduction">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Introduction</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="./02-css.html" class="pagination-link" aria-label="CSS">
+        <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">CSS</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+
+
+
+
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://https://github.com/icoglab/online-behavioural-research-methods/edit/main/01-html.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
