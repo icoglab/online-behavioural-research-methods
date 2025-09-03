@@ -9,7 +9,7 @@
 <meta name="author" content="Nicholaus P. Brosowsky">
 <meta name="author" content="Liam Yeo">
 <meta name="author" content="Jackie Spear">
-<meta name="dcterms.date" content="2025-07-23">
+<meta name="dcterms.date" content="2025-09-01">
 <meta name="description" content="An open source textbook for psychology students learning programming and online research methods.Primary Author: Nicholaus P. Brosowsky Co-Authors: Liam Yeo, Jackie Spear">
 
 <title>Online Behavioural Research Methods: Programming with jsPsych</title>
@@ -265,21 +265,8 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
   <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
   </ul></li>
-  <li><a href="#getting-setup-online" id="toc-getting-setup-online" class="nav-link" data-scroll-target="#getting-setup-online">Getting Setup Online</a>
+  <li><a href="#getting-setup" id="toc-getting-setup" class="nav-link" data-scroll-target="#getting-setup">Getting Setup</a>
   <ul class="collapse">
-  <li><a href="#step-1-sign-up-for-a-free-github-account" id="toc-step-1-sign-up-for-a-free-github-account" class="nav-link" data-scroll-target="#step-1-sign-up-for-a-free-github-account">Step 1: Sign up for a free GitHub account</a></li>
-  <li><a href="#step-2-fork-the-lab-materials-repository" id="toc-step-2-fork-the-lab-materials-repository" class="nav-link" data-scroll-target="#step-2-fork-the-lab-materials-repository">Step 2: Fork the lab materials repository</a></li>
-  <li><a href="#step-3-turn-your-repo-into-a-live-website" id="toc-step-3-turn-your-repo-into-a-live-website" class="nav-link" data-scroll-target="#step-3-turn-your-repo-into-a-live-website">Step 3: Turn your repo into a live website</a></li>
-  <li><a href="#offline-setup" id="toc-offline-setup" class="nav-link" data-scroll-target="#offline-setup">Offline Setup</a></li>
-  </ul></li>
-  <li><a href="#important-limitation-data-storage" id="toc-important-limitation-data-storage" class="nav-link" data-scroll-target="#important-limitation-data-storage">Important Limitation: Data Storage</a>
-  <ul class="collapse">
-  <li><a href="#alternative-hosting-options" id="toc-alternative-hosting-options" class="nav-link" data-scroll-target="#alternative-hosting-options">Alternative Hosting Options</a>
-  <ul class="collapse">
-  <li><a href="#university-of-manitoba-server-access" id="toc-university-of-manitoba-server-access" class="nav-link" data-scroll-target="#university-of-manitoba-server-access">University of Manitoba Server Access</a></li>
-  <li><a href="#other-hosting-solutions" id="toc-other-hosting-solutions" class="nav-link" data-scroll-target="#other-hosting-solutions">Other Hosting Solutions</a></li>
-  <li><a href="#saving-data-to-osf" id="toc-saving-data-to-osf" class="nav-link" data-scroll-target="#saving-data-to-osf">Saving Data to OSF</a></li>
-  </ul></li>
   <li><a href="#a-note-about-this-textbook" id="toc-a-note-about-this-textbook" class="nav-link" data-scroll-target="#a-note-about-this-textbook">A Note About This Textbook</a></li>
   </ul></li>
   <li><a href="#getting-started-mindset" id="toc-getting-started-mindset" class="nav-link" data-scroll-target="#getting-started-mindset">Getting Started Mindset</a></li>
@@ -317,7 +304,7 @@ ul.task-list li input[type="checkbox"] {
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
-      <p class="date">July 23, 2025</p>
+      <p class="date">September 1, 2025</p>
     </div>
   </div>
   
@@ -331,25 +318,20 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="sec-preface" class="level1 unnumbered">
 <h1 class="unnumbered">Introduction</h1>
-<p>This textbook is designed to teach you how to create sophisticated online behavioural experiments using modern web technologies, with a particular focus on jsPsych, a powerful JavaScript library specifically built for psychological research. Originally developed for my Research in Cognitive Psychology course at the University of Manitoba, this book provides a comprehensive introduction to programming online studies that can be used by anyone interested in conducting behavioural research on the web.</p>
-<p>While the examples and labs throughout this book draw primarily from cognitive psychology research, reflecting my background as a cognitive psychologist, the principles and techniques you’ll learn are broadly applicable to any field conducting online behavioural studies. Whether you’re interested in social psychology, developmental psychology, neuroscience, or related disciplines, the skills you develop here will transfer directly to your research needs.</p>
+<p>This textbook is designed to teach you how to create online behavioural experiments using modern web technologies, with a particular focus on jsPsych, a JavaScript library specifically built for psychological research. Originally developed for my Research in Cognitive Psychology course at the University of Manitoba, this book provides a comprehensive introduction to programming online studies that can be used by anyone interested in conducting behavioural research on the web.</p>
+<p>While the examples and labs throughout this book draw primarily from cognitive psychology research, reflecting my background as a cognitive psychologist, the principles and techniques you’ll learn are broadly applicable to any field conducting online behavioural studies.</p>
 <section id="book-structure-and-learning-path" class="level2">
 <h2 class="anchored" data-anchor-id="book-structure-and-learning-path">Book Structure and Learning Path</h2>
 <p>The book is structured to take you from complete beginner to competent online experiment programmer through a carefully scaffolded progression. You’ll start by learning the fundamental web technologies that power all online experiments: HTML for structure, CSS for styling, and JavaScript for interactivity. These foundational skills are essential because jsPsych, like all web-based experiment platforms, builds upon these core technologies.</p>
 <p>Once you have a solid grasp of the fundamentals, you’ll dive into jsPsych itself, learning how this specialized library can dramatically simplify the process of creating psychological experiments. You’ll discover how to present stimuli, collect responses, measure precise timing data, and manage the flow of your experiments through jsPsych’s intuitive plugin system and timeline structure.</p>
 <p>As you progress through the units, you’ll tackle increasingly sophisticated experimental designs. You’ll learn to incorporate multimedia elements like images, audio, and video into your studies. You’ll master techniques for creating dynamic, responsive experiments that adapt based on participant responses. You’ll explore methods for properly saving and organizing your data, implementing randomization strategies, and even adding gamification elements to enhance participant engagement.</p>
-<p>Each unit combines theoretical instruction with hands-on laboratory exercises that reinforce your learning through practical application. These labs guide you through creating experiments that investigate classic phenomena in cognitive psychology, from memory and attention to decision-making and face perception. By working through these exercises, you’ll not only learn programming techniques but also gain insights into experimental design principles that are crucial for conducting rigorous behavioural research.</p>
+<p>Each unit combines theoretical instruction with hands-on laboratory exercises that reinforce your learning through practical application. These labs guide you through creating experiments that investigate classic phenomena in cognitive psychology, from memory and attention to decision-making and face perception. By working through these exercises, you’ll not only learn programming techniques but also gain insights into experimental design principles that are important for conducting rigorous behavioural research.</p>
 </section>
 <section id="prerequisites" class="level2">
 <h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>This textbook is designed to be accessible to complete beginners with no prior programming experience. The only requirements are:</p>
-<p>Technical Requirements:</p>
-<ul>
-<li>A computer, tablet, or smartphone with internet access</li>
-<li>A modern web browser (Chrome, Firefox, Safari, or Edge)</li>
-<li>Ability to create accounts on websites (you’ll need a GitHub account)</li>
-</ul>
-<p>No Software Installation Required: Everything we’ll do happens in your web browser through GitHub’s online interface. You won’t need to download or install any programming software, text editors, or development tools.</p>
+<p>This textbook is designed to be accessible to complete beginners with no prior programming experience. The only requirements are a computer and a modern web browser (Chrome, Firefox, Safari, or Edge)</p>
+<p>No Software Installation Required: Everything we’ll do happens in your web browser and all the files can be edited with any text editor. You won’t need to download or install any programming software, text editors, or development tools.</p>
+<p>jsPsych V8: This textbook uses version 8 of jsPsych. When navigating to the documentation, please make sure you are using version 8: <a href="https://www.jspsych.org/v8/" class="uri">https://www.jspsych.org/v8/</a></p>
 <p>Academic Background: While the examples focus on cognitive psychology, no specific psychology background is required. The book explains psychological concepts as they arise, making it suitable for students from any discipline interested in online behavioral research.</p>
 <p>Time Commitment: This book is designed around a 13-week course structure, with each chapter and associated lab tutorial intended to be completed within one week. Most students should expect to spend 3-5 hours per week on reading, exercises, and lab work, though this may vary depending on your familiarity with the concepts and your learning pace.</p>
 </section>
@@ -358,62 +340,19 @@ ul.task-list li input[type="checkbox"] {
 <p>By the end of this book, you’ll have the skills to design, implement, and deploy sophisticated online behavioural experiments. More importantly, you’ll understand the underlying principles that will allow you to adapt these techniques to your own research questions and continue learning as web technologies evolve. Whether you’re planning to conduct your own research, collaborate with other investigators, or simply want to understand how online studies work, this book will provide you with a solid foundation in the art and science of web-based behavioural research.</p>
 </section>
 </section>
-<section id="getting-setup-online" class="level1">
-<h1>Getting Setup Online</h1>
-<p>For this book, we’re going to adopt the quickest and simplest method to get you started by using GitHub, a website that many people use to store and edit code. GitHub is an online platform that serves two main purposes for our course: it’s a place to store and manage your code files, and it can also host your experiments as live websites.</p>
-<p>Think of GitHub as a sophisticated filing cabinet for your experiment files. When you create a <strong>repository</strong> (or “repo”), you’re creating a folder that can hold all the files for a particular project. GitHub keeps track of every change you make to these files, creating a complete history of your work. This means you can always go back to an earlier version if something breaks.</p>
-<section id="step-1-sign-up-for-a-free-github-account" class="level2">
-<h2 class="anchored" data-anchor-id="step-1-sign-up-for-a-free-github-account">Step 1: Sign up for a free GitHub account</h2>
-<p>First, navigate to <a href="https://www.github.com">www.github.com</a> and sign up for a free account. Keep in mind that the username you choose here will become part of your website address that you will use for the rest of the course. For example, if you choose “jsmith” as your username, your website will be <code>https://jsmith.github.io/</code></p>
-<p>Choose a professional username that you wouldn’t mind sharing with research collaborators or on your CV, as GitHub profiles often serve as portfolios for technical work.</p>
-</section>
-<section id="step-2-fork-the-lab-materials-repository" class="level2">
-<h2 class="anchored" data-anchor-id="step-2-fork-the-lab-materials-repository">Step 2: Fork the lab materials repository</h2>
-<p>The <strong>fork</strong> feature allows you to make your own copy of someone else’s repository. In this course, you’ll fork the lab materials repository, giving you your own personal copy of all the starter files and examples to work with.</p>
-<p>You can find the lab materials here: <a href="https://github.com/icoglab/obrm-lab-materials" class="uri">https://github.com/icoglab/obrm-lab-materials</a>. At the top of the screen, you will see a ‘Fork’ button. Click that and you will become the proud new owner of a copy of the lab starter materials.</p>
-</section>
-<section id="step-3-turn-your-repo-into-a-live-website" class="level2">
-<h2 class="anchored" data-anchor-id="step-3-turn-your-repo-into-a-live-website">Step 3: Turn your repo into a live website</h2>
-<p>GitHub offers a service called <strong>GitHub Pages</strong> that can turn your repository into a live website. This means the HTML, CSS, and JavaScript files in your repository become accessible to anyone on the internet through a web address. For example, if your GitHub username is “jsmith” and your repository is called “obrm-lab-materials”, your experiment would be available at <code>https://jsmith.github.io/obrm-lab-materials</code>.</p>
-<p>This is incredibly convenient because you can edit your files directly on GitHub’s website using their built-in editor, and your changes appear on your live experiment website within minutes.</p>
-<p>Now that you have a copy of the <code>obrm-lab-materials</code> repository saved in your account, you can activate it to turn into a live website. To do that, navigate to your new repository, which would be something like <code>https://github.com/yourusername/obrm-lab-materials</code>.</p>
-<p>At the top of the screen is a <code>Settings</code> link. Click that and on the left you’ll find a <code>Pages</code> link. Under “Source,” select “Deploy from a branch” and choose “main” as your branch. Click “Save” and GitHub will provide you with the URL where your site will be published.</p>
-<p>You will now be able to navigate to your site (e.g., <code>https://username.github.io/obrm-lab-materials</code>) and see the lab portfolio landing page.</p>
-<p><strong>Note:</strong> It may take a few minutes for your site to become available after enabling GitHub Pages.</p>
-</section>
-<section id="offline-setup" class="level2">
-<h2 class="anchored" data-anchor-id="offline-setup">Offline Setup</h2>
-<p>Alternatively, you can download the lab materials repo onto your own computer and edit the files using any text editor! When you open the html file in the browser (e.g., <code>index.html</code>), it will render your experiment as it would online.</p>
-</section>
-</section>
-<section id="important-limitation-data-storage" class="level1">
-<h1>Important Limitation: Data Storage</h1>
-<p>While GitHub Pages is excellent for hosting your experiment files, it has one important limitation: <strong>it cannot save participant data</strong>. GitHub Pages only serves static files, meaning it can display your experiment and collect responses temporarily, but it cannot permanently store that data on a server.</p>
-<p>For the exercises in this course, this limitation won’t prevent you from learning and testing your experiments. You can still create fully functional experiments that collect responses, you just won’t be able to save that data permanently using GitHub Pages alone.</p>
-<section id="alternative-hosting-options" class="level2">
-<h2 class="anchored" data-anchor-id="alternative-hosting-options">Alternative Hosting Options</h2>
-<section id="university-of-manitoba-server-access" class="level3">
-<h3 class="anchored" data-anchor-id="university-of-manitoba-server-access">University of Manitoba Server Access</h3>
-<p>University of Manitoba students have access to web hosting through the university’s servers, which can both host your experiment files and save participant data. Details for setting up and using this option are provided in the appendix of this textbook.</p>
-</section>
-<section id="other-hosting-solutions" class="level3">
-<h3 class="anchored" data-anchor-id="other-hosting-solutions">Other Hosting Solutions</h3>
-<p>Many other platforms can host web experiments and handle data storage, including commercial services like Netlify, Vercel, and traditional web hosting providers. Some are free for basic use, while others require payment. The choice of hosting platform often depends on your specific research needs, budget, and technical requirements.</p>
-</section>
-<section id="saving-data-to-osf" class="level3">
-<h3 class="anchored" data-anchor-id="saving-data-to-osf">Saving Data to OSF</h3>
-<p>Another solution to the data saving problem is to connect your GitHub-hosted website to the Open Science Framework repository using DataPipe. This allows you to keep hosting your experiments on GitHub and have the data files automatically save to an OSF repository. Instructions on how to do that can be found here: <a href="https://pipe.jspsych.org/" class="uri">https://pipe.jspsych.org/</a>.</p>
-</section>
-</section>
+<section id="getting-setup" class="level1">
+<h1>Getting Setup</h1>
+<p>For this book, we’re going to adopt the quickest and simplest method to get you started. The majority of the book can be completed offline by first downloading the lab materials using this link.</p>
+<p>You’ll need to unzip the folder and move it somewhere it can be stored on your computer (e.g., Documents).</p>
+<p>The files inside this folder can be edited using any text editor. However, there are many text editors with built-in tools to make it easier to program by formatting the text in a way that highlights the important parts. Webstorm is one that I would recommend that is free to use available here: <a href="https://www.jetbrains.com/webstorm/download/" class="uri">https://www.jetbrains.com/webstorm/download/</a>.</p>
+<p>Later in the book, we’ll discuss options in terms of hosting your experiment so anyone can access it through a website URL and saving data to a server.</p>
 <section id="a-note-about-this-textbook" class="level2">
 <h2 class="anchored" data-anchor-id="a-note-about-this-textbook">A Note About This Textbook</h2>
-<p>This is the first edition of this textbook, developed specifically for hands-on learning in an evolving field. As with any first edition, you may encounter errors, unclear explanations, or technical issues as web technologies and platforms change.</p>
+<p>This is the first edition of this textbook, developed specifically for hands-on learning in an evolving field. As with any first edition, you may (probably will..) encounter errors, unclear explanations, or technical issues. This is a work in progress!</p>
 <p><strong>If you encounter problems:</strong></p>
-<ul>
-<li><p><strong>Technical issues with code examples:</strong> Check that you’ve followed all steps exactly as written, then try refreshing your browser or waiting a few minutes (GitHub Pages can take time to update)</p></li>
-<li><p><strong>Errors or unclear content:</strong> Please report these by visiting the textbook’s GitHub repository at <a href="https://github.com/icoglab/obrm-textbook" class="uri">https://github.com/icoglab/obrm-textbook</a> and clicking on the “Issues” tab to log a new issue</p></li>
-<li><p><strong>Suggestions for improvement:</strong> We welcome feedback about content that could be explained more clearly or additional topics that would be helpful</p></li>
-</ul>
+<p><strong>Technical issues with code examples:</strong> Check that you’ve followed all steps exactly as written, then try refreshing your browser or waiting a few minutes (GitHub Pages can take time to update)</p>
+<p><strong>Errors or unclear content:</strong> Please report these by visiting the textbook’s GitHub repository at <a href="https://github.com/icoglab/online-behavioural-research-methods" class="uri">https://github.com/icoglab/online-behavioural-research-methods</a> and clicking on the “Issues” tab to log a new issue</p>
+<p><strong>Suggestions for improvement:</strong> We welcome feedback about content that could be explained more clearly or additional topics that would be helpful</p>
 <p>Your feedback helps improve this resource for future students. Don’t hesitate to report even minor issues like typos or broken links. Contributing to the improvement of educational resources is part of learning to work collaboratively in the open-source community that powers much of modern web development.</p>
 <p><strong>Version Information:</strong> This textbook will be updated regularly based on student feedback and changes in web technologies. Check the repository for the most current version and any important updates or corrections.</p>
 </section>
