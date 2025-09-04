@@ -818,7 +818,7 @@ learning goals
 <p>The official jsPsych documentation is your most valuable resource for learning about the library’s capabilities. You can find it at <a href="https://www.jspsych.org/v8/" class="external" target="_blank">https://www.jspsych.org/v8/</a>. The documentation is well-organized and includes everything from basic tutorials to advanced features.</p>
 <section id="using-the-correct-version" class="level3" data-number="7.4.1">
 <h3 data-number="7.4.1" class="anchored" data-anchor-id="using-the-correct-version"><span class="header-section-number">7.4.1</span> Using the Correct Version</h3>
-<p><strong>Important</strong>: Always make sure you’re viewing the documentation for the correct version of jsPsych. The labs in this course use jsPsych version 8, but the documentation site defaults to the latest version (which may be newer).</p>
+<p>Important: Always make sure you’re viewing the documentation for the correct version of jsPsych. The labs in this course use jsPsych version 8, but the documentation site defaults to the latest version (which may be newer).</p>
 <p>To ensure you’re viewing the v8 documentation:</p>
 <ol type="1">
 <li>Go to <a href="https://www.jspsych.org" class="uri">https://www.jspsych.org</a></li>
@@ -832,22 +832,22 @@ learning goals
 <h3 data-number="7.4.2" class="anchored" data-anchor-id="key-documentation-sections"><span class="header-section-number">7.4.2</span> Key Documentation Sections</h3>
 <p>The documentation is structured into several main areas:</p>
 <ul>
-<li><strong>Overview</strong>: Introduction to jsPsych concepts and getting started guides</li>
-<li><strong>Tutorials</strong>: Step-by-step walkthroughs for common experiment types</li>
-<li><strong>Plugins</strong>: Detailed reference for each available plugin</li>
-<li><strong>Extensions</strong>: Additional functionality that can be added to experiments</li>
-<li><strong>API Reference</strong>: Complete technical documentation of all jsPsych functions</li>
+<li>Overview: Introduction to jsPsych concepts and getting started guides</li>
+<li>Tutorials: Step-by-step walkthroughs for common experiment types</li>
+<li>Plugins: Detailed reference for each available plugin</li>
+<li>Extensions: Additional functionality that can be added to experiments</li>
+<li>API Reference: Complete technical documentation of all jsPsych functions</li>
 </ul>
 </section>
 <section id="using-plugin-documentation" class="level3" data-number="7.4.3">
 <h3 data-number="7.4.3" class="anchored" data-anchor-id="using-plugin-documentation"><span class="header-section-number">7.4.3</span> Using Plugin Documentation</h3>
 <p>Each plugin has its own documentation page that follows a consistent structure:</p>
 <ol type="1">
-<li><strong>Description</strong>: What the plugin does and when to use it</li>
-<li><strong>Parameters</strong>: All available options you can configure</li>
-<li><strong>Data Generated</strong>: What information the plugin records</li>
-<li><strong>Examples</strong>: Working code samples</li>
-<li><strong>Simulation Mode</strong>: How the plugin behaves during testing</li>
+<li>Description: What the plugin does and when to use it</li>
+<li>Parameters: All available options you can configure</li>
+<li>Data Generated: What information the plugin records</li>
+<li>Examples: Working code samples</li>
+<li>Simulation Mode: How the plugin behaves during testing</li>
 </ol>
 <p>For example, the HTML Keyboard Response plugin documentation shows you can control things like:</p>
 <ul>
@@ -861,10 +861,10 @@ learning goals
 <h3 data-number="7.4.4" class="anchored" data-anchor-id="finding-what-you-need"><span class="header-section-number">7.4.4</span> Finding What You Need</h3>
 <p>When working on an experiment, you’ll typically:</p>
 <ol type="1">
-<li><strong>Browse plugins</strong> to find the right tool for your task (image display, audio playback, surveys, etc.)</li>
-<li><strong>Check parameters</strong> to see what options are available</li>
-<li><strong>Review examples</strong> to understand the syntax</li>
-<li><strong>Look at data output</strong> to plan your analysis</li>
+<li>Browse plugins to find the right tool for your task (image display, audio playback, surveys, etc.)</li>
+<li>Check parameters to see what options are available</li>
+<li>Review examples to understand the syntax</li>
+<li>Look at data output to plan your analysis</li>
 </ol>
 <p>The search function on the documentation site is particularly helpful for finding specific features or troubleshooting issues.</p>
 </section>
@@ -878,10 +878,10 @@ learning goals
 <p>First, let’s review the general parameters. I’ve recreated the table from the documentation, you’d normally find here: <a href="https://www.jspsych.org/latest/overview/plugins/#parameters-available-in-all-plugins" class="external" target="_blank">https://www.jspsych.org/latest/overview/plugins/#parameters-available-in-all-plugins</a></p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 50%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 37%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -950,7 +950,7 @@ learning goals
 </table>
 <section id="column-1-parameter" class="level4" data-number="7.5.1.1">
 <h4 data-number="7.5.1.1" class="anchored" data-anchor-id="column-1-parameter"><span class="header-section-number">7.5.1.1</span> Column 1: Parameter</h4>
-<p>This column shows the <strong>name</strong> of the parameter which is exactly what you would type in your trial object. These are the property names you can add to any trial, regardless of which plugin you’re using.</p>
+<p>This column shows the name of the parameter which is exactly what you would type in your trial object. These are the property names you can add to any trial, regardless of which plugin you’re using.</p>
 <p>For example, if you see <code>data</code> in this column, you would use it like this:</p>
 <div class="sourceCode" id="cb14"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb14-1"><a href="#cb14-1"></a><span class="kw">const</span> trial <span class="op">=</span> {   </span>
 <span id="cb14-2"><a href="#cb14-2"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span>   </span>
@@ -962,14 +962,14 @@ learning goals
 </section>
 <section id="column-2-type" class="level4" data-number="7.5.1.2">
 <h4 data-number="7.5.1.2" class="anchored" data-anchor-id="column-2-type"><span class="header-section-number">7.5.1.2</span> Column 2: Type</h4>
-<p>This tells you what <strong>kind of value</strong> the parameter expects. Understanding data types is crucial for writing correct code:</p>
+<p>This tells you what kind of value the parameter expects. Understanding data types is crucial for writing correct code:</p>
 <ul>
-<li><strong>object</strong>: A JavaScript object with curly braces <code>{}</code> containing key-value pairs</li>
-<li><strong>numeric</strong>: A number (like <code>1000</code> for milliseconds)</li>
-<li><strong>function</strong>: A JavaScript function that will be executed at a specific time</li>
-<li><strong>string</strong>: Text enclosed in quotes</li>
-<li><strong>boolean</strong>: Either <code>true</code> or <code>false</code></li>
-<li><strong>array</strong>: A list of items in square brackets <code>[]</code></li>
+<li>object: A JavaScript object with curly braces <code>{}</code> containing key-value pairs</li>
+<li>numeric: A number (like <code>1000</code> for milliseconds)</li>
+<li>function: A JavaScript function that will be executed at a specific time</li>
+<li>string: Text enclosed in quotes</li>
+<li>boolean: Either <code>true</code> or <code>false</code></li>
+<li>array: A list of items in square brackets <code>[]</code></li>
 </ul>
 <div class="sourceCode" id="cb15"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb15-1"><a href="#cb15-1"></a>data<span class="op">:</span> { <span class="dt">trial_type</span><span class="op">:</span> <span class="st">'test'</span> }<span class="op">,</span>         <span class="co">// object</span></span>
 <span id="cb15-2"><a href="#cb15-2"></a>post_trial_gap<span class="op">:</span> <span class="dv">2000</span><span class="op">,</span>                 <span class="co">// numeric  </span></span>
@@ -980,26 +980,26 @@ learning goals
 </section>
 <section id="column-3-default-value" class="level4" data-number="7.5.1.3">
 <h4 data-number="7.5.1.3" class="anchored" data-anchor-id="column-3-default-value"><span class="header-section-number">7.5.1.3</span> Column 3: Default Value</h4>
-<p>This shows what happens if you <strong>don’t specify</strong> the parameter. jsPsych will use this default value automatically.</p>
+<p>This shows what happens if you don’t specify the parameter. jsPsych will use this default value automatically.</p>
 <ul>
-<li><strong>undefined</strong>: The parameter won’t exist unless you add it</li>
-<li><strong>null</strong>: The parameter exists but has no value (often means “disabled”)</li>
-<li><strong>false</strong>: The feature is turned off by default</li>
-<li><strong><code>{}</code></strong>: An empty object</li>
-<li><strong><code>function(){ return; }</code></strong>: A function that does nothing</li>
+<li>undefined: The parameter won’t exist unless you add it</li>
+<li>null: The parameter exists but has no value (often means “disabled”)</li>
+<li>false: The feature is turned off by default</li>
+<li><code>{}</code>: An empty object</li>
+<li><code>function(){ return; }</code>: A function that does nothing</li>
 </ul>
 <p>Understanding defaults helps you know which parameters are optional (most of them), what the ‘normal’ behaviour is, and when you need to override them.</p>
 <p>For example, <code>record_data</code> defaults to <code>true</code>, so trials are normally saved. You only need to specify <code>record_data: false</code> if you want to prevent saving.</p>
 </section>
 <section id="column-4-description" class="level4" data-number="7.5.1.4">
 <h4 data-number="7.5.1.4" class="anchored" data-anchor-id="column-4-description"><span class="header-section-number">7.5.1.4</span> Column 4: Description</h4>
-<p>This explains <strong>what the parameter does</strong> and <strong>when you might use it</strong>. This is where you learn the practical purpose of each parameter.</p>
+<p>This explains what the parameter does and when you might use it. This is where you learn the practical purpose of each parameter.</p>
 <p>Key things to look for in descriptions:</p>
 <ul>
-<li><strong>When</strong> the parameter takes effect (trial start, trial end, etc.)</li>
-<li><strong>What</strong> it controls or modifies</li>
-<li><strong>References</strong> to other documentation pages for more details</li>
-<li><strong>Special behaviors</strong> or limitations</li>
+<li>When the parameter takes effect (trial start, trial end, etc.)</li>
+<li>What it controls or modifies</li>
+<li>References to other documentation pages for more details</li>
+<li>Special behaviors or limitations</li>
 </ul>
 </section>
 <section id="putting-it-all-together" class="level4" data-number="7.5.1.5">
@@ -1007,10 +1007,10 @@ learning goals
 <p>Let’s look at one row as a complete example:</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 17%">
-<col style="width: 47%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 21%">
+<col style="width: 34%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -1031,10 +1031,10 @@ learning goals
 </table>
 <p>This tells us:</p>
 <ul>
-<li><strong>Name</strong>: Use <code>post_trial_gap</code> in your trial object</li>
-<li><strong>Type</strong>: Expects a number (milliseconds)</li>
-<li><strong>Default</strong>: <code>null</code> means no gap between trials normally</li>
-<li><strong>Purpose</strong>: Controls timing between trials</li>
+<li>Name: Use <code>post_trial_gap</code> in your trial object</li>
+<li>Type: Expects a number (milliseconds)</li>
+<li>Default: <code>null</code> means no gap between trials normally</li>
+<li>Purpose: Controls timing between trials</li>
 </ul>
 <p>So you could use it like:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb16-1"><a href="#cb16-1"></a><span class="kw">const</span> trial <span class="op">=</span> {</span>
@@ -1049,10 +1049,10 @@ learning goals
 <p>In addition to the Each plugin defines its own specific parameters. Let’s examine the HTML Keyboard Response plugin as an example. You’d find this table here: https://www.jspsych.org/latest/plugins/html-keyboard-response/.</p>
 <table class="caption-top table">
 <colgroup>
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 14%">
-<col style="width: 57%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 20%">
+<col style="width: 39%">
 </colgroup>
 <thead>
 <tr class="header">

@@ -644,22 +644,22 @@ learning goals
 </section>
 <section id="use-the-browser-developer-tools" class="level3" data-number="5.3.6">
 <h3 data-number="5.3.6" class="anchored" data-anchor-id="use-the-browser-developer-tools"><span class="header-section-number">5.3.6</span> Use the Browser Developer Tools</h3>
-<p><strong>Opening Developer Tools:</strong> - <strong>Chrome/Edge</strong>: Press F12 or Ctrl+Shift+I (Cmd+Option+I on Mac) - <strong>Firefox</strong>: Press F12 or Ctrl+Shift+I (Cmd+Option+I on Mac)</p>
-<p><strong>Console Tab</strong>: Shows error messages and console.log() output<br>
-<strong>Sources Tab</strong>: Lets you set breakpoints to pause code execution</p>
+<p><strong>Opening Developer Tools:</strong> - Chrome/Edge: Press F12 or Ctrl+Shift+I (Cmd+Option+I on Mac) - Firefox: Press F12 or Ctrl+Shift+I (Cmd+Option+I on Mac)</p>
+<p>Console Tab: Shows error messages and console.log() output<br>
+Sources Tab: Lets you set breakpoints to pause code execution</p>
 </section>
 <section id="step-by-step-debugging-process" class="level3" data-number="5.3.7">
 <h3 data-number="5.3.7" class="anchored" data-anchor-id="step-by-step-debugging-process"><span class="header-section-number">5.3.7</span> Step-by-Step Debugging Process</h3>
 <p>When you encounter a bug, follow this systematic approach:</p>
 <ol type="1">
-<li><strong>Read the error message</strong> (if there is one) and note the line number</li>
-<li><strong>Check that line</strong> and the lines around it for obvious mistakes</li>
-<li><strong>For syntax errors:</strong> Count opening and closing symbols - they should match</li>
-<li><strong>Add console.log() statements</strong> before and after the problematic area</li>
-<li><strong>Run your code</strong> and examine the console output</li>
-<li><strong>Compare expected vs.&nbsp;actual values</strong> in your console logs</li>
-<li><strong>Make one small change</strong> at a time and test again</li>
-<li><strong>Remove debugging console.log() statements</strong> once the bug is fixed</li>
+<li>Read the error message (if there is one) and note the line number</li>
+<li>Check that line and the lines around it for obvious mistakes</li>
+<li>For syntax errors: Count opening and closing symbols - they should match</li>
+<li>Add console.log() statements before and after the problematic area</li>
+<li>Run your code and examine the console output</li>
+<li>Compare expected vs.&nbsp;actual values in your console logs</li>
+<li>Make one small change at a time and test again</li>
+<li>Remove debugging console.log() statements once the bug is fixed</li>
 </ol>
 </section>
 <section id="prevention-tips" class="level3" data-number="5.3.8">
@@ -697,7 +697,7 @@ learning goals
 <span id="cb19-8"><a href="#cb19-8"></a></span>
 <span id="cb19-9"><a href="#cb19-9"></a><span class="kw">let</span> average <span class="op">=</span> total <span class="op">/</span> scores<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
 <span id="cb19-10"><a href="#cb19-10"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"Average:"</span><span class="op">,</span> average)<span class="op">;</span>  <span class="co">// Output: NaN (Not a Number)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Debugging steps:</strong></p>
+<p>Debugging steps:</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb20-1"><a href="#cb20-1"></a><span class="co">// Step 1: Add debugging to see what's happening</span></span>
 <span id="cb20-2"><a href="#cb20-2"></a><span class="kw">let</span> scores <span class="op">=</span> [<span class="dv">85</span><span class="op">,</span> <span class="dv">92</span><span class="op">,</span> <span class="dv">78</span><span class="op">,</span> <span class="dv">96</span><span class="op">,</span> <span class="dv">88</span>]<span class="op">;</span></span>
 <span id="cb20-3"><a href="#cb20-3"></a><span class="kw">let</span> total <span class="op">=</span> <span class="dv">0</span><span class="op">;</span></span>
@@ -713,7 +713,7 @@ learning goals
 <span id="cb20-13"><a href="#cb20-13"></a><span class="kw">let</span> average <span class="op">=</span> total <span class="op">/</span> scores<span class="op">.</span><span class="at">length</span><span class="op">;</span></span>
 <span id="cb20-14"><a href="#cb20-14"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"Final total:"</span><span class="op">,</span> total)<span class="op">;</span>  <span class="co">// Debug: check final total</span></span>
 <span id="cb20-15"><a href="#cb20-15"></a><span class="bu">console</span><span class="op">.</span><span class="fu">log</span>(<span class="st">"Average:"</span><span class="op">,</span> average)<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>Console output reveals the problem:</strong></p>
+<p>Console output reveals the problem:</p>
 <div class="sourceCode" id="cb21"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb21-1"><a href="#cb21-1"></a><span class="bu">Array</span> length<span class="op">:</span> <span class="dv">5</span></span>
 <span id="cb21-2"><a href="#cb21-2"></a><span class="bu">Index</span><span class="op">:</span> <span class="dv">0</span> Value<span class="op">:</span> <span class="dv">85</span></span>
 <span id="cb21-3"><a href="#cb21-3"></a>Total so far<span class="op">:</span> <span class="dv">85</span></span>
@@ -727,7 +727,7 @@ learning goals
 <span id="cb21-11"><a href="#cb21-11"></a>Total so far<span class="op">:</span> <span class="dv">439</span></span>
 <span id="cb21-12"><a href="#cb21-12"></a><span class="bu">Index</span><span class="op">:</span> <span class="dv">5</span> Value<span class="op">:</span> <span class="kw">undefined</span>  <span class="co">// Problem! Index 5 doesn't exist</span></span>
 <span id="cb21-13"><a href="#cb21-13"></a>Total so far<span class="op">:</span> <span class="kw">NaN</span>          <span class="co">// Adding undefined makes total NaN</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<p><strong>The fix:</strong></p>
+<p>The fix:</p>
 <div class="sourceCode" id="cb22"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb22-1"><a href="#cb22-1"></a><span class="co">// Change &lt;= to &lt; in the loop condition</span></span>
 <span id="cb22-2"><a href="#cb22-2"></a><span class="cf">for</span> (<span class="kw">let</span> i <span class="op">=</span> <span class="dv">0</span><span class="op">;</span> i <span class="op">&lt;</span> scores<span class="op">.</span><span class="at">length</span><span class="op">;</span> i<span class="op">++</span>) {  <span class="co">// Fixed!</span></span>
 <span id="cb22-3"><a href="#cb22-3"></a>    total <span class="op">+=</span> scores[i]<span class="op">;</span></span>
