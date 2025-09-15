@@ -77,7 +77,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-e9b5551c1c55c86b42a831a3c09ea90c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-3f322787229840320ce81646bc80a682.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-f4f6c4c33169695420a9dce568207992.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -288,12 +288,41 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Unit 6: Data</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./14-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Saving and Labeling Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./15-data-2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Accessing and Summarizing Data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./16-L06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Lab 6: Creativity</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A01_JS_Builtins.html" class="sidebar-item-text sidebar-link">
@@ -387,11 +416,12 @@ learning goals
 <section id="parameters" class="level4" data-number="10.2.1.1">
 <h4 data-number="10.2.1.1" class="anchored" data-anchor-id="parameters"><span class="header-section-number">10.2.1.1</span> Parameters</h4>
 <p>The most important part of any plugin documentation is the parameters table. This table tells you everything you can customize about how the plugin works.</p>
+<div class="dual-scroll-container">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 28%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 27%">
 <col style="width: 24%">
 </colgroup>
 <thead>
@@ -471,6 +501,7 @@ learning goals
 </tr>
 </tbody>
 </table>
+</div>
 <p>The <code>pages</code> parameter is the most important one. Notice that its default value is listed as <code>undefined</code>. This is a programming way of saying “nothing.” When you see “undefined” as a default value, it means this parameter is required. You must include it, or your trial won’t work. The <code>pages</code> parameter expects an array (a list) of content for each instruction page. Each item in your list becomes one page of instructions.</p>
 <p>The <code>show_clickable_nav</code> parameter has a default value of <code>false</code>, which means by default, participants can only use keyboard keys to navigate through instructions. If you want to show “Previous” and “Next” buttons that participants can click, you need to change this to true.</p>
 <p>Other parameters like <code>button_label_next</code> and <code>button_label_previous</code> let you customize what text appears on those navigation buttons. The default values are “Next” and “Previous,” but you might want to change them to something like “Continue” and “Back” depending on your experiment.</p>
@@ -1094,11 +1125,12 @@ document.addEventListener('DOMContentLoaded', function() {
 <p>When you look at the <a href="https://www.jspsych.org/latest/plugins/html-button-response" class="external" target="_blank">html-button-response</a>, you’ll see it has quite a few parameters. Don’t let this overwhelm you as most of them are optional, and you only need to understand the ones relevant to your specific experiment</p>
 <section id="parameters-1" class="level4" data-number="10.3.1.1">
 <h4 data-number="10.3.1.1" class="anchored" data-anchor-id="parameters-1"><span class="header-section-number">10.3.1.1</span> Parameters</h4>
+<div class="dual-scroll-container">
 <table class="caption-top table">
 <colgroup>
-<col style="width: 23%">
-<col style="width: 23%">
-<col style="width: 28%">
+<col style="width: 24%">
+<col style="width: 24%">
+<col style="width: 27%">
 <col style="width: 24%">
 </colgroup>
 <thead>
@@ -1178,6 +1210,7 @@ document.addEventListener('DOMContentLoaded', function() {
 </tr>
 </tbody>
 </table>
+</div>
 <p>The two most important parameters are <code>stimulus</code> and <code>choices.</code> Both of these have <code>undefined</code> as their default value, which means they’re required.</p>
 <p>The <code>stimulus</code> parameter is where you put the content you want to show to participants. This could be a simple question, an image, a paragraph of text, or complex HTML with multiple elements. Think of this as the “question” part of your trial.</p>
 <p>The <code>choices</code> parameter is an array (list) of the response options you want to give participants. Each item in this array becomes a clickable button. For example, if you want participants to choose between “Yes” and “No,” your choices array would be <code>['Yes', 'No']</code>.</p>
