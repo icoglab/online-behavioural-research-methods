@@ -362,7 +362,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#add-fixation-cross" id="toc-add-fixation-cross" class="nav-link" data-scroll-target="#add-fixation-cross"><span class="header-section-number">11.2.7</span> Add Fixation Cross</a></li>
   <li><a href="#add-instructions" id="toc-add-instructions" class="nav-link" data-scroll-target="#add-instructions"><span class="header-section-number">11.2.8</span> Add Instructions</a></li>
   <li><a href="#styling" id="toc-styling" class="nav-link" data-scroll-target="#styling"><span class="header-section-number">11.2.9</span> Styling</a></li>
-  <li><a href="#stretch-goals" id="toc-stretch-goals" class="nav-link" data-scroll-target="#stretch-goals"><span class="header-section-number">11.2.10</span> Stretch Goals</a></li>
+  </ul></li>
+  <li><a href="#stretch-goals" id="toc-stretch-goals" class="nav-link" data-scroll-target="#stretch-goals"><span class="header-section-number">11.3</span> Stretch Goals</a>
+  <ul class="collapse">
+  <li><a href="#add-a-final-screen" id="toc-add-a-final-screen" class="nav-link" data-scroll-target="#add-a-final-screen"><span class="header-section-number">11.3.1</span> Add a final screen</a></li>
+  <li><a href="#add-a-transition-screen" id="toc-add-a-transition-screen" class="nav-link" data-scroll-target="#add-a-transition-screen"><span class="header-section-number">11.3.2</span> Add a transition screen</a></li>
+  <li><a href="#update-the-fixation-style" id="toc-update-the-fixation-style" class="nav-link" data-scroll-target="#update-the-fixation-style"><span class="header-section-number">11.3.3</span> Update the fixation style</a></li>
+  <li><a href="#style-the-oldnew-buttons" id="toc-style-the-oldnew-buttons" class="nav-link" data-scroll-target="#style-the-oldnew-buttons"><span class="header-section-number">11.3.4</span> Style the old/new buttons</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/icoglab/online-behavioural-research-methods/edit/main/11-L04.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -399,65 +405,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="the-research-design-repeated-measures-experimental-design" class="level3" data-number="11.1.2">
 <h3 data-number="11.1.2" class="anchored" data-anchor-id="the-research-design-repeated-measures-experimental-design"><span class="header-section-number">11.1.2</span> The Research Design: Repeated Measures Experimental Design</h3>
 <p>The Deese-Roediger-McDermott (DRM) paradigm employs a repeated measures experimental design where the same participants are tested on multiple types of items, allowing researchers to directly compare performance across different item categories within the same individuals.</p>
-<section id="the-drm-methodology" class="level4" data-number="11.1.2.1">
-<h4 data-number="11.1.2.1" class="anchored" data-anchor-id="the-drm-methodology"><span class="header-section-number">11.1.2.1</span> The DRM Methodology</h4>
-<p>Study Phase: Participants hear lists of 15 words that are all strongly associated with a critical word that is never presented. For example, they might hear: <em>bed, rest, awake, tired, dream, wake, snooze, blanket, doze, slumber, snore, nap, peace, yawn, drowsy</em> (all related to the unpresented word “sleep”).</p>
-<p>Test Phase: Participants complete memory tests using two different retrieval methods:</p>
-</section>
-<section id="free-recall-tests" class="level4" data-number="11.1.2.2">
-<h4 data-number="11.1.2.2" class="anchored" data-anchor-id="free-recall-tests"><span class="header-section-number">11.1.2.2</span> Free Recall Tests</h4>
-<p>Participants are given blank paper and asked to write down as many words as they can remember from the study lists, in any order. No cues or prompts are provided - they must generate the words entirely from memory.</p>
-</section>
-<section id="recognition-tests" class="level4" data-number="11.1.2.3">
-<h4 data-number="11.1.2.3" class="anchored" data-anchor-id="recognition-tests"><span class="header-section-number">11.1.2.3</span> Recognition Tests</h4>
-<p>Participants are presented with a list of words (including studied items, critical lures, and unrelated lures) and must decide whether each word was presented during the study phase. They typically respond “yes” (old) or “no” (new) for each item, often with confidence ratings.</p>
-</section>
-<section id="within-subjects-comparisons" class="level4" data-number="11.1.2.4">
-<h4 data-number="11.1.2.4" class="anchored" data-anchor-id="within-subjects-comparisons"><span class="header-section-number">11.1.2.4</span> Within-Subjects Comparisons</h4>
-<p>Both test types include three categories of items:</p>
-<ul>
-<li>Critical lures: The unpresented words that were thematically related to the study list (e.g., “sleep”)</li>
-<li>Studied items: Words that were actually presented during the study phase</li>
-<li>Unrelated lures: New words that have no relationship to the study lists</li>
-</ul>
-<p>The repeated measures approach allows researchers to compare participants’ responses to these different item types within the same test session and across different retrieval conditions.</p>
-</section>
+<p>The DRM methodology begins with a study phase where participants hear lists of 15 words that are all strongly associated with a critical word that is never presented. For example, they might hear: bed, rest, awake, tired, dream, wake, snooze, blanket, doze, slumber, snore, nap, peace, yawn, drowsy (all related to the unpresented word “sleep”).</p>
+<p>During the test phase, participants complete memory tests using two different retrieval methods. In free recall tests, participants are given blank paper and asked to write down as many words as they can remember from the study lists, in any order. No cues or prompts are provided - they must generate the words entirely from memory. In recognition tests, participants are presented with a list of words including studied items, critical lures, and unrelated lures, and must decide whether each word was presented during the study phase. They typically respond “yes” (old) or “no” (new) for each item, often with confidence ratings.</p>
+<p>Both test types include three categories of items that allow for within-subjects comparisons: critical lures (the unpresented words that were thematically related to the study list), studied items (words that were actually presented during the study phase), and unrelated lures (new words that have no relationship to the study lists). This repeated measures approach allows researchers to compare participants’ responses to these different item types within the same test session and across different retrieval conditions.</p>
 </section>
 <section id="key-findings-different-tests-same-illusion" class="level3" data-number="11.1.3">
 <h3 data-number="11.1.3" class="anchored" data-anchor-id="key-findings-different-tests-same-illusion"><span class="header-section-number">11.1.3</span> Key Findings: Different Tests, Same Illusion</h3>
-<p>The comparison between free recall and recognition reveals important patterns:</p>
-<p>Free Recall Results:</p>
-<ul>
-<li>False recall rates of 40-65% for critical lures across different word lists</li>
-<li>Critical lures are often recalled with high confidence and in primacy or recency positions</li>
-<li>Participants sometimes recall critical lures first, suggesting strong activation</li>
-<li>False recall occurs even when participants are warned about the possibility</li>
-</ul>
-<p>Recognition Results:</p>
-<ul>
-<li>False recognition rates often exceed 80% for critical lures</li>
-<li>False recognition can be higher than true recognition for some studied items</li>
-<li>Confidence ratings for false recognition approach those for true recognition</li>
-<li>“Remember” responses (indicating vivid recollection) are common for critical lures</li>
-</ul>
-<p>Key Differences Between Test Types:</p>
-<ul>
-<li>Recognition typically shows higher false memory rates than free recall</li>
-<li>Recognition provides more external cues that can trigger false memories</li>
-<li>Free recall requires more effortful retrieval, potentially allowing more monitoring of memory accuracy</li>
-<li>Both test types show the illusion, but recognition makes it more pronounced</li>
-</ul>
+<p>The comparison between free recall and recognition reveals striking patterns that demonstrate the robustness of false memory illusions. In free recall tests, false recall rates reach 40-65% for critical lures across different word lists. Critical lures are often recalled with high confidence and in primacy or recency positions, with participants sometimes recalling critical lures first, suggesting strong activation. Remarkably, false recall occurs even when participants are warned about the possibility of false memories.</p>
+<p>Recognition results show even more dramatic effects, with false recognition rates often exceeding 80% for critical lures. False recognition can be higher than true recognition for some studied items, and confidence ratings for false recognition approach those for true recognition. Participants frequently give “remember” responses for critical lures, indicating they experience vivid recollections of these never-presented words.</p>
+<p>Important differences emerge between test types, however. Recognition typically shows higher false memory rates than free recall, likely because recognition provides more external cues that can trigger false memories. Free recall requires more effortful retrieval, potentially allowing more monitoring of memory accuracy. While both test types demonstrate the illusion, recognition makes it more pronounced, suggesting that different retrieval processes contribute to false memory formation.</p>
 </section>
 <section id="implications" class="level3" data-number="11.1.4">
 <h3 data-number="11.1.4" class="anchored" data-anchor-id="implications"><span class="header-section-number">11.1.4</span> Implications</h3>
-<p>The comparison between recall and recognition tests supports dual-process theories that distinguish between:</p>
-<ul>
-<li>Familiarity-based processes: Critical lures feel familiar due to their semantic relationship with studied items, leading to high false recognition</li>
-<li>Recollection-based processes: Critical lures can trigger vivid but false recollections of their “presentation” during study</li>
-</ul>
-<p>The fact that false memories occur in both recall (which relies more on recollection) and recognition (which can rely on familiarity) suggests that multiple memory processes contribute to the illusion.</p>
-<p>This research demonstrates that false memories are not simply due to guessing or response bias. The occurrence of false memories in free recall, where participants must generate responses without external cues, shows that people genuinely believe they remember experiencing events that never occurred.</p>
-<p>The comparison between test types reveals that different retrieval conditions can influence the magnitude of false memories while the underlying illusion remains robust across testing methods. This has important implications for understanding how false memories might emerge in different real-world contexts, from eyewitness testimony (more like recognition) to therapeutic memory recovery (more like free recall).</p>
+<p>These findings provide strong support for dual-process theories that distinguish between familiarity-based and recollection-based memory processes. Critical lures feel familiar due to their semantic relationship with studied items, leading to high false recognition through familiarity-based processes. Simultaneously, these same items can trigger vivid but false recollections of their “presentation” during study through recollection-based processes.</p>
+<p>The occurrence of false memories in both recall and recognition is particularly significant because it demonstrates that false memories are not simply due to guessing or response bias. The fact that people generate critical lures during free recall, where they must produce responses without external cues, shows that they genuinely believe they remember experiencing events that never occurred.</p>
+<p>The comparison between test types reveals that while different retrieval conditions can influence the magnitude of false memories, the underlying illusion remains robust across testing methods. This robustness has important implications for understanding how false memories might emerge in different real-world contexts. Situations resembling recognition tests, such as eyewitness identification procedures, may be particularly prone to false memories due to the availability of external cues. Conversely, contexts more similar to free recall, such as therapeutic memory recovery sessions, may produce false memories through different mechanisms but remain vulnerable to the same underlying reconstructive processes that characterize human memory.</p>
 </section>
 <section id="further-reading" class="level3" data-number="11.1.5">
 <h3 data-number="11.1.5" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">11.1.5</span> Further Reading</h3>
@@ -3958,14 +3920,24 @@ jsPsych.run([
 </div>
 </div>
 </section>
-<section id="stretch-goals" class="level3" data-number="11.2.10">
-<h3 data-number="11.2.10" class="anchored" data-anchor-id="stretch-goals"><span class="header-section-number">11.2.10</span> Stretch Goals</h3>
-<ol type="1">
-<li>Use the <code>jsPsychKeyboardResponse</code> plugin to add a final screen to our experiment that says “The experiment is finished. Thank you for completing our study!”. Make sure the choices is set to “NO_KEYS” so they can’t advance any further.</li>
-<li>Use the <code>jsPsychKeyboardResponse</code> plugin to add a screen between our study and test phase that says “You are now about to begin the memory test phase. Press any key to begin.”</li>
-<li>Add a new CSS class called <code>fixationStyle</code> and apply it only to the fixation trial to make the fixation bigger (48pt).</li>
-<li>Use the <code>button_html</code> function to Style the OLD and NEW buttons so that they are different colors.</li>
-</ol>
+</section>
+<section id="stretch-goals" class="level2" data-number="11.3">
+<h2 data-number="11.3" class="anchored" data-anchor-id="stretch-goals"><span class="header-section-number">11.3</span> Stretch Goals</h2>
+<section id="add-a-final-screen" class="level3" data-number="11.3.1">
+<h3 data-number="11.3.1" class="anchored" data-anchor-id="add-a-final-screen"><span class="header-section-number">11.3.1</span> Add a final screen</h3>
+<p>Use the <code>jsPsychKeyboardResponse</code> plugin to add a final screen to our experiment that says “The experiment is finished. Thank you for completing our study!”. Make sure the choices is set to “NO_KEYS” so they can’t advance any further.</p>
+</section>
+<section id="add-a-transition-screen" class="level3" data-number="11.3.2">
+<h3 data-number="11.3.2" class="anchored" data-anchor-id="add-a-transition-screen"><span class="header-section-number">11.3.2</span> Add a transition screen</h3>
+<p>Use the <code>jsPsychKeyboardResponse</code> plugin to add a screen between our study and test phase that says “You are now about to begin the memory test phase. Press any key to begin.”</p>
+</section>
+<section id="update-the-fixation-style" class="level3" data-number="11.3.3">
+<h3 data-number="11.3.3" class="anchored" data-anchor-id="update-the-fixation-style"><span class="header-section-number">11.3.3</span> Update the fixation style</h3>
+<p>Add a new CSS class called <code>fixationStyle</code> and apply it only to the fixation trial to make the fixation bigger (48pt).</p>
+</section>
+<section id="style-the-oldnew-buttons" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="style-the-oldnew-buttons"><span class="header-section-number">11.3.4</span> Style the old/new buttons</h3>
+<p>Use the <code>button_html</code> function to Style the OLD and NEW buttons so that they are different colors.</p>
 
 
 </section>
