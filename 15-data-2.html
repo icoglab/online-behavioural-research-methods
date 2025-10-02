@@ -317,12 +317,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Unit 7: Dynamic Parameters</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./17-dynamic-html.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Dynamic Parameters</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./18-L07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">18</span>&nbsp; <span class="chapter-title">Lab 7: Spatial Attention</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A01_JS_Builtins.html" class="sidebar-item-text sidebar-link">
@@ -608,13 +631,13 @@ learning goals
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">const</span> all_data <span class="op">=</span> jsPsych<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">get</span>()<span class="op">;</span></span>
 <span id="cb7-2"><a href="#cb7-2"></a></span>
 <span id="cb7-3"><a href="#cb7-3"></a><span class="co">// Get the first 5 trials</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">const</span> first_trials <span class="op">=</span> all_data<span class="op">.</span><span class="fu">first</span>(<span class="dv">5</span>)<span class="op">;</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="kw">const</span> first_trials <span class="op">=</span> all_data<span class="op">.</span><span class="fu">first</span>(<span class="dv">5</span>)<span class="op">.</span><span class="at">trials</span><span class="op">;</span></span>
 <span id="cb7-5"><a href="#cb7-5"></a></span>
 <span id="cb7-6"><a href="#cb7-6"></a><span class="co">// Get the last 10 trials</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">const</span> recent_trials <span class="op">=</span> all_data<span class="op">.</span><span class="fu">last</span>(<span class="dv">10</span>)<span class="op">;</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="kw">const</span> recent_trials <span class="op">=</span> all_data<span class="op">.</span><span class="fu">last</span>(<span class="dv">10</span>)<span class="op">.</span><span class="at">trials</span><span class="op">;</span></span>
 <span id="cb7-8"><a href="#cb7-8"></a></span>
 <span id="cb7-9"><a href="#cb7-9"></a><span class="co">// Get just the very last trial</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a><span class="kw">const</span> last_trial <span class="op">=</span> all_data<span class="op">.</span><span class="fu">last</span>(<span class="dv">1</span>)<span class="op">;</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a><span class="kw">const</span> last_trial <span class="op">=</span> all_data<span class="op">.</span><span class="fu">last</span>(<span class="dv">1</span>)<span class="op">.</span><span class="at">trials</span><span class="op">;</span></span>
 <span id="cb7-11"><a href="#cb7-11"></a></span>
 <span id="cb7-12"><a href="#cb7-12"></a><span class="co">// Count total number of trials</span></span>
 <span id="cb7-13"><a href="#cb7-13"></a><span class="kw">const</span> total_count <span class="op">=</span> all_data<span class="op">.</span><span class="fu">count</span>()<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
