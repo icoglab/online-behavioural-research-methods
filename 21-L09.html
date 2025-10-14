@@ -6,13 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Nicholaus P. Brosowsky">
-<meta name="author" content="Liam Yeo">
-<meta name="author" content="Jackie Spear">
-<meta name="dcterms.date" content="2025-09-11">
 <meta name="description" content="An open source textbook for psychology students learning programming and online research methods.Primary Author: Nicholaus P. Brosowsky Co-Authors: Liam Yeo, Jackie Spear">
 
-<title>Online Behavioural Research Methods: Programming with jsPsych</title>
+<title>21&nbsp; Lab 9: Working Memory – Online Behavioural Research Methods: Programming with jsPsych</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -35,7 +31,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./01-html.html" rel="next">
+<link href="./22-randomization.html" rel="next">
+<link href="./20-L08.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -162,7 +159,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./index.html">Introduction</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21-L09.html">Unit 9: Skills Checkpoint</a></li><li class="breadcrumb-item"><a href="./21-L09.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lab 9: Working Memory</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -192,7 +189,7 @@ document.addEventListener('DOMContentLoaded', function() {
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./index.html" class="sidebar-item-text sidebar-link active">
+  <a href="./index.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Introduction</span></a>
   </div>
 </li>
@@ -415,7 +412,7 @@ document.addEventListener('DOMContentLoaded', function() {
       <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./21-L09.html" class="sidebar-item-text sidebar-link">
+  <a href="./21-L09.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lab 9: Working Memory</span></span></a>
   </div>
 </li>
@@ -483,54 +480,45 @@ document.addEventListener('DOMContentLoaded', function() {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#sec-preface" id="toc-sec-preface" class="nav-link active" data-scroll-target="#sec-preface">Introduction</a>
+  <li><a href="#research-in-brief-sternberg-change-detection-tasks" id="toc-research-in-brief-sternberg-change-detection-tasks" class="nav-link active" data-scroll-target="#research-in-brief-sternberg-change-detection-tasks"><span class="header-section-number">21.1</span> Research in Brief: Sternberg &amp; Change Detection Tasks</a>
   <ul class="collapse">
-  <li><a href="#book-structure-and-learning-path" id="toc-book-structure-and-learning-path" class="nav-link" data-scroll-target="#book-structure-and-learning-path">Book Structure and Learning Path</a></li>
-  <li><a href="#learning-outcomes" id="toc-learning-outcomes" class="nav-link" data-scroll-target="#learning-outcomes">Learning Outcomes</a></li>
-  <li><a href="#prerequisites" id="toc-prerequisites" class="nav-link" data-scroll-target="#prerequisites">Prerequisites</a></li>
+  <li><a href="#the-research-area" id="toc-the-research-area" class="nav-link" data-scroll-target="#the-research-area"><span class="header-section-number">21.1.1</span> The Research Area</a></li>
+  <li><a href="#components-of-working-memory" id="toc-components-of-working-memory" class="nav-link" data-scroll-target="#components-of-working-memory"><span class="header-section-number">21.1.2</span> Components of Working Memory</a></li>
+  <li><a href="#the-research-designs" id="toc-the-research-designs" class="nav-link" data-scroll-target="#the-research-designs"><span class="header-section-number">21.1.3</span> The Research Designs</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">21.1.4</span> Key Findings</a></li>
+  <li><a href="#implications" id="toc-implications" class="nav-link" data-scroll-target="#implications"><span class="header-section-number">21.1.5</span> Implications</a></li>
+  <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">21.1.6</span> Further Reading</a></li>
   </ul></li>
-  <li><a href="#getting-setup" id="toc-getting-setup" class="nav-link" data-scroll-target="#getting-setup">Getting Setup</a>
+  <li><a href="#skills-checkpoint" id="toc-skills-checkpoint" class="nav-link" data-scroll-target="#skills-checkpoint"><span class="header-section-number">21.2</span> Skills Checkpoint</a></li>
+  <li><a href="#program-the-sternberg-memory-scanning-task-basic" id="toc-program-the-sternberg-memory-scanning-task-basic" class="nav-link" data-scroll-target="#program-the-sternberg-memory-scanning-task-basic"><span class="header-section-number">21.3</span> Program the Sternberg Memory Scanning Task (Basic)</a>
   <ul class="collapse">
-  <li><a href="#a-note-about-this-textbook" id="toc-a-note-about-this-textbook" class="nav-link" data-scroll-target="#a-note-about-this-textbook">A Note About This Textbook</a></li>
+  <li><a href="#procedure" id="toc-procedure" class="nav-link" data-scroll-target="#procedure"><span class="header-section-number">21.3.1</span> Procedure</a></li>
+  <li><a href="#stimuli" id="toc-stimuli" class="nav-link" data-scroll-target="#stimuli"><span class="header-section-number">21.3.2</span> Stimuli</a></li>
+  <li><a href="#data-collection" id="toc-data-collection" class="nav-link" data-scroll-target="#data-collection"><span class="header-section-number">21.3.3</span> Data Collection</a></li>
   </ul></li>
-  <li><a href="#getting-started-mindset" id="toc-getting-started-mindset" class="nav-link" data-scroll-target="#getting-started-mindset">Getting Started Mindset</a></li>
+  <li><a href="#program-a-change-detection-task-advanced" id="toc-program-a-change-detection-task-advanced" class="nav-link" data-scroll-target="#program-a-change-detection-task-advanced"><span class="header-section-number">21.4</span> Program a Change Detection Task (Advanced)</a>
+  <ul class="collapse">
+  <li><a href="#procedure-1" id="toc-procedure-1" class="nav-link" data-scroll-target="#procedure-1"><span class="header-section-number">21.4.1</span> Procedure</a></li>
+  <li><a href="#design" id="toc-design" class="nav-link" data-scroll-target="#design"><span class="header-section-number">21.4.2</span> Design</a></li>
+  <li><a href="#stimuli-1" id="toc-stimuli-1" class="nav-link" data-scroll-target="#stimuli-1"><span class="header-section-number">21.4.3</span> Stimuli</a></li>
+  <li><a href="#data-collection-1" id="toc-data-collection-1" class="nav-link" data-scroll-target="#data-collection-1"><span class="header-section-number">21.4.4</span> Data Collection</a></li>
+  </ul></li>
   </ul>
-<div class="toc-actions"><ul><li><a href="https://github.com/icoglab/online-behavioural-research-methods/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
+<div class="toc-actions"><ul><li><a href="https://github.com/icoglab/online-behavioural-research-methods/edit/main/21-L09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./21-L09.html">Unit 9: Skills Checkpoint</a></li><li class="breadcrumb-item"><a href="./21-L09.html"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lab 9: Working Memory</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">Online Behavioural Research Methods: Programming with jsPsych</h1>
+<h1 class="title"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lab 9: Working Memory</span></h1>
 </div>
 
-<div>
-  <div class="description">
-    <p>An open source textbook for psychology students learning programming and online research methods.</p>
-    <p><strong>Primary Author:</strong> Nicholaus P. Brosowsky<br>
-    <strong>Co-Authors:</strong> Liam Yeo, Jackie Spear</p>
-  </div>
-</div>
 
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Authors</div>
-    <div class="quarto-title-meta-contents">
-             <p>Nicholaus P. Brosowsky <a href="mailto:nicholaus.brosowsky@umanitoba.ca" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> <a href="https://orcid.org/0000-0003-4573-5468" class="quarto-title-author-orcid"> <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAA2ZpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMC1jMDYwIDYxLjEzNDc3NywgMjAxMC8wMi8xMi0xNzozMjowMCAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wTU09Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9tbS8iIHhtbG5zOnN0UmVmPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvc1R5cGUvUmVzb3VyY2VSZWYjIiB4bWxuczp4bXA9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC8iIHhtcE1NOk9yaWdpbmFsRG9jdW1lbnRJRD0ieG1wLmRpZDo1N0NEMjA4MDI1MjA2ODExOTk0QzkzNTEzRjZEQTg1NyIgeG1wTU06RG9jdW1lbnRJRD0ieG1wLmRpZDozM0NDOEJGNEZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wTU06SW5zdGFuY2VJRD0ieG1wLmlpZDozM0NDOEJGM0ZGNTcxMUUxODdBOEVCODg2RjdCQ0QwOSIgeG1wOkNyZWF0b3JUb29sPSJBZG9iZSBQaG90b3Nob3AgQ1M1IE1hY2ludG9zaCI+IDx4bXBNTTpEZXJpdmVkRnJvbSBzdFJlZjppbnN0YW5jZUlEPSJ4bXAuaWlkOkZDN0YxMTc0MDcyMDY4MTE5NUZFRDc5MUM2MUUwNEREIiBzdFJlZjpkb2N1bWVudElEPSJ4bXAuZGlkOjU3Q0QyMDgwMjUyMDY4MTE5OTRDOTM1MTNGNkRBODU3Ii8+IDwvcmRmOkRlc2NyaXB0aW9uPiA8L3JkZjpSREY+IDwveDp4bXBtZXRhPiA8P3hwYWNrZXQgZW5kPSJyIj8+84NovQAAAR1JREFUeNpiZEADy85ZJgCpeCB2QJM6AMQLo4yOL0AWZETSqACk1gOxAQN+cAGIA4EGPQBxmJA0nwdpjjQ8xqArmczw5tMHXAaALDgP1QMxAGqzAAPxQACqh4ER6uf5MBlkm0X4EGayMfMw/Pr7Bd2gRBZogMFBrv01hisv5jLsv9nLAPIOMnjy8RDDyYctyAbFM2EJbRQw+aAWw/LzVgx7b+cwCHKqMhjJFCBLOzAR6+lXX84xnHjYyqAo5IUizkRCwIENQQckGSDGY4TVgAPEaraQr2a4/24bSuoExcJCfAEJihXkWDj3ZAKy9EJGaEo8T0QSxkjSwORsCAuDQCD+QILmD1A9kECEZgxDaEZhICIzGcIyEyOl2RkgwAAhkmC+eAm0TAAAAABJRU5ErkJggg=="></a></p>
-             <p>Liam Yeo </p>
-             <p>Jackie Spear </p>
-          </div>
-  </div>
     
-    <div>
-    <div class="quarto-title-meta-heading">Published</div>
-    <div class="quarto-title-meta-contents">
-      <p class="date">September 11, 2025</p>
-    </div>
-  </div>
   
     
   </div>
@@ -540,53 +528,99 @@ document.addEventListener('DOMContentLoaded', function() {
 </header>
 
 
-<section id="sec-preface" class="level1 unnumbered">
-<h1 class="unnumbered">Introduction</h1>
-<p>This textbook is designed to teach you how to create online behavioural experiments using modern web technologies, with a particular focus on jsPsych, a JavaScript library specifically built for psychological research. Originally developed for my Research in Cognitive Psychology course at the University of Manitoba, this book provides a comprehensive introduction to programming online studies that can be used by anyone interested in conducting behavioural research on the web.</p>
-<p>While the examples and labs throughout this book draw primarily from cognitive psychology research, reflecting my background as a cognitive psychologist, the principles and techniques you’ll learn are broadly applicable to any field conducting online behavioural studies.</p>
-<section id="book-structure-and-learning-path" class="level2">
-<h2 class="anchored" data-anchor-id="book-structure-and-learning-path">Book Structure and Learning Path</h2>
-<p>The book is structured to take you from complete beginner to competent online experiment programmer through a carefully scaffolded progression. You’ll start by learning the fundamental web technologies that power all online experiments: HTML for structure, CSS for styling, and JavaScript for interactivity. These foundational skills are essential because jsPsych, like all web-based experiment platforms, builds upon these core technologies.</p>
-<p>Once you have a solid grasp of the fundamentals, you’ll dive into jsPsych itself, learning how this specialized library can dramatically simplify the process of creating psychological experiments. You’ll discover how to present stimuli, collect responses, measure precise timing data, and manage the flow of your experiments through jsPsych’s intuitive plugin system and timeline structure.</p>
-<p>As you progress through the units, you’ll tackle increasingly sophisticated experimental designs. You’ll learn to incorporate multimedia elements like images, audio, and video into your studies. You’ll master techniques for creating dynamic, responsive experiments that adapt based on participant responses. You’ll explore methods for properly saving and organizing your data, implementing randomization strategies, and even adding gamification elements to enhance participant engagement.</p>
-<p>Each unit combines theoretical instruction with hands-on laboratory exercises that reinforce your learning through practical application. These labs guide you through creating experiments that investigate classic phenomena in cognitive psychology, from memory and attention to decision-making and face perception. By working through these exercises, you’ll not only learn programming techniques but also gain insights into experimental design principles that are important for conducting rigorous behavioural research.</p>
+<section id="research-in-brief-sternberg-change-detection-tasks" class="level2" data-number="21.1">
+<h2 data-number="21.1" class="anchored" data-anchor-id="research-in-brief-sternberg-change-detection-tasks"><span class="header-section-number">21.1</span> Research in Brief: Sternberg &amp; Change Detection Tasks</h2>
+<section id="the-research-area" class="level3" data-number="21.1.1">
+<h3 data-number="21.1.1" class="anchored" data-anchor-id="the-research-area"><span class="header-section-number">21.1.1</span> The Research Area</h3>
+<p>Working memory refers to a brain system that provides temporary storage and manipulation of information necessary for complex cognitive tasks such as language comprehension, learning, and reasoning. Unlike long-term memory, which stores vast amounts of information indefinitely, working memory operates like a mental desktop with limited capacity. At any given moment, we can actively work with only a small amount of information, even though much more is available in long-term memory.</p>
+<p>Working memory research addresses fundamental questions about how we process and manipulate information. How much information can we hold in mind at once? Does capacity differ for different types of information, such as verbal versus visual material? What determines the limits of working memory, and how do these limits affect our ability to perform complex tasks? Understanding working memory has important implications for educational achievement, problem-solving ability, and performance in tasks requiring sustained mental effort.</p>
+<p>The study of working memory connects to many practical applications in areas requiring information retention and manipulation, such as reading comprehension, mathematical problem solving, following instructions, and learning new skills. To investigate working memory capacity systematically, researchers have developed experimental paradigms that can measure how much information people can maintain and manipulate under controlled conditions.</p>
 </section>
-<section id="learning-outcomes" class="level2">
-<h2 class="anchored" data-anchor-id="learning-outcomes">Learning Outcomes</h2>
-<p>By the end of this book, you’ll have the skills to design, implement, and deploy sophisticated online behavioural experiments. More importantly, you’ll understand the underlying principles that will allow you to adapt these techniques to your own research questions and continue learning as web technologies evolve. Whether you’re planning to conduct your own research, collaborate with other investigators, or simply want to understand how online studies work, this book will provide you with a solid foundation in the art and science of web-based behavioural research.</p>
+<section id="components-of-working-memory" class="level3" data-number="21.1.2">
+<h3 data-number="21.1.2" class="anchored" data-anchor-id="components-of-working-memory"><span class="header-section-number">21.1.2</span> Components of Working Memory</h3>
+<p>Working memory operates through several distinct but interconnected systems. According to Baddeley’s influential model, working memory consists of a central executive that controls attention and manipulates information, along with specialized storage systems for different types of material. The phonological loop stores and rehearses verbal and acoustic information, while the visuospatial sketchpad maintains visual and spatial information. These storage systems have limited capacity and can hold information for only brief periods without active rehearsal.</p>
+<p>The phonological loop has two mechanisms: a phonological store that holds sound-based information for 1 to 2 seconds, and an articulatory rehearsal process that maintains information through inner speech. The visuospatial sketchpad similarly maintains visual information when perceptual input is no longer available, such as when you look away from an image but need to remember its details. These systems work together to support complex cognitive activities, with the central executive coordinating their operations.</p>
+<p>Research distinguishes between storage capacity and manipulation processes in working memory. Storage refers to maintaining information after it is no longer perceptually available, while manipulation involves performing operations on that information, such as reordering items or combining information from different sources. These processes can be measured separately and show different patterns of brain activation, with manipulation tasks typically requiring greater involvement of prefrontal cortex regions.</p>
 </section>
-<section id="prerequisites" class="level2">
-<h2 class="anchored" data-anchor-id="prerequisites">Prerequisites</h2>
-<p>This textbook is designed to be accessible to complete beginners with no prior programming experience. The only requirements are a computer and a modern web browser (Chrome, Firefox, Safari, or Edge)</p>
-<p>No Software Installation Required: Everything we’ll do happens in your web browser and all the files can be edited with any text editor. You won’t need to download or install any programming software, text editors, or development tools.</p>
-<p>jsPsych V8: This textbook uses version 8 of jsPsych. When navigating to the documentation, please make sure you are using version 8: <a href="https://www.jspsych.org/v8/" class="uri">https://www.jspsych.org/v8/</a></p>
-<p>Academic Background: While the examples focus on cognitive psychology, no specific psychology background is required. The book explains psychological concepts as they arise, making it suitable for students from any discipline interested in online behavioral research.</p>
-<p>Time Commitment: This book is designed around a 13-week course structure, with each chapter and associated lab tutorial intended to be completed within one week. Most students should expect to spend 3-5 hours per week on reading, exercises, and lab work, though this may vary depending on your familiarity with the concepts and your learning pace.</p>
+<section id="the-research-designs" class="level3" data-number="21.1.3">
+<h3 data-number="21.1.3" class="anchored" data-anchor-id="the-research-designs"><span class="header-section-number">21.1.3</span> The Research Designs</h3>
+<p>Two influential paradigms have been developed to measure different aspects of working memory capacity. Both use within-subjects experimental designs to examine how people maintain and retrieve information from working memory.</p>
+<p>The Sternberg Working Memory Task: Participants view a memory set of items, typically digits or letters, presented sequentially or simultaneously. After a brief retention interval, a probe item appears, and participants must decide whether the probe was part of the original memory set. The task manipulates set size, varying from one to six or more items, allowing researchers to measure how response time and accuracy change as memory load increases.</p>
+<p>Stimulus Presentation: In a typical trial, participants see a sequence of items (such as the digits 5, 2, 7, 4) displayed for about 1 second each. After all items are presented, a blank retention interval of 1 to 2 seconds follows. Then a probe digit appears, and participants respond “yes” if it was in the memory set or “no” if it was not.</p>
+<p>Task Requirements: Participants must maintain the memory set during the retention interval and then search through their working memory representation to determine if the probe matches any item. They respond as quickly as possible while maintaining high accuracy. The within-subjects design allows comparison of performance across different set sizes within the same participants, controlling for individual differences in overall response speed.</p>
+<p>The Change Detection Task: Participants view an array of visual items, such as colored squares or oriented lines, presented briefly on a computer screen. After a blank retention interval, either the same array reappears or an array with one changed item appears. Participants must detect whether any change occurred.</p>
+<p>Stimulus Presentation: Arrays typically contain one to six items positioned at different locations. Items are displayed for about 500 milliseconds, followed by a blank retention interval of approximately 1 second. The test array then appears, either identical to the original or with one item changed in color, orientation, or location.</p>
+<p>Task Requirements: Participants must encode the visual array into working memory, maintain this representation during the blank interval, and compare it to the test array to detect any changes. Performance is measured by accuracy in detecting changes across different array sizes. The within-subjects design allows researchers to determine visual working memory capacity by identifying the point at which performance begins to decline as more items must be remembered.</p>
+<p>Both paradigms isolate working memory processes by using brief retention intervals that prevent long-term memory encoding, and by varying the amount of information to be maintained. Each participant experiences all conditions, acting as their own control and allowing precise measurement of individual working memory capacity.</p>
+</section>
+<section id="key-findings" class="level3" data-number="21.1.4">
+<h3 data-number="21.1.4" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">21.1.4</span> Key Findings</h3>
+<p>The two paradigms have revealed different capacity limits for verbal and visual working memory. The Sternberg task shows that response times increase linearly with set size, adding approximately 40 milliseconds for each additional item in the memory set. This pattern holds consistently across participants and suggests that people search through working memory serially, examining each item in turn. Accuracy remains high for set sizes up to about seven items, consistent with classic estimates of verbal working memory capacity as seven plus or minus two items.</p>
+<p>However, capacity is better characterized by temporal duration than by number of items. The word-length effect demonstrates that working memory can hold approximately as many items as can be articulated in about 2 seconds. People remember more short words than long words, and digit span is larger for languages with shorter digit names. This finding supports the phonological nature of verbal working memory and shows that capacity depends on how quickly items can be rehearsed.</p>
+<p>Change detection tasks reveal that visual working memory capacity is approximately four objects. Performance remains high when arrays contain one to three items, but accuracy declines systematically as array size increases beyond four items. This capacity limit appears to reflect the number of objects rather than individual features, as people can remember four multi-featured objects as well as four single features. However, object complexity does affect capacity, with more complex objects reducing the number that can be maintained.</p>
+<p>The magnitude of capacity differences between verbal and visual working memory is substantial. While verbal working memory can maintain approximately seven simple items or about 2 seconds worth of material, visual working memory is limited to about four objects. These different capacity limits remain consistent across participants despite individual differences in overall performance levels.</p>
+</section>
+<section id="implications" class="level3" data-number="21.1.5">
+<h3 data-number="21.1.5" class="anchored" data-anchor-id="implications"><span class="header-section-number">21.1.5</span> Implications</h3>
+<p>The distinct capacity limits for verbal and visual working memory provide evidence for separate storage systems. This behavioral evidence is supported by neuroimaging studies showing that verbal tasks activate different brain regions than visual tasks, with verbal working memory involving left hemisphere language areas and visual working memory involving posterior parietal and occipital regions. The consistent patterns across participants and laboratories suggest these represent fundamental properties of human cognition rather than task-specific effects.</p>
+<p>These findings support models proposing separate storage buffers for different types of information within working memory. The phonological loop and visuospatial sketchpad operate independently, allowing people to maintain verbal and visual information simultaneously without interference. This architecture explains why you can remember a phone number while navigating through a building, but have difficulty remembering two phone numbers at once.</p>
+<p>Working memory capacity strongly predicts performance in complex cognitive tasks. Higher working memory capacity correlates with better reading comprehension, mathematical problem solving, and reasoning ability. Individual differences in working memory capacity, as measured by these paradigms, predict academic achievement and performance in demanding real-world tasks such as air traffic control and piloting aircraft. Understanding working memory limitations helps explain why people make errors in tasks requiring information maintenance and manipulation.</p>
+</section>
+<section id="further-reading" class="level3" data-number="21.1.6">
+<h3 data-number="21.1.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">21.1.6</span> Further Reading</h3>
+<p>Alvarez, G. A., &amp; Cavanagh, P. (2004). The capacity of visual short-term memory is set both by visual information load and by number of objects. Psychological Science, 15(2), 106-111.</p>
+<p>Baddeley, A. (1992). Working memory. Science, 255(5044), 556-559.</p>
+<p>Baddeley, A. (2003). Working memory: Looking back and looking forward. Nature Reviews Neuroscience, 4(10), 829-839.</p>
+<p>Luck, S. J., &amp; Vogel, E. K. (1997). The capacity of visual working memory for features and conjunctions. Nature, 390(6657), 279-281.</p>
+<p>Miller, G. A. (1956). The magical number seven, plus or minus two: Some limits on our capacity for processing information. Psychological Review, 63(2), 81-97.</p>
+<p>Sternberg, S. (1966). High-speed scanning in human memory. Science, 153(3736), 652-654.</p>
 </section>
 </section>
-<section id="getting-setup" class="level1">
-<h1>Getting Setup</h1>
-<p>For this book, we’re going to adopt the quickest and simplest method to get you started. The majority of the book can be completed offline by first downloading the lab materials using this link.</p>
-<p>You’ll need to unzip the folder and move it somewhere it can be stored on your computer (e.g., Documents).</p>
-<p>The files inside this folder can be edited using any text editor. However, there are many text editors with built-in tools to make it easier to program by formatting the text in a way that highlights the important parts. Webstorm is one that I would recommend that is free to use available here: <a href="https://www.jetbrains.com/webstorm/download/" class="uri">https://www.jetbrains.com/webstorm/download/</a>.</p>
-<p>Later in the book, we’ll discuss options in terms of hosting your experiment so anyone can access it through a website URL and saving data to a server.</p>
-<section id="a-note-about-this-textbook" class="level2">
-<h2 class="anchored" data-anchor-id="a-note-about-this-textbook">A Note About This Textbook</h2>
-<p>This is the first edition of this textbook, developed specifically for hands-on learning in an evolving field. As with any first edition, you may (probably will..) encounter errors, unclear explanations, or technical issues. This is a work in progress!</p>
-<p><strong>If you encounter problems:</strong></p>
-<p><strong>Technical issues with code examples:</strong> Check that you’ve followed all steps exactly as written, then try refreshing your browser or waiting a few minutes (GitHub Pages can take time to update)</p>
-<p><strong>Errors or unclear content:</strong> Please report these by visiting the textbook’s GitHub repository at <a href="https://github.com/icoglab/online-behavioural-research-methods" class="uri">https://github.com/icoglab/online-behavioural-research-methods</a> and clicking on the “Issues” tab to log a new issue</p>
-<p><strong>Suggestions for improvement:</strong> We welcome feedback about content that could be explained more clearly or additional topics that would be helpful</p>
-<p>Your feedback helps improve this resource for future students. Don’t hesitate to report even minor issues like typos or broken links. Contributing to the improvement of educational resources is part of learning to work collaboratively in the open-source community that powers much of modern web development.</p>
-<p><strong>Version Information:</strong> This textbook will be updated regularly based on student feedback and changes in web technologies. Check the repository for the most current version and any important updates or corrections.</p>
+<section id="skills-checkpoint" class="level2" data-number="21.2">
+<h2 data-number="21.2" class="anchored" data-anchor-id="skills-checkpoint"><span class="header-section-number">21.2</span> Skills Checkpoint</h2>
+<p>In this lab, you will not be given step-by-step tutorials for creating the Sternberg and Change Detection working memory tasks. Instead, you are provided with brief method descriptions, similar to what you would read in a journal article, and are tasked with implementing the experiments yourself using the techniques you have learned.</p>
+<p>For each task, you should provide clear instructions for participants and save the data locally using the methods from previous labs. Ensure that your data files are properly labeled with meaningful column names, and that your code is well-organized and documented with comments explaining key sections.</p>
+</section>
+<section id="program-the-sternberg-memory-scanning-task-basic" class="level2" data-number="21.3">
+<h2 data-number="21.3" class="anchored" data-anchor-id="program-the-sternberg-memory-scanning-task-basic"><span class="header-section-number">21.3</span> Program the Sternberg Memory Scanning Task (Basic)</h2>
+<section id="procedure" class="level3" data-number="21.3.1">
+<h3 data-number="21.3.1" class="anchored" data-anchor-id="procedure"><span class="header-section-number">21.3.1</span> Procedure</h3>
+<p>The task consisted of 20 experimental trials preceded by 5 practice trials. Each trial began with a fixation cross presented for 500 ms at the center of the screen. A memory set of 1-5 digits was then displayed simultaneously for 1000 ms, which participants were instructed to memorize. Following a 1000 ms blank retention interval, a single probe digit appeared on the screen. Participants indicated whether the probe digit was part of the memory set by pressing the ‘F’ key for “yes” or the ‘J’ key for “no” as quickly and accurately as possible. The probe remained visible until response or for a maximum of 2000 ms.</p>
+<p>During the practice phase, feedback (“Correct” or “Incorrect”) was displayed for 500 ms after each response. No feedback was provided during the experimental trials. A 500 ms inter-trial interval preceded the next trial. Design</p>
+<p>The experiment used five set size conditions (1, 2, 3, 4, and 5 digits), with 4 trials per condition. Half of the trials were positive trials (probe present in memory set) and half were negative trials (probe absent from memory set), resulting in 2 positive and 2 negative trials per set size. The 5 practice trials included one trial of each set size (1-5 digits), with 3 positive and 2 negative trials. Trial order was randomized for each participant.</p>
+<p>Digits (0-9) were randomly selected for each memory set. For positive trials, the probe digit was randomly selected from the memory set with all serial positions equally likely. For negative trials, the probe digit was randomly selected from the digits not in the memory set.</p>
+</section>
+<section id="stimuli" class="level3" data-number="21.3.2">
+<h3 data-number="21.3.2" class="anchored" data-anchor-id="stimuli"><span class="header-section-number">21.3.2</span> Stimuli</h3>
+<p>Digits were presented in black text on a white background using a sans-serif font. Memory sets were displayed horizontally at the center of the screen with digits separated by spaces. The fixation cross and probe digit also appeared at screen center.</p>
+</section>
+<section id="data-collection" class="level3" data-number="21.3.3">
+<h3 data-number="21.3.3" class="anchored" data-anchor-id="data-collection"><span class="header-section-number">21.3.3</span> Data Collection</h3>
+<p>Response time (measured from probe onset) and accuracy were recorded for each trial.</p>
 </section>
 </section>
-<section id="getting-started-mindset" class="level1">
-<h1>Getting Started Mindset</h1>
-<p>Remember that every expert programmer started exactly where you are now. The files you’ll be editing are just text with special formatting rules. Your browser is remarkably forgiving, so if something doesn’t work perfectly the first time, you can always edit the text and try again.</p>
-<p>Think of programming your experiment like writing instructions for a very literal assistant. You need to be specific and clear, but the basic building blocks are straightforward. By the end of this course, you’ll be amazed at what you can create with just text files and a web browser.</p>
+<section id="program-a-change-detection-task-advanced" class="level2" data-number="21.4">
+<h2 data-number="21.4" class="anchored" data-anchor-id="program-a-change-detection-task-advanced"><span class="header-section-number">21.4</span> Program a Change Detection Task (Advanced)</h2>
+<section id="procedure-1" class="level3" data-number="21.4.1">
+<h3 data-number="21.4.1" class="anchored" data-anchor-id="procedure-1"><span class="header-section-number">21.4.1</span> Procedure</h3>
+<p>The task consisted of 20 experimental trials preceded by 5 practice trials. Each trial began with a fixation cross presented for 500 ms at the center of the screen. A memory array of 1-5 colored squares was then displayed for 500 ms in randomly selected positions within a 3x3 grid. Participants were instructed to memorize the colors and locations of all squares. Following a 1000 ms blank retention interval, a test array appeared containing the same number of squares in the same locations. Participants indicated whether any square had changed color by pressing the ‘F’ key for “change” or the ‘J’ key for “no change” as quickly and accurately as possible. The test array remained visible until response or for a maximum of 2000 ms.</p>
+<p>During the practice phase, feedback (“Correct” or “Incorrect”) was displayed for 500 ms after each response. No feedback was provided during the experimental trials. A 500 ms inter-trial interval preceded the next trial.</p>
+</section>
+<section id="design" class="level3" data-number="21.4.2">
+<h3 data-number="21.4.2" class="anchored" data-anchor-id="design"><span class="header-section-number">21.4.2</span> Design</h3>
+<p>The experiment used five set size conditions (1, 2, 3, 4, and 5 squares), with 4 trials per condition. Half of the trials were change trials (one square changed color) and half were no-change trials (all squares remained the same color), resulting in 2 change and 2 no-change trials per set size. The 5 practice trials included one trial of each set size (1-5 squares), with 3 change and 2 no-change trials. Trial order was randomized for each participant.</p>
+<p>For each trial, square positions were randomly selected from the nine possible locations in the 3x3 grid without replacement. Colors were randomly selected without replacement from a set of highly discriminable colors (red, blue, green, yellow, magenta, cyan, orange, pink). For change trials, one square was randomly selected to change to a different color not present in the memory array.</p>
+</section>
+<section id="stimuli-1" class="level3" data-number="21.4.3">
+<h3 data-number="21.4.3" class="anchored" data-anchor-id="stimuli-1"><span class="header-section-number">21.4.3</span> Stimuli</h3>
+<p>Colored squares (80 × 80 pixels) were presented on a gray background. The 3x3 grid was invisible but defined the possible locations for squares, with 40 pixel gaps between adjacent squares. The fixation cross appeared at the center of the screen.</p>
+</section>
+<section id="data-collection-1" class="level3" data-number="21.4.4">
+<h3 data-number="21.4.4" class="anchored" data-anchor-id="data-collection-1"><span class="header-section-number">21.4.4</span> Data Collection</h3>
+<p>Response time (measured from test array onset) and accuracy were recorded for each trial.</p>
 
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -991,10 +1025,13 @@ document.addEventListener('DOMContentLoaded', function() {
   </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
+      <a href="./20-L08.html" class="pagination-link" aria-label="Lab 8: Cognitive Control">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Lab 8: Cognitive Control</span></span>
+      </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./01-html.html" class="pagination-link" aria-label="HTML">
-        <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">HTML</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./22-randomization.html" class="pagination-link" aria-label="Randomization in Experimental Design">
+        <span class="nav-page-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Randomization in Experimental Design</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
@@ -1003,4 +1040,4 @@ document.addEventListener('DOMContentLoaded', function() {
 
 
 
-<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/icoglab/online-behavioural-research-methods/edit/main/index.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>
+<footer class="footer"><div class="nav-footer"><div class="nav-footer-center"><div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/icoglab/online-behavioural-research-methods/edit/main/21-L09.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></div></div></footer></body></html>

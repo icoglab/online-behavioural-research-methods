@@ -105,6 +105,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+.tabset-fullscreen-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  z-index: 1000;
+  padding: 5px 10px;
+  background-color: none;
+  color: #6c757d;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+.tabset-fullscreen-btn:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.panel-tabset').forEach(function(tabset) {
+    const btn = document.createElement('button');
+    btn.innerHTML = '⛶ Open Code in New Tab';
+    btn.className = 'tabset-fullscreen-btn';
+
+    tabset.style.position = 'relative';
+    tabset.insertBefore(btn, tabset.firstChild);
+
+    btn.addEventListener('click', function() {
+      const clone = tabset.cloneNode(true);
+      const cloneBtn = clone.querySelector('.tabset-fullscreen-btn');
+      if (cloneBtn) cloneBtn.remove();
+
+      // Get all stylesheets from current page
+      const stylesheets = Array.from(document.styleSheets)
+        .map(sheet => {
+          try {
+            if (sheet.href) {
+              return `<link rel="stylesheet" href="${sheet.href}">`;
+            } else if (sheet.ownerNode) {
+              return `<style>${Array.from(sheet.cssRules).map(rule => rule.cssText).join('\n')}</style>`;
+            }
+          } catch (e) {
+            if (sheet.href) return `<link rel="stylesheet" href="${sheet.href}">`;
+          }
+          return '';
+        })
+        .join('\n');
+
+      const newWindow = window.open('', '_blank');
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>Tab Panel View</title>
+            ${stylesheets}
+            <style>
+              body { 
+                margin: 20px auto; 
+                padding: 20px; 
+                max-width: 1200px;
+              }
+            </style>
+          </head>
+          <body>
+            ${clone.outerHTML}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"><\/script>
+          </body>
+        </html>
+      `);
+      newWindow.document.close();
+    });
+  });
+});
+</script>
 
 
 </head>
@@ -340,12 +416,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Unit 8: Controlling the Flow</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-dynamic-flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Controlling the Flow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-L08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Lab 8: Cognitive Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 9: Skills Checkpoint</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-L09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lab 9: Working Memory</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 10: Randomization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-randomization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Randomization in Experimental Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Lab 10: Judgment &amp; Decision-Making</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Lab 11: Face Perception</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Unit 11: Gamification</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A01_JS_Builtins.html" class="sidebar-item-text sidebar-link">
@@ -366,11 +515,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#research-in-brief-mental-imagery-and-mental-rotation" id="toc-research-in-brief-mental-imagery-and-mental-rotation" class="nav-link active" data-scroll-target="#research-in-brief-mental-imagery-and-mental-rotation"><span class="header-section-number">13.1</span> Research in Brief: Mental Imagery and Mental Rotation</a>
+  <li><a href="#research-in-brief-mental-rotation" id="toc-research-in-brief-mental-rotation" class="nav-link active" data-scroll-target="#research-in-brief-mental-rotation"><span class="header-section-number">13.1</span> Research in Brief: Mental Rotation</a>
   <ul class="collapse">
-  <li><a href="#the-research-area-mental-imagery" id="toc-the-research-area-mental-imagery" class="nav-link" data-scroll-target="#the-research-area-mental-imagery"><span class="header-section-number">13.1.1</span> The Research Area: Mental Imagery</a></li>
-  <li><a href="#the-research-design-repeated-measures-experimental-design" id="toc-the-research-design-repeated-measures-experimental-design" class="nav-link" data-scroll-target="#the-research-design-repeated-measures-experimental-design"><span class="header-section-number">13.1.2</span> The Research Design: Repeated Measures Experimental Design</a></li>
-  <li><a href="#key-findings-mental-rotation-mirrors-physical-rotation" id="toc-key-findings-mental-rotation-mirrors-physical-rotation" class="nav-link" data-scroll-target="#key-findings-mental-rotation-mirrors-physical-rotation"><span class="header-section-number">13.1.3</span> Key Findings: Mental Rotation Mirrors Physical Rotation</a></li>
+  <li><a href="#the-research-area" id="toc-the-research-area" class="nav-link" data-scroll-target="#the-research-area"><span class="header-section-number">13.1.1</span> The Research Area</a></li>
+  <li><a href="#the-research-design" id="toc-the-research-design" class="nav-link" data-scroll-target="#the-research-design"><span class="header-section-number">13.1.2</span> The Research Design</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">13.1.3</span> Key Findings</a></li>
   <li><a href="#implications" id="toc-implications" class="nav-link" data-scroll-target="#implications"><span class="header-section-number">13.1.4</span> Implications</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">13.1.5</span> Further Reading</a></li>
   </ul></li>
@@ -416,10 +565,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="research-in-brief-mental-imagery-and-mental-rotation" class="level2" data-number="13.1">
-<h2 data-number="13.1" class="anchored" data-anchor-id="research-in-brief-mental-imagery-and-mental-rotation"><span class="header-section-number">13.1</span> Research in Brief: Mental Imagery and Mental Rotation</h2>
-<section id="the-research-area-mental-imagery" class="level3" data-number="13.1.1">
-<h3 data-number="13.1.1" class="anchored" data-anchor-id="the-research-area-mental-imagery"><span class="header-section-number">13.1.1</span> The Research Area: Mental Imagery</h3>
+<section id="research-in-brief-mental-rotation" class="level2" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="research-in-brief-mental-rotation"><span class="header-section-number">13.1</span> Research in Brief: Mental Rotation</h2>
+<section id="the-research-area" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="the-research-area"><span class="header-section-number">13.1.1</span> The Research Area</h3>
 <p>Mental imagery refers to our ability to create and manipulate mental representations of visual, auditory, or other sensory information when the actual stimuli are not physically present. This cognitive ability allows us to “see” objects in our mind’s eye, rotate them mentally, and perform various operations on these internal representations.</p>
 <p>Mental imagery research addresses fundamental questions about how our minds represent and process information. Can we manipulate mental images the same way we manipulate physical objects? Do our mental images share properties with actual perception? This area of research has profound implications for understanding creativity, problem-solving, spatial reasoning, and the relationship between thought and perception.</p>
 <p>The study of mental imagery also connects to practical applications in fields requiring strong spatial skills, such as engineering, architecture, medicine, and the STEM disciplines. Understanding how people create and manipulate mental images helps us develop better training methods for spatial abilities and design more effective educational interventions.</p>
@@ -429,8 +578,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>These individual differences highlight that mental imagery is not a uniform cognitive ability but rather exists on a spectrum. Interestingly, people with aphantasia can still perform many spatial reasoning tasks successfully, suggesting they may use alternative cognitive strategies, while those with hyperphantasia may rely heavily on their vivid imagery for problem-solving and memory tasks.</p>
 </section>
 </section>
-<section id="the-research-design-repeated-measures-experimental-design" class="level3" data-number="13.1.2">
-<h3 data-number="13.1.2" class="anchored" data-anchor-id="the-research-design-repeated-measures-experimental-design"><span class="header-section-number">13.1.2</span> The Research Design: Repeated Measures Experimental Design</h3>
+<section id="the-research-design" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="the-research-design"><span class="header-section-number">13.1.2</span> The Research Design</h3>
 <p>The classic mental rotation paradigm developed by Shepard and Metzler (1971) employs a repeated measures experimental design where participants make same/different judgments about pairs of three-dimensional geometric figures presented at various orientations.</p>
 <section id="the-mental-rotation-methodology" class="level4" data-number="13.1.2.1">
 <h4 data-number="13.1.2.1" class="anchored" data-anchor-id="the-mental-rotation-methodology"><span class="header-section-number">13.1.2.1</span> The Mental Rotation Methodology</h4>
@@ -443,8 +592,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The repeated measures approach allows researchers to examine how rotation angle affects response time within the same participants. Each person responds to multiple rotation angles (0°, 20°, 40°, 60°, 80°, 100°, 120°, 140°, 160°, 180°), both rotation types (picture-plane and depth rotations), and both same and different pairs. This design controls for individual differences in spatial ability, response speed, and decision-making style while isolating the specific effect of mental rotation demands.</p>
 </section>
 </section>
-<section id="key-findings-mental-rotation-mirrors-physical-rotation" class="level3" data-number="13.1.3">
-<h3 data-number="13.1.3" class="anchored" data-anchor-id="key-findings-mental-rotation-mirrors-physical-rotation"><span class="header-section-number">13.1.3</span> Key Findings: Mental Rotation Mirrors Physical Rotation</h3>
+<section id="key-findings" class="level3" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">13.1.3</span> Key Findings</h3>
 <p>The repeated measures comparisons revealed a striking linear relationship between rotation angle and response time. Response time increased systematically with rotation angle, from approximately 1 second at 0° rotation to 4-5 seconds at 180° rotation. Both picture-plane and depth rotations showed nearly identical linear functions, suggesting similar underlying mental processes. While participants varied in overall speed, virtually all showed the same linear relationship between angle and response time, and participants remained accurate across all rotation angles, indicating they were genuinely performing mental rotation rather than guessing.</p>
 <p>The within-subjects design revealed that picture-plane rotation (2D) showed average response times ranging from ~1.0 seconds (0°) to ~4.8 seconds (180°), while depth rotation (3D) ranged from ~1.0 seconds (0°) to ~5.2 seconds (180°). Both conditions showed approximately 1.6 seconds per 100° of rotation. The remarkable similarity between 2D and 3D rotation suggests that people can mentally rotate objects in three-dimensional space almost as efficiently as in two dimensions.</p>
 </section>
@@ -3110,12 +3259,12 @@ The objects may be rotated at different angles, so you will need to mentally rot
 <p>Try to respond as quickly and accurately as possible.</p>
 <p><strong>Page 3:</strong><br>
 <strong>Example - SAME objects:</strong></p>
-<p>Insert Image Here: “media/100_S_1.jpg”</p>
+<p>Insert Image Here: “images/100_S_1.jpg”</p>
 <p>These objects are the same shape, just rotated differently.<br>
 You would press <strong>‘S’</strong> for this pair.</p>
 <p><strong>Page 4:</strong><br>
 <strong>Example - DIFFERENT objects:</strong></p>
-<p>Insert Image Here: “media/100_D_1.jpg”</p>
+<p>Insert Image Here: “images/100_D_1.jpg”</p>
 <p>These objects are different shapes.<br>
 You would press <strong>‘D’</strong> for this pair.</p>
 <p>Click ‘Next’ when you’re ready to begin the experiment.</p>

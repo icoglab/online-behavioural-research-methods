@@ -66,7 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
-<link href="./A01_JS_Builtins.html" rel="next">
+<link href="./19-dynamic-flow.html" rel="next">
 <link href="./17-dynamic-html.html" rel="prev">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
@@ -105,6 +105,82 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-label": "Search"
   }
 }</script>
+<style>
+.tabset-fullscreen-btn {
+  position: absolute;
+  top: 5px;
+  right: 10px;
+  z-index: 1000;
+  padding: 5px 10px;
+  background-color: none;
+  color: #6c757d;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+}
+.tabset-fullscreen-btn:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  document.querySelectorAll('.panel-tabset').forEach(function(tabset) {
+    const btn = document.createElement('button');
+    btn.innerHTML = '⛶ Open Code in New Tab';
+    btn.className = 'tabset-fullscreen-btn';
+
+    tabset.style.position = 'relative';
+    tabset.insertBefore(btn, tabset.firstChild);
+
+    btn.addEventListener('click', function() {
+      const clone = tabset.cloneNode(true);
+      const cloneBtn = clone.querySelector('.tabset-fullscreen-btn');
+      if (cloneBtn) cloneBtn.remove();
+
+      // Get all stylesheets from current page
+      const stylesheets = Array.from(document.styleSheets)
+        .map(sheet => {
+          try {
+            if (sheet.href) {
+              return `<link rel="stylesheet" href="${sheet.href}">`;
+            } else if (sheet.ownerNode) {
+              return `<style>${Array.from(sheet.cssRules).map(rule => rule.cssText).join('\n')}</style>`;
+            }
+          } catch (e) {
+            if (sheet.href) return `<link rel="stylesheet" href="${sheet.href}">`;
+          }
+          return '';
+        })
+        .join('\n');
+
+      const newWindow = window.open('', '_blank');
+      newWindow.document.write(`
+        <html>
+          <head>
+            <title>Tab Panel View</title>
+            ${stylesheets}
+            <style>
+              body { 
+                margin: 20px auto; 
+                padding: 20px; 
+                max-width: 1200px;
+              }
+            </style>
+          </head>
+          <body>
+            ${clone.outerHTML}
+            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"><\/script>
+          </body>
+        </html>
+      `);
+      newWindow.document.close();
+    });
+  });
+});
+</script>
 
 
 </head>
@@ -340,12 +416,85 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
             <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true">
- <span class="menu-text">Appendices</span></a>
+ <span class="menu-text">Unit 8: Controlling the Flow</span></a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./19-dynamic-flow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Controlling the Flow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./20-L08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">20</span>&nbsp; <span class="chapter-title">Lab 8: Cognitive Control</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 9: Skills Checkpoint</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./21-L09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">21</span>&nbsp; <span class="chapter-title">Lab 9: Working Memory</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true">
+ <span class="menu-text">Unit 10: Randomization</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-10" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-10" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./22-randomization.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">22</span>&nbsp; <span class="chapter-title">Randomization in Experimental Design</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./23-L10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">23</span>&nbsp; <span class="chapter-title">Lab 10: Judgment &amp; Decision-Making</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./24-L11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">24</span>&nbsp; <span class="chapter-title">Lab 11: Face Perception</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Unit 11: Gamification</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true">
+ <span class="menu-text">Appendices</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-12" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-12" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="./A01_JS_Builtins.html" class="sidebar-item-text sidebar-link">
@@ -366,12 +515,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#research-in-brief-spatial-attention-and-the-posner-cuing-paradigm" id="toc-research-in-brief-spatial-attention-and-the-posner-cuing-paradigm" class="nav-link active" data-scroll-target="#research-in-brief-spatial-attention-and-the-posner-cuing-paradigm"><span class="header-section-number">18.1</span> Research in Brief: Spatial Attention and the Posner Cuing Paradigm</a>
+  <li><a href="#research-in-brief-the-posner-cuing-paradigm" id="toc-research-in-brief-the-posner-cuing-paradigm" class="nav-link active" data-scroll-target="#research-in-brief-the-posner-cuing-paradigm"><span class="header-section-number">18.1</span> Research in Brief: The Posner Cuing Paradigm</a>
   <ul class="collapse">
-  <li><a href="#the-research-area-attention" id="toc-the-research-area-attention" class="nav-link" data-scroll-target="#the-research-area-attention"><span class="header-section-number">18.1.1</span> The Research Area: Attention</a></li>
+  <li><a href="#the-research-area" id="toc-the-research-area" class="nav-link" data-scroll-target="#the-research-area"><span class="header-section-number">18.1.1</span> The Research Area</a></li>
   <li><a href="#types-of-attention" id="toc-types-of-attention" class="nav-link" data-scroll-target="#types-of-attention"><span class="header-section-number">18.1.2</span> Types of Attention</a></li>
-  <li><a href="#the-research-design-the-posner-cuing-paradigm" id="toc-the-research-design-the-posner-cuing-paradigm" class="nav-link" data-scroll-target="#the-research-design-the-posner-cuing-paradigm"><span class="header-section-number">18.1.3</span> The Research Design: The Posner Cuing Paradigm</a></li>
-  <li><a href="#key-findings-distinct-patterns-for-endogenous-and-exogenous-attention" id="toc-key-findings-distinct-patterns-for-endogenous-and-exogenous-attention" class="nav-link" data-scroll-target="#key-findings-distinct-patterns-for-endogenous-and-exogenous-attention"><span class="header-section-number">18.1.4</span> Key Findings: Distinct Patterns for Endogenous and Exogenous Attention</a></li>
+  <li><a href="#the-research-design" id="toc-the-research-design" class="nav-link" data-scroll-target="#the-research-design"><span class="header-section-number">18.1.3</span> The Research Design</a></li>
+  <li><a href="#key-findings" id="toc-key-findings" class="nav-link" data-scroll-target="#key-findings"><span class="header-section-number">18.1.4</span> Key Findings</a></li>
   <li><a href="#implications" id="toc-implications" class="nav-link" data-scroll-target="#implications"><span class="header-section-number">18.1.5</span> Implications</a></li>
   <li><a href="#further-reading" id="toc-further-reading" class="nav-link" data-scroll-target="#further-reading"><span class="header-section-number">18.1.6</span> Further Reading</a></li>
   </ul></li>
@@ -418,10 +567,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<section id="research-in-brief-spatial-attention-and-the-posner-cuing-paradigm" class="level2" data-number="18.1">
-<h2 data-number="18.1" class="anchored" data-anchor-id="research-in-brief-spatial-attention-and-the-posner-cuing-paradigm"><span class="header-section-number">18.1</span> Research in Brief: Spatial Attention and the Posner Cuing Paradigm</h2>
-<section id="the-research-area-attention" class="level3" data-number="18.1.1">
-<h3 data-number="18.1.1" class="anchored" data-anchor-id="the-research-area-attention"><span class="header-section-number">18.1.1</span> The Research Area: Attention</h3>
+<section id="research-in-brief-the-posner-cuing-paradigm" class="level2" data-number="18.1">
+<h2 data-number="18.1" class="anchored" data-anchor-id="research-in-brief-the-posner-cuing-paradigm"><span class="header-section-number">18.1</span> Research in Brief: The Posner Cuing Paradigm</h2>
+<section id="the-research-area" class="level3" data-number="18.1.1">
+<h3 data-number="18.1.1" class="anchored" data-anchor-id="the-research-area"><span class="header-section-number">18.1.1</span> The Research Area</h3>
 <p>Attention refers to a family of cognitive mechanisms that combine to help us select, modulate, and sustain focus on information that might be most relevant for behavior. Our ability to process information is capacity-limited, meaning we can handle only small amounts of information at a time. Attention functions as an essential gatekeeper, allowing us to select and prioritize some information over other information when stimuli compete for our processing resources.</p>
 <p>Attention research addresses fundamental questions about cognitive control and information processing. How do we decide what to focus on among competing stimuli? Can we prepare our attention for events before they occur? What mechanisms allow us to shift attention efficiently between different locations or objects? Understanding attention has important implications for performance in complex tasks, learning efficiency, and disorders affecting cognitive control.</p>
 <p>The study of attention also connects to many practical applications in areas requiring sustained focus and rapid responses, such as air traffic control, driving, medical diagnosis, and educational settings. To investigate these attention mechanisms systematically, researchers have developed experimental paradigms that can isolate and measure different aspects of attentional processing under controlled conditions.</p>
@@ -432,8 +581,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Spatial attention represents a particularly important form of selective attention that involves directing cognitive resources to specific locations in visual space. Unlike other forms of attention that focus on particular objects or features, spatial attention operates like a mental spotlight that can be moved around the visual field to enhance processing at specific locations. This system allows us to prepare for events that might occur at particular spatial positions, even before any stimuli appear there.</p>
 <p>Research distinguishes between two primary mechanisms for controlling spatial attention: endogenous attention that we consciously direct based on our goals and expectations, and exogenous attention that is automatically captured by sudden or salient stimuli in the environment. These systems have different temporal characteristics and serve complementary functions in attention control.</p>
 </section>
-<section id="the-research-design-the-posner-cuing-paradigm" class="level3" data-number="18.1.3">
-<h3 data-number="18.1.3" class="anchored" data-anchor-id="the-research-design-the-posner-cuing-paradigm"><span class="header-section-number">18.1.3</span> The Research Design: The Posner Cuing Paradigm</h3>
+<section id="the-research-design" class="level3" data-number="18.1.3">
+<h3 data-number="18.1.3" class="anchored" data-anchor-id="the-research-design"><span class="header-section-number">18.1.3</span> The Research Design</h3>
 <p>The spatial cuing paradigm developed by Posner (1980) uses a within-subjects experimental design to examine how different types of cues influence the allocation of spatial attention. Participants respond to target stimuli that appear at different locations following various types of spatial cues.</p>
 <p>Stimulus Presentation: Participants fixate on a central point while viewing a display containing two or more potential target locations, typically boxes positioned to the left and right of fixation. Before the target appears, a cue indicates where the target is likely to appear.</p>
 <p>Cue Types: The paradigm employs two distinct cuing conditions. Endogenous cues are symbolic indicators (such as central arrows) that point toward the likely target location. These cues require interpretation and voluntary attention shifts. Exogenous cues are sudden onset stimuli (such as brief flashes or brightening) that appear at the potential target locations themselves, automatically capturing attention.</p>
@@ -441,8 +590,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>The design manipulates cue validity: valid trials where cues correctly predict target location (typically 75% of trials), invalid trials where cues incorrectly predict target location, and neutral trials where cues provide no spatial information.</p>
 <p>The within-subjects design allows researchers to compare response times across different cuing conditions within the same participants. Each person experiences valid, invalid, and neutral trials for both endogenous and exogenous cues at various cue-target intervals. Each participant acts as their own ‘control’. This approach controls for individual differences in overall response speed and detection ability while isolating the specific effects of spatial cuing on attention allocation.</p>
 </section>
-<section id="key-findings-distinct-patterns-for-endogenous-and-exogenous-attention" class="level3" data-number="18.1.4">
-<h3 data-number="18.1.4" class="anchored" data-anchor-id="key-findings-distinct-patterns-for-endogenous-and-exogenous-attention"><span class="header-section-number">18.1.4</span> Key Findings: Distinct Patterns for Endogenous and Exogenous Attention</h3>
+<section id="key-findings" class="level3" data-number="18.1.4">
+<h3 data-number="18.1.4" class="anchored" data-anchor-id="key-findings"><span class="header-section-number">18.1.4</span> Key Findings</h3>
 <p>The within-subjects comparisons have revealed different temporal patterns for endogenous and exogenous spatial attention. Endogenous cuing showed benefits for valid trials (faster responses to targets at cued locations) and costs for invalid trials (slower responses to targets at uncued locations) that developed gradually over 300-500 milliseconds and remained stable for several seconds. This pattern reflects the voluntary, sustained nature of goal-directed attention.</p>
 <p>Exogenous cuing produced rapid attention capture with benefits peaking around 150 milliseconds, followed by inhibition of return at longer intervals (typically after 300-500 milliseconds) where responses became slower to targets appearing at previously cued locations. This biphasic pattern reflects the automatic, transient nature of stimulus-driven attention. Inhibition of return may serve an adaptive function by preventing attention from repeatedly returning to the same location during visual search.</p>
 <p>The magnitude of cuing effects typically ranges from 20-50 milliseconds for response time differences between valid and invalid trials, with endogenous cues showing larger and more sustained effects than exogenous cues at optimal intervals. These effects remain consistent across participants despite individual differences in overall response speed.</p>
@@ -456,7 +605,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="further-reading" class="level3" data-number="18.1.6">
 <h3 data-number="18.1.6" class="anchored" data-anchor-id="further-reading"><span class="header-section-number">18.1.6</span> Further Reading</h3>
 <p>Chun, M. M., &amp; Most, S. B. (2021). External attention. In <em>Cognition</em>.</p>
-<p>Chun, M. M., &amp; Most, S. B. (2021). Cognitive control and working memory. In <em>Cognition</em>.</p>
 <p>Jensen, M. S., Yao, R., Street, W. N., &amp; Simons, D. J. (2011). Change blindness and inattentional blindness. <em>Wiley Interdisciplinary Reviews: Cognitive Science</em>, 2(5), 529-546.</p>
 <p>Most, S. B., Chun, M. M., Widders, D. M., &amp; Zald, D. H. (2005). Attentional rubbernecking: Cognitive control and personality in emotion-induced blindness. <em>Psychonomic Bulletin &amp; Review</em>, 12, 654-661.</p>
 <p>Posner, M. I. (1980). Orienting of attention. <em>Quarterly Journal of Experimental Psychology</em>, <em>32</em>(1), 3-25.</p>
@@ -5117,8 +5265,8 @@ jsPsych.run([
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./A01_JS_Builtins.html" class="pagination-link" aria-label="JavaScript Built-in Functions">
-        <span class="nav-page-text"><span class="chapter-number">A</span>&nbsp; <span class="chapter-title">JavaScript Built-in Functions</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./19-dynamic-flow.html" class="pagination-link" aria-label="Controlling the Flow">
+        <span class="nav-page-text"><span class="chapter-number">19</span>&nbsp; <span class="chapter-title">Controlling the Flow</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
