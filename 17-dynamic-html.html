@@ -609,38 +609,46 @@ learning goals
 <h3 data-number="17.2.1" class="anchored" data-anchor-id="varying-stimulus"><span class="header-section-number">17.2.1</span> Varying Stimulus</h3>
 <p>This example should look familiar. Here, we are changing the stimulus HTML on the basis of what’s in the timeline variables. Using <code>jsPsych.timelineVariable('word')</code> will take what is in the <code>word</code> variable on any give trial and insert that into the<code>stimulus</code> parameter.</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">let</span> word_trials <span class="op">=</span> {</span>
-<span id="cb1-2"><a href="#cb1-2"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
-<span id="cb1-3"><a href="#cb1-3"></a>  <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'word'</span>)<span class="op">,</span></span>
-<span id="cb1-4"><a href="#cb1-4"></a>  <span class="dt">choices</span><span class="op">:</span> [<span class="st">'f'</span><span class="op">,</span> <span class="st">'j'</span>]<span class="op">,</span></span>
-<span id="cb1-5"><a href="#cb1-5"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
-<span id="cb1-6"><a href="#cb1-6"></a>    {<span class="dt">word</span><span class="op">:</span> <span class="st">'&lt;p&gt;CAT&lt;/p&gt;'</span>}<span class="op">,</span></span>
-<span id="cb1-7"><a href="#cb1-7"></a>    {<span class="dt">word</span><span class="op">:</span> <span class="st">'&lt;p&gt;DOG&lt;/p&gt;'</span>}<span class="op">,</span></span>
-<span id="cb1-8"><a href="#cb1-8"></a>    {<span class="dt">word</span><span class="op">:</span> <span class="st">'&lt;p&gt;BIRD&lt;/p&gt;'</span>}</span>
-<span id="cb1-9"><a href="#cb1-9"></a>  ]</span>
-<span id="cb1-10"><a href="#cb1-10"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2"></a>  <span class="dt">timeline</span><span class="op">:</span> [</span>
+<span id="cb1-3"><a href="#cb1-3"></a>    {</span>
+<span id="cb1-4"><a href="#cb1-4"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb1-5"><a href="#cb1-5"></a>      <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'word'</span>)<span class="op">,</span></span>
+<span id="cb1-6"><a href="#cb1-6"></a>      <span class="dt">choices</span><span class="op">:</span> [<span class="st">'f'</span><span class="op">,</span> <span class="st">'j'</span>]</span>
+<span id="cb1-7"><a href="#cb1-7"></a>    }</span>
+<span id="cb1-8"><a href="#cb1-8"></a>  ]<span class="op">,</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
+<span id="cb1-10"><a href="#cb1-10"></a>    {<span class="dt">word</span><span class="op">:</span> <span class="st">'&lt;p&gt;CAT&lt;/p&gt;'</span>}<span class="op">,</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>    {<span class="dt">word</span><span class="op">:</span> <span class="st">'&lt;p&gt;DOG&lt;/p&gt;'</span>}<span class="op">,</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>    {<span class="dt">word</span><span class="op">:</span> <span class="st">'&lt;p&gt;BIRD&lt;/p&gt;'</span>}</span>
+<span id="cb1-13"><a href="#cb1-13"></a>  ]</span>
+<span id="cb1-14"><a href="#cb1-14"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="varying-multiple-parameters" class="level3" data-number="17.2.2">
 <h3 data-number="17.2.2" class="anchored" data-anchor-id="varying-multiple-parameters"><span class="header-section-number">17.2.2</span> Varying Multiple Parameters</h3>
 <p>You can extend this logic to substitute any parameter. The key requirement is providing the parameter in the correct format.</p>
 <p>In this example, we’re changing the choices parameter to allow only the correct key on each trial. Notice that we still provide an array ([‘r’]) in our timeline variables. We’re also changing the trial_duration parameter to vary response time limits. Since this parameter expects a number, we provide numbers in our timeline variables.</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb2-1"><a href="#cb2-1"></a><span class="kw">let</span> stroop <span class="op">=</span> {</span>
-<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a>  <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'stimulus'</span>)<span class="op">,</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a>  <span class="dt">choices</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'valid_keys'</span>)<span class="op">,</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a>  <span class="dt">trial_duration</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'time_limit'</span>)<span class="op">,</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
-<span id="cb2-7"><a href="#cb2-7"></a>    {</span>
-<span id="cb2-8"><a href="#cb2-8"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="st">'&lt;p style="color: red;"&gt;RED&lt;/p&gt;'</span><span class="op">,</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a>      <span class="dt">valid_keys</span><span class="op">:</span> [<span class="st">'r'</span>]<span class="op">,</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a>      <span class="dt">time_limit</span><span class="op">:</span> <span class="dv">2000</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a>    }<span class="op">,</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a>    {</span>
-<span id="cb2-13"><a href="#cb2-13"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="st">'&lt;p style="color: blue;"&gt;BLUE&lt;/p&gt;'</span><span class="op">,</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a>      <span class="dt">valid_keys</span><span class="op">:</span> [<span class="st">'b'</span>]<span class="op">,</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a>      <span class="dt">time_limit</span><span class="op">:</span> <span class="dv">1500</span></span>
-<span id="cb2-16"><a href="#cb2-16"></a>    }</span>
-<span id="cb2-17"><a href="#cb2-17"></a>  ]</span>
-<span id="cb2-18"><a href="#cb2-18"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-2"><a href="#cb2-2"></a>  <span class="dt">timeline</span><span class="op">:</span> [</span>
+<span id="cb2-3"><a href="#cb2-3"></a>    {</span>
+<span id="cb2-4"><a href="#cb2-4"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb2-5"><a href="#cb2-5"></a>      <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'stimulus'</span>)<span class="op">,</span></span>
+<span id="cb2-6"><a href="#cb2-6"></a>      <span class="dt">choices</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'valid_keys'</span>)<span class="op">,</span></span>
+<span id="cb2-7"><a href="#cb2-7"></a>      <span class="dt">trial_duration</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'time_limit'</span>)</span>
+<span id="cb2-8"><a href="#cb2-8"></a>    }</span>
+<span id="cb2-9"><a href="#cb2-9"></a>  ]<span class="op">,</span></span>
+<span id="cb2-10"><a href="#cb2-10"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
+<span id="cb2-11"><a href="#cb2-11"></a>    {</span>
+<span id="cb2-12"><a href="#cb2-12"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="st">'&lt;p style="color: red;"&gt;RED&lt;/p&gt;'</span><span class="op">,</span></span>
+<span id="cb2-13"><a href="#cb2-13"></a>      <span class="dt">valid_keys</span><span class="op">:</span> [<span class="st">'r'</span>]<span class="op">,</span></span>
+<span id="cb2-14"><a href="#cb2-14"></a>      <span class="dt">time_limit</span><span class="op">:</span> <span class="dv">2000</span></span>
+<span id="cb2-15"><a href="#cb2-15"></a>    }<span class="op">,</span></span>
+<span id="cb2-16"><a href="#cb2-16"></a>    {</span>
+<span id="cb2-17"><a href="#cb2-17"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="st">'&lt;p style="color: blue;"&gt;BLUE&lt;/p&gt;'</span><span class="op">,</span></span>
+<span id="cb2-18"><a href="#cb2-18"></a>      <span class="dt">valid_keys</span><span class="op">:</span> [<span class="st">'b'</span>]<span class="op">,</span></span>
+<span id="cb2-19"><a href="#cb2-19"></a>      <span class="dt">time_limit</span><span class="op">:</span> <span class="dv">1500</span></span>
+<span id="cb2-20"><a href="#cb2-20"></a>    }</span>
+<span id="cb2-21"><a href="#cb2-21"></a>  ]</span>
+<span id="cb2-22"><a href="#cb2-22"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <p>Here, we’re changing the <code>choices</code> parameter on each trial to only allow the correct key. Notice how we still provide an array inside our timeline variables (<code>['r']</code>).</p>
 <p>We are also changing our <code>time_duration</code> parameter on each trial to change how long they have to respond. This parameter expects a number, so we provide a number in our timeline variables.</p>
 </section>
@@ -648,19 +656,23 @@ learning goals
 <h3 data-number="17.2.3" class="anchored" data-anchor-id="varying-data-labels"><span class="header-section-number">17.2.3</span> Varying Data Labels</h3>
 <p>In the previous data chapter, we also used timeline variables to update our data values. This is the same principle:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb3-1"><a href="#cb3-1"></a><span class="kw">let</span> categorization_trials <span class="op">=</span> {</span>
-<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychImageKeyboardResponse<span class="op">,</span></span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'image'</span>)<span class="op">,</span></span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">choices</span><span class="op">:</span> [<span class="st">'f'</span><span class="op">,</span> <span class="st">'j'</span>]<span class="op">,</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>  <span class="dt">data</span><span class="op">:</span> {</span>
-<span id="cb3-6"><a href="#cb3-6"></a>    <span class="dt">category</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'category'</span>)<span class="op">,</span></span>
-<span id="cb3-7"><a href="#cb3-7"></a>    <span class="dt">correct_response</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'correct_key'</span>)</span>
-<span id="cb3-8"><a href="#cb3-8"></a>  }<span class="op">,</span></span>
-<span id="cb3-9"><a href="#cb3-9"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
-<span id="cb3-10"><a href="#cb3-10"></a>    {<span class="dt">image</span><span class="op">:</span> <span class="st">'cat.jpg'</span><span class="op">,</span> <span class="dt">category</span><span class="op">:</span> <span class="st">'animal'</span><span class="op">,</span> <span class="dt">correct_key</span><span class="op">:</span> <span class="st">'f'</span>}<span class="op">,</span></span>
-<span id="cb3-11"><a href="#cb3-11"></a>    {<span class="dt">image</span><span class="op">:</span> <span class="st">'car.jpg'</span><span class="op">,</span> <span class="dt">category</span><span class="op">:</span> <span class="st">'vehicle'</span><span class="op">,</span> <span class="dt">correct_key</span><span class="op">:</span> <span class="st">'j'</span>}<span class="op">,</span></span>
-<span id="cb3-12"><a href="#cb3-12"></a>    {<span class="dt">image</span><span class="op">:</span> <span class="st">'dog.jpg'</span><span class="op">,</span> <span class="dt">category</span><span class="op">:</span> <span class="st">'animal'</span><span class="op">,</span> <span class="dt">correct_key</span><span class="op">:</span> <span class="st">'f'</span>}</span>
-<span id="cb3-13"><a href="#cb3-13"></a>  ]</span>
-<span id="cb3-14"><a href="#cb3-14"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb3-2"><a href="#cb3-2"></a>  <span class="dt">timeline</span><span class="op">:</span> [</span>
+<span id="cb3-3"><a href="#cb3-3"></a>    {</span>
+<span id="cb3-4"><a href="#cb3-4"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychImageKeyboardResponse<span class="op">,</span></span>
+<span id="cb3-5"><a href="#cb3-5"></a>      <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'image'</span>)<span class="op">,</span></span>
+<span id="cb3-6"><a href="#cb3-6"></a>      <span class="dt">choices</span><span class="op">:</span> [<span class="st">'f'</span><span class="op">,</span> <span class="st">'j'</span>]<span class="op">,</span></span>
+<span id="cb3-7"><a href="#cb3-7"></a>      <span class="dt">data</span><span class="op">:</span> {</span>
+<span id="cb3-8"><a href="#cb3-8"></a>        <span class="dt">category</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'category'</span>)<span class="op">,</span></span>
+<span id="cb3-9"><a href="#cb3-9"></a>        <span class="dt">correct_response</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">'correct_key'</span>)</span>
+<span id="cb3-10"><a href="#cb3-10"></a>      }</span>
+<span id="cb3-11"><a href="#cb3-11"></a>    }</span>
+<span id="cb3-12"><a href="#cb3-12"></a>  ]<span class="op">,</span></span>
+<span id="cb3-13"><a href="#cb3-13"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
+<span id="cb3-14"><a href="#cb3-14"></a>    {<span class="dt">image</span><span class="op">:</span> <span class="st">'cat.jpg'</span><span class="op">,</span> <span class="dt">category</span><span class="op">:</span> <span class="st">'animal'</span><span class="op">,</span> <span class="dt">correct_key</span><span class="op">:</span> <span class="st">'f'</span>}<span class="op">,</span></span>
+<span id="cb3-15"><a href="#cb3-15"></a>    {<span class="dt">image</span><span class="op">:</span> <span class="st">'car.jpg'</span><span class="op">,</span> <span class="dt">category</span><span class="op">:</span> <span class="st">'vehicle'</span><span class="op">,</span> <span class="dt">correct_key</span><span class="op">:</span> <span class="st">'j'</span>}<span class="op">,</span></span>
+<span id="cb3-16"><a href="#cb3-16"></a>    {<span class="dt">image</span><span class="op">:</span> <span class="st">'dog.jpg'</span><span class="op">,</span> <span class="dt">category</span><span class="op">:</span> <span class="st">'animal'</span><span class="op">,</span> <span class="dt">correct_key</span><span class="op">:</span> <span class="st">'f'</span>}</span>
+<span id="cb3-17"><a href="#cb3-17"></a>  ]</span>
+<span id="cb3-18"><a href="#cb3-18"></a>}<span class="op">;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 <section id="what-timeline-variables-cant-do" class="level3" data-number="17.2.4">
 <h3 data-number="17.2.4" class="anchored" data-anchor-id="what-timeline-variables-cant-do"><span class="header-section-number">17.2.4</span> What Timeline Variables Can’t Do</h3>
@@ -717,15 +729,23 @@ learning goals
 <h3 data-number="17.4.2" class="anchored" data-anchor-id="save-dynamic-parameters"><span class="header-section-number">17.4.2</span> 2. Save Dynamic Parameters</h3>
 <p>Dynamic parameters aren’t automatically saved to your data. Use <code>save_trial_parameters</code> to specify which ones to save:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb7-1"><a href="#cb7-1"></a><span class="kw">let</span> trial <span class="op">=</span> {</span>
-<span id="cb7-2"><a href="#cb7-2"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychKeyboardResponse<span class="op">,</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a>  <span class="dt">stimulus</span><span class="op">:</span> <span class="st">"RED"</span><span class="op">,</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a>  <span class="dt">choices</span><span class="op">:</span> [<span class="st">"r"</span>]<span class="op">,</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a>  <span class="dt">trial_duration</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a>  <span class="dt">save_trial_parameters</span><span class="op">:</span> {</span>
-<span id="cb7-7"><a href="#cb7-7"></a>    <span class="dt">choices</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a>    <span class="dt">trial_duration</span><span class="op">:</span> <span class="kw">true</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a>  }</span>
-<span id="cb7-10"><a href="#cb7-10"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb7-2"><a href="#cb7-2"></a>  <span class="dt">timeline</span><span class="op">:</span> [</span>
+<span id="cb7-3"><a href="#cb7-3"></a>    {</span>
+<span id="cb7-4"><a href="#cb7-4"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychKeyboardResponse<span class="op">,</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a>      <span class="dt">stimulus</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">"color"</span>)<span class="op">,</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a>      <span class="dt">choices</span><span class="op">:</span> [<span class="st">"r"</span>]<span class="op">,</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a>      <span class="dt">trial_duration</span><span class="op">:</span> <span class="dv">1000</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a>    }</span>
+<span id="cb7-9"><a href="#cb7-9"></a>  ]<span class="op">,</span></span>
+<span id="cb7-10"><a href="#cb7-10"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
+<span id="cb7-11"><a href="#cb7-11"></a>    {<span class="dt">color</span><span class="op">:</span> <span class="st">"RED"</span>}<span class="op">,</span></span>
+<span id="cb7-12"><a href="#cb7-12"></a>    {<span class="dt">color</span><span class="op">:</span> <span class="st">"BLUE"</span>}</span>
+<span id="cb7-13"><a href="#cb7-13"></a>  ]<span class="op">,</span></span>
+<span id="cb7-14"><a href="#cb7-14"></a>  <span class="dt">save_trial_parameters</span><span class="op">:</span> {</span>
+<span id="cb7-15"><a href="#cb7-15"></a>    <span class="dt">choices</span><span class="op">:</span> <span class="kw">true</span><span class="op">,</span></span>
+<span id="cb7-16"><a href="#cb7-16"></a>    <span class="dt">trial_duration</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb7-17"><a href="#cb7-17"></a>  }</span>
+<span id="cb7-18"><a href="#cb7-18"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </section>
 </section>
 <section id="dynamic-stimulus" class="level2" data-number="17.5">
