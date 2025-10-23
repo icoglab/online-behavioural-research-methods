@@ -548,12 +548,13 @@ document.addEventListener('DOMContentLoaded', function() {
   <li><a href="#change-to-75-valid-trials" id="toc-change-to-75-valid-trials" class="nav-link" data-scroll-target="#change-to-75-valid-trials"><span class="header-section-number">18.2.7</span> Change to 75% Valid Trials</a></li>
   <li><a href="#manipulate-cue-duration" id="toc-manipulate-cue-duration" class="nav-link" data-scroll-target="#manipulate-cue-duration"><span class="header-section-number">18.2.8</span> Manipulate Cue Duration</a></li>
   <li><a href="#instructions-styling" id="toc-instructions-styling" class="nav-link" data-scroll-target="#instructions-styling"><span class="header-section-number">18.2.9</span> Instructions &amp; Styling</a></li>
+  <li><a href="#adding-feedback" id="toc-adding-feedback" class="nav-link" data-scroll-target="#adding-feedback"><span class="header-section-number">18.2.10</span> Adding Feedback</a></li>
   </ul></li>
   <li><a href="#stretch-goals" id="toc-stretch-goals" class="nav-link" data-scroll-target="#stretch-goals"><span class="header-section-number">18.3</span> Stretch Goals</a>
   <ul class="collapse">
-  <li><a href="#add-feedback-following-each-trial" id="toc-add-feedback-following-each-trial" class="nav-link" data-scroll-target="#add-feedback-following-each-trial"><span class="header-section-number">18.3.1</span> Add feedback following each trial</a></li>
-  <li><a href="#add-proper-data-labels" id="toc-add-proper-data-labels" class="nav-link" data-scroll-target="#add-proper-data-labels"><span class="header-section-number">18.3.2</span> Add proper data labels</a></li>
-  <li><a href="#create-a-block-of-trials-that-uses-an-endogenous-arrow-cue" id="toc-create-a-block-of-trials-that-uses-an-endogenous-arrow-cue" class="nav-link" data-scroll-target="#create-a-block-of-trials-that-uses-an-endogenous-arrow-cue"><span class="header-section-number">18.3.3</span> Create a block of trials that uses an endogenous arrow cue</a></li>
+  <li><a href="#add-proper-data-labels" id="toc-add-proper-data-labels" class="nav-link" data-scroll-target="#add-proper-data-labels"><span class="header-section-number">18.3.1</span> Add proper data labels</a></li>
+  <li><a href="#create-a-block-of-trials-that-uses-an-endogenous-arrow-cue" id="toc-create-a-block-of-trials-that-uses-an-endogenous-arrow-cue" class="nav-link" data-scroll-target="#create-a-block-of-trials-that-uses-an-endogenous-arrow-cue"><span class="header-section-number">18.3.2</span> Create a block of trials that uses an endogenous arrow cue</a></li>
+  <li><a href="#add-additional-feedback-logic" id="toc-add-additional-feedback-logic" class="nav-link" data-scroll-target="#add-additional-feedback-logic"><span class="header-section-number">18.3.3</span> Add Additional Feedback Logic</a></li>
   </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/icoglab/online-behavioural-research-methods/edit/main/18-L07.qmd" class="toc-action"><i class="bi bi-github"></i>Edit this page</a></li><li><a href="https://github.com/icoglab/online-behavioural-research-methods/issues/new" class="toc-action"><i class="bi empty"></i>Report an issue</a></li></ul></div></nav>
@@ -4251,7 +4252,7 @@ jsPsych.run([
 </section>
 <section id="instructions-styling" class="level3" data-number="18.2.9">
 <h3 data-number="18.2.9" class="anchored" data-anchor-id="instructions-styling"><span class="header-section-number">18.2.9</span> Instructions &amp; Styling</h3>
-<p>As our final step, let’s add some proper instructions and change the styling of the experiment to have a dark background with off-white text. Note that I had to change the border color to match the text. This was simple because I just needed to change it in my external stylesheet once.</p>
+<p>Let’s add some proper instructions and change the styling of the experiment to have a dark background with off-white text. Note that I had to change the border color to match the text. This was simple because I just needed to change it in my external stylesheet once.</p>
 <div class="cell">
 <style type="text/css">
 /* CB26 */
@@ -4842,17 +4843,656 @@ jsPsych.run([
 </div>
 </div>
 </section>
+<section id="adding-feedback" class="level3" data-number="18.2.10">
+<h3 data-number="18.2.10" class="anchored" data-anchor-id="adding-feedback"><span class="header-section-number">18.2.10</span> Adding Feedback</h3>
+<p>To add feedback text that says ‘correct!’ or ‘incorrect!’, we’ll need to add a few things. First, our <code>timeline_variables</code> is missing a label for the correct response. We’ll need that to determine accuracy.</p>
+<p>Then, I added a new trial part after the target and, unlike what we’ve done before, I determine the accuracy in the stimulus function. Since it’s a function, we have the freedom to run our logic here instead.</p>
+<p>Finally, I added if-else logic to change the output depending on the accuracy.</p>
+<div class="cell">
+<style type="text/css">
+/* CB29 */
+
+/* CB30 */
+[id^="cb30-"]:nth-child(n+104):nth-child(-n+129),
+[id^="cb30-"]:nth-child(n+134):nth-child(-n+156) {
+  background-color: #e1f5fe;
+  box-shadow: inset 5px 0 0 0 #0288d1; 
+  padding-right: 1rem;
+}
+
+/* CB31 */
+
+
+</style>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true">index.html</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false">exp.js</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false">style.css</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-4-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-4" role="tab" aria-controls="tabset-10-4" aria-selected="false">Result</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="sourceCode" id="cb29"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb29-1"><a href="#cb29-1"></a> <span class="dt">&lt;!DOCTYPE</span> html<span class="dt">&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2"></a><span class="dt">&lt;</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3"></a><span class="dt">&lt;</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb29-4"><a href="#cb29-4"></a>    <span class="dt">&lt;</span><span class="kw">title</span><span class="dt">&gt;</span>Lab 7: Attention<span class="dt">&lt;/</span><span class="kw">title</span><span class="dt">&gt;</span></span>
+<span id="cb29-5"><a href="#cb29-5"></a>    <span class="co">&lt;!-- jsPsych --&gt;</span></span>
+<span id="cb29-6"><a href="#cb29-6"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"jspsych/jspsych.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb29-7"><a href="#cb29-7"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> href</span><span class="op">=</span><span class="st">"jspsych/jspsych.css"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> type</span><span class="op">=</span><span class="st">"text/css"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb29-8"><a href="#cb29-8"></a>    </span>
+<span id="cb29-9"><a href="#cb29-9"></a>    <span class="co">&lt;!-- jPsych plugins --&gt;</span></span>
+<span id="cb29-10"><a href="#cb29-10"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"jspsych/plugin-instructions.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb29-11"><a href="#cb29-11"></a>    <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"jspsych/plugin-html-keyboard-response.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb29-12"><a href="#cb29-12"></a></span>
+<span id="cb29-13"><a href="#cb29-13"></a>    <span class="co">&lt;!-- custom CSS --&gt;</span></span>
+<span id="cb29-14"><a href="#cb29-14"></a>    <span class="dt">&lt;</span><span class="kw">link</span><span class="ot"> href</span><span class="op">=</span><span class="st">"style.css"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"stylesheet"</span><span class="ot"> type</span><span class="op">=</span><span class="st">"text/css"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb29-15"><a href="#cb29-15"></a><span class="dt">&lt;/</span><span class="kw">head</span><span class="dt">&gt;</span></span>
+<span id="cb29-16"><a href="#cb29-16"></a><span class="dt">&lt;</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb29-17"><a href="#cb29-17"></a>  <span class="co">&lt;!-- custom JS --&gt;</span></span>
+<span id="cb29-18"><a href="#cb29-18"></a>  <span class="dt">&lt;</span><span class="kw">script</span><span class="ot"> src</span><span class="op">=</span><span class="st">"exp.js"</span><span class="dt">&gt;&lt;/</span><span class="kw">script</span><span class="dt">&gt;</span></span>
+<span id="cb29-19"><a href="#cb29-19"></a><span class="dt">&lt;/</span><span class="kw">body</span><span class="dt">&gt;</span></span>
+<span id="cb29-20"><a href="#cb29-20"></a><span class="dt">&lt;/</span><span class="kw">html</span><span class="dt">&gt;</span></span>
+<span id="cb29-21"><a href="#cb29-21"></a> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="sourceCode" id="cb30"><pre class="sourceCode numberSource javascript number-lines code-with-copy"><code class="sourceCode javascript"><span id="cb30-1"><a href="#cb30-1"></a> <span class="co">// 1. Initialize jsPsych</span></span>
+<span id="cb30-2"><a href="#cb30-2"></a><span class="kw">const</span> jsPsych <span class="op">=</span> <span class="fu">initJsPsych</span>()<span class="op">;</span></span>
+<span id="cb30-3"><a href="#cb30-3"></a></span>
+<span id="cb30-4"><a href="#cb30-4"></a> <span class="co">// 2. Define our trials</span></span>
+<span id="cb30-5"><a href="#cb30-5"></a><span class="kw">const</span> instructions <span class="op">=</span> {</span>
+<span id="cb30-6"><a href="#cb30-6"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychInstructions<span class="op">,</span></span>
+<span id="cb30-7"><a href="#cb30-7"></a>  <span class="dt">pages</span><span class="op">:</span> [</span>
+<span id="cb30-8"><a href="#cb30-8"></a>    <span class="vs">`&lt;p&gt;Welcome to the Experiment!&lt;/p&gt;</span></span>
+<span id="cb30-9"><a href="#cb30-9"></a><span class="vs">     &lt;p&gt;Use the buttons below to navigate through the instructions&lt;/p&gt;`</span><span class="op">,</span></span>
+<span id="cb30-10"><a href="#cb30-10"></a></span>
+<span id="cb30-11"><a href="#cb30-11"></a>    <span class="vs">`&lt;p&gt;On every trial, you will see a fixation point and two boxes&lt;/p&gt;</span></span>
+<span id="cb30-12"><a href="#cb30-12"></a><span class="vs">     &lt;p&gt;A target symbol  ("X") will be presented in either the left or right box.&lt;/p&gt;`</span><span class="op">,</span></span>
+<span id="cb30-13"><a href="#cb30-13"></a></span>
+<span id="cb30-14"><a href="#cb30-14"></a>    <span class="vs">`&lt;p&gt;Press the left key ("A") if the X appears in the left box.&lt;/p&gt;</span></span>
+<span id="cb30-15"><a href="#cb30-15"></a><span class="vs">     &lt;p&gt;Press the right key ("L") if the X appears in the right box.&lt;/p&gt;`</span><span class="op">,</span></span>
+<span id="cb30-16"><a href="#cb30-16"></a></span>
+<span id="cb30-17"><a href="#cb30-17"></a>    <span class="vs">`&lt;p&gt;Every trial, you will also see a yellow box appear, which is a cue. &lt;/p&gt;</span></span>
+<span id="cb30-18"><a href="#cb30-18"></a><span class="vs">     &lt;p&gt;Do not respond to the yellow box, just ignore it!&lt;/p&gt;</span></span>
+<span id="cb30-19"><a href="#cb30-19"></a><span class="vs">     &lt;p&gt;Only respond to the X, using the left and right keys.&lt;/p&gt;`</span><span class="op">,</span></span>
+<span id="cb30-20"><a href="#cb30-20"></a></span>
+<span id="cb30-21"><a href="#cb30-21"></a>    <span class="vs">`&lt;p&gt;Try to respond as quickly and as accurately as possible.&lt;/p&gt;</span></span>
+<span id="cb30-22"><a href="#cb30-22"></a><span class="vs">    &lt;p&gt;When you are ready to begin the first trial, press "Next".&lt;/p&gt;`</span> </span>
+<span id="cb30-23"><a href="#cb30-23"></a>  ]<span class="op">,</span></span>
+<span id="cb30-24"><a href="#cb30-24"></a>  <span class="dt">show_clickable_nav</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb30-25"><a href="#cb30-25"></a>}</span>
+<span id="cb30-26"><a href="#cb30-26"></a></span>
+<span id="cb30-27"><a href="#cb30-27"></a><span class="kw">const</span> posnerExo <span class="op">=</span> {</span>
+<span id="cb30-28"><a href="#cb30-28"></a>  <span class="dt">timeline</span><span class="op">:</span> [</span>
+<span id="cb30-29"><a href="#cb30-29"></a>    <span class="co">// 1. Fixation</span></span>
+<span id="cb30-30"><a href="#cb30-30"></a>    {</span>
+<span id="cb30-31"><a href="#cb30-31"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb30-32"><a href="#cb30-32"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="kw">function</span>(){</span>
+<span id="cb30-33"><a href="#cb30-33"></a>          <span class="kw">let</span> output </span>
+<span id="cb30-34"><a href="#cb30-34"></a></span>
+<span id="cb30-35"><a href="#cb30-35"></a>          output <span class="op">=</span> <span class="vs">`&lt;div class="posner-container"&gt;</span></span>
+<span id="cb30-36"><a href="#cb30-36"></a><span class="vs">                      &lt;div class="posner-location posner-box"&gt;&lt;/div&gt;</span></span>
+<span id="cb30-37"><a href="#cb30-37"></a><span class="vs">                      &lt;div class="posner-location"&gt;+&lt;/div&gt;</span></span>
+<span id="cb30-38"><a href="#cb30-38"></a><span class="vs">                      &lt;div class="posner-location posner-box"&gt;&lt;/div&gt;</span></span>
+<span id="cb30-39"><a href="#cb30-39"></a><span class="vs">                    &lt;/div&gt;`</span></span>
+<span id="cb30-40"><a href="#cb30-40"></a></span>
+<span id="cb30-41"><a href="#cb30-41"></a>          <span class="cf">return</span> output</span>
+<span id="cb30-42"><a href="#cb30-42"></a>      }<span class="op">,</span></span>
+<span id="cb30-43"><a href="#cb30-43"></a>      <span class="dt">trial_duration</span><span class="op">:</span> <span class="dv">1000</span><span class="op">,</span></span>
+<span id="cb30-44"><a href="#cb30-44"></a>      <span class="dt">choices</span><span class="op">:</span> <span class="st">"NO_KEYS"</span></span>
+<span id="cb30-45"><a href="#cb30-45"></a>    }<span class="op">,</span></span>
+<span id="cb30-46"><a href="#cb30-46"></a></span>
+<span id="cb30-47"><a href="#cb30-47"></a>    <span class="co">// 2. Cue</span></span>
+<span id="cb30-48"><a href="#cb30-48"></a>    {</span>
+<span id="cb30-49"><a href="#cb30-49"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb30-50"><a href="#cb30-50"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="kw">function</span>(){</span>
+<span id="cb30-51"><a href="#cb30-51"></a>          <span class="kw">let</span> output </span>
+<span id="cb30-52"><a href="#cb30-52"></a>          <span class="kw">let</span> cue_location <span class="op">=</span> jsPsych<span class="op">.</span><span class="fu">evaluateTimelineVariable</span>(<span class="st">"cue_location"</span>)</span>
+<span id="cb30-53"><a href="#cb30-53"></a>          </span>
+<span id="cb30-54"><a href="#cb30-54"></a>          <span class="cf">if</span>(cue_location <span class="op">===</span> <span class="st">"left"</span>){</span>
+<span id="cb30-55"><a href="#cb30-55"></a>            output <span class="op">=</span> <span class="vs">`&lt;div class="posner-container"&gt;</span></span>
+<span id="cb30-56"><a href="#cb30-56"></a><span class="vs">                        &lt;div class="posner-location posner-box" style="background-color: yellow "&gt;&lt;/div&gt;</span></span>
+<span id="cb30-57"><a href="#cb30-57"></a><span class="vs">                        &lt;div class="posner-location"&gt;+&lt;/div&gt;</span></span>
+<span id="cb30-58"><a href="#cb30-58"></a><span class="vs">                        &lt;div class="posner-location posner-box"&gt;&lt;/div&gt;</span></span>
+<span id="cb30-59"><a href="#cb30-59"></a><span class="vs">                      &lt;/div&gt;`</span></span>
+<span id="cb30-60"><a href="#cb30-60"></a></span>
+<span id="cb30-61"><a href="#cb30-61"></a>          } <span class="cf">else</span> <span class="cf">if</span>(cue_location <span class="op">===</span> <span class="st">"right"</span>){</span>
+<span id="cb30-62"><a href="#cb30-62"></a>            output <span class="op">=</span> <span class="vs">`&lt;div class="posner-container"&gt;</span></span>
+<span id="cb30-63"><a href="#cb30-63"></a><span class="vs">                        &lt;div class="posner-location posner-box"&gt;&lt;/div&gt;</span></span>
+<span id="cb30-64"><a href="#cb30-64"></a><span class="vs">                        &lt;div class="posner-location"&gt;+&lt;/div&gt;</span></span>
+<span id="cb30-65"><a href="#cb30-65"></a><span class="vs">                        &lt;div class="posner-location posner-box" style="background-color: yellow "&gt;&lt;/div&gt;</span></span>
+<span id="cb30-66"><a href="#cb30-66"></a><span class="vs">                      &lt;/div&gt;`</span></span>
+<span id="cb30-67"><a href="#cb30-67"></a></span>
+<span id="cb30-68"><a href="#cb30-68"></a>          }</span>
+<span id="cb30-69"><a href="#cb30-69"></a></span>
+<span id="cb30-70"><a href="#cb30-70"></a>          <span class="cf">return</span> output</span>
+<span id="cb30-71"><a href="#cb30-71"></a>      }<span class="op">,</span></span>
+<span id="cb30-72"><a href="#cb30-72"></a>      <span class="dt">trial_duration</span><span class="op">:</span> jsPsych<span class="op">.</span><span class="fu">timelineVariable</span>(<span class="st">"cue_duration"</span>)<span class="op">,</span></span>
+<span id="cb30-73"><a href="#cb30-73"></a>      <span class="dt">choices</span><span class="op">:</span> <span class="st">"NO_KEYS"</span></span>
+<span id="cb30-74"><a href="#cb30-74"></a>    }<span class="op">,</span></span>
+<span id="cb30-75"><a href="#cb30-75"></a></span>
+<span id="cb30-76"><a href="#cb30-76"></a>    <span class="co">// 3. Target</span></span>
+<span id="cb30-77"><a href="#cb30-77"></a>    {</span>
+<span id="cb30-78"><a href="#cb30-78"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb30-79"><a href="#cb30-79"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="kw">function</span>(){</span>
+<span id="cb30-80"><a href="#cb30-80"></a>         <span class="kw">let</span> output </span>
+<span id="cb30-81"><a href="#cb30-81"></a>         <span class="kw">let</span> target_location <span class="op">=</span> jsPsych<span class="op">.</span><span class="fu">evaluateTimelineVariable</span>(<span class="st">"target_location"</span>)</span>
+<span id="cb30-82"><a href="#cb30-82"></a></span>
+<span id="cb30-83"><a href="#cb30-83"></a>         <span class="cf">if</span>(target_location <span class="op">===</span> <span class="st">"left"</span>){</span>
+<span id="cb30-84"><a href="#cb30-84"></a>            output <span class="op">=</span> <span class="vs">`&lt;div class="posner-container"&gt;</span></span>
+<span id="cb30-85"><a href="#cb30-85"></a><span class="vs">                        &lt;div class="posner-location posner-box"&gt;X&lt;/div&gt;</span></span>
+<span id="cb30-86"><a href="#cb30-86"></a><span class="vs">                        &lt;div class="posner-location"&gt;+&lt;/div&gt;</span></span>
+<span id="cb30-87"><a href="#cb30-87"></a><span class="vs">                        &lt;div class="posner-location posner-box"&gt;&lt;/div&gt;</span></span>
+<span id="cb30-88"><a href="#cb30-88"></a><span class="vs">                      &lt;/div&gt;`</span></span>
+<span id="cb30-89"><a href="#cb30-89"></a></span>
+<span id="cb30-90"><a href="#cb30-90"></a>          } <span class="cf">else</span> <span class="cf">if</span>(target_location <span class="op">===</span> <span class="st">"right"</span>){</span>
+<span id="cb30-91"><a href="#cb30-91"></a>            output <span class="op">=</span> <span class="vs">`&lt;div class="posner-container"&gt;</span></span>
+<span id="cb30-92"><a href="#cb30-92"></a><span class="vs">                        &lt;div class="posner-location posner-box"&gt;&lt;/div&gt;</span></span>
+<span id="cb30-93"><a href="#cb30-93"></a><span class="vs">                        &lt;div class="posner-location"&gt;+&lt;/div&gt;</span></span>
+<span id="cb30-94"><a href="#cb30-94"></a><span class="vs">                        &lt;div class="posner-location posner-box"&gt;X&lt;/div&gt;</span></span>
+<span id="cb30-95"><a href="#cb30-95"></a><span class="vs">                      &lt;/div&gt;`</span></span>
+<span id="cb30-96"><a href="#cb30-96"></a></span>
+<span id="cb30-97"><a href="#cb30-97"></a>          }</span>
+<span id="cb30-98"><a href="#cb30-98"></a></span>
+<span id="cb30-99"><a href="#cb30-99"></a>          <span class="cf">return</span> output</span>
+<span id="cb30-100"><a href="#cb30-100"></a>      }<span class="op">,</span></span>
+<span id="cb30-101"><a href="#cb30-101"></a>      <span class="dt">choices</span><span class="op">:</span> [<span class="st">"a"</span><span class="op">,</span> <span class="st">"l"</span>]</span>
+<span id="cb30-102"><a href="#cb30-102"></a>    }<span class="op">,</span></span>
+<span id="cb30-103"><a href="#cb30-103"></a></span>
+<span id="cb30-104"><a href="#cb30-104"></a>    <span class="co">// 4. Feedback</span></span>
+<span id="cb30-105"><a href="#cb30-105"></a>    {</span>
+<span id="cb30-106"><a href="#cb30-106"></a>      <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb30-107"><a href="#cb30-107"></a>      <span class="dt">stimulus</span><span class="op">:</span> <span class="kw">function</span>(){</span>
+<span id="cb30-108"><a href="#cb30-108"></a>          <span class="co">// get the response from the last trial</span></span>
+<span id="cb30-109"><a href="#cb30-109"></a>          <span class="kw">let</span> last_trial <span class="op">=</span> jsPsych<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">get</span>()<span class="op">.</span><span class="fu">last</span>(<span class="dv">1</span>)<span class="op">.</span><span class="fu">values</span>()</span>
+<span id="cb30-110"><a href="#cb30-110"></a>          <span class="kw">let</span> last_response <span class="op">=</span> last_trial[<span class="dv">0</span>]<span class="op">.</span><span class="at">response</span></span>
+<span id="cb30-111"><a href="#cb30-111"></a></span>
+<span id="cb30-112"><a href="#cb30-112"></a>          <span class="co">// determine if the last response matches the correct response</span></span>
+<span id="cb30-113"><a href="#cb30-113"></a>          <span class="kw">let</span> correct_response <span class="op">=</span> jsPsych<span class="op">.</span><span class="fu">evaluateTimelineVariable</span>(<span class="st">"correct_response"</span>)</span>
+<span id="cb30-114"><a href="#cb30-114"></a>          <span class="kw">let</span> accuracy <span class="op">=</span> jsPsych<span class="op">.</span><span class="at">pluginAPI</span><span class="op">.</span><span class="fu">compareKeys</span>(last_response<span class="op">,</span> correct_response)</span>
+<span id="cb30-115"><a href="#cb30-115"></a>      </span>
+<span id="cb30-116"><a href="#cb30-116"></a>         <span class="co">// change output depending on accuracy</span></span>
+<span id="cb30-117"><a href="#cb30-117"></a>         <span class="cf">if</span>(accuracy){</span>
+<span id="cb30-118"><a href="#cb30-118"></a>            output <span class="op">=</span> <span class="vs">`&lt;p style="color: ForestGreen; font-size: 48px;"&gt;Correct!&lt;/p&gt;`</span></span>
+<span id="cb30-119"><a href="#cb30-119"></a></span>
+<span id="cb30-120"><a href="#cb30-120"></a>          } <span class="cf">else</span> {</span>
+<span id="cb30-121"><a href="#cb30-121"></a>            output <span class="op">=</span> <span class="vs">`&lt;p style="color: LightCoral; font-size: 48px;"&gt;Incorrect!&lt;/p&gt;`</span></span>
+<span id="cb30-122"><a href="#cb30-122"></a></span>
+<span id="cb30-123"><a href="#cb30-123"></a>          }</span>
+<span id="cb30-124"><a href="#cb30-124"></a></span>
+<span id="cb30-125"><a href="#cb30-125"></a>          <span class="cf">return</span> output</span>
+<span id="cb30-126"><a href="#cb30-126"></a>      }<span class="op">,</span></span>
+<span id="cb30-127"><a href="#cb30-127"></a>      <span class="dt">trial_duration</span><span class="op">:</span> <span class="dv">1500</span><span class="op">,</span></span>
+<span id="cb30-128"><a href="#cb30-128"></a>      <span class="dt">choices</span><span class="op">:</span> <span class="st">"NO_KEYS"</span></span>
+<span id="cb30-129"><a href="#cb30-129"></a>    }</span>
+<span id="cb30-130"><a href="#cb30-130"></a>  ]<span class="op">,</span></span>
+<span id="cb30-131"><a href="#cb30-131"></a>  <span class="dt">timeline_variables</span><span class="op">:</span> [</span>
+<span id="cb30-132"><a href="#cb30-132"></a>    <span class="co">// 100 ms SOA</span></span>
+<span id="cb30-133"><a href="#cb30-133"></a>    <span class="co">// valid trials 75%</span></span>
+<span id="cb30-134"><a href="#cb30-134"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-135"><a href="#cb30-135"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-136"><a href="#cb30-136"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-137"><a href="#cb30-137"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-138"><a href="#cb30-138"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-139"><a href="#cb30-139"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-140"><a href="#cb30-140"></a></span>
+<span id="cb30-141"><a href="#cb30-141"></a>    <span class="co">// invalid trials 25%</span></span>
+<span id="cb30-142"><a href="#cb30-142"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"invalid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-143"><a href="#cb30-143"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"invalid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">100</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-144"><a href="#cb30-144"></a></span>
+<span id="cb30-145"><a href="#cb30-145"></a>    <span class="co">// 300 ms SOA</span></span>
+<span id="cb30-146"><a href="#cb30-146"></a>    <span class="co">// valid trials 75%</span></span>
+<span id="cb30-147"><a href="#cb30-147"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-148"><a href="#cb30-148"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-149"><a href="#cb30-149"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-150"><a href="#cb30-150"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-151"><a href="#cb30-151"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}<span class="op">,</span></span>
+<span id="cb30-152"><a href="#cb30-152"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"valid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-153"><a href="#cb30-153"></a></span>
+<span id="cb30-154"><a href="#cb30-154"></a>    <span class="co">// invalid trials 25%</span></span>
+<span id="cb30-155"><a href="#cb30-155"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"invalid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"l"</span>}<span class="op">,</span></span>
+<span id="cb30-156"><a href="#cb30-156"></a>    {<span class="dt">cue_location</span><span class="op">:</span> <span class="st">"right"</span><span class="op">,</span> <span class="dt">target_location</span><span class="op">:</span> <span class="st">"left"</span><span class="op">,</span> <span class="dt">validity</span><span class="op">:</span> <span class="st">"invalid"</span><span class="op">,</span> <span class="dt">cue_duration</span><span class="op">:</span> <span class="dv">300</span><span class="op">,</span> <span class="dt">correct_response</span><span class="op">:</span> <span class="st">"a"</span>}</span>
+<span id="cb30-157"><a href="#cb30-157"></a>  ]<span class="op">,</span></span>
+<span id="cb30-158"><a href="#cb30-158"></a>  <span class="dt">randomize_order</span><span class="op">:</span> <span class="kw">true</span></span>
+<span id="cb30-159"><a href="#cb30-159"></a>}</span>
+<span id="cb30-160"><a href="#cb30-160"></a></span>
+<span id="cb30-161"><a href="#cb30-161"></a><span class="kw">const</span> saveData <span class="op">=</span> {</span>
+<span id="cb30-162"><a href="#cb30-162"></a>  <span class="dt">type</span><span class="op">:</span> jsPsychHtmlKeyboardResponse<span class="op">,</span></span>
+<span id="cb30-163"><a href="#cb30-163"></a>  <span class="dt">stimulus</span><span class="op">:</span> <span class="vs">`</span></span>
+<span id="cb30-164"><a href="#cb30-164"></a><span class="vs">    &lt;div style="text-align: center;"&gt;</span></span>
+<span id="cb30-165"><a href="#cb30-165"></a><span class="vs">      &lt;p&gt;Experiment complete!&lt;/p&gt;</span></span>
+<span id="cb30-166"><a href="#cb30-166"></a><span class="vs">      &lt;p&gt;Click the button below to save your data locally:&lt;/p&gt;</span></span>
+<span id="cb30-167"><a href="#cb30-167"></a><span class="vs">      &lt;button id="save-btn" style="padding: 10px 20px; font-size: 16px; cursor: pointer;"&gt;</span></span>
+<span id="cb30-168"><a href="#cb30-168"></a><span class="vs">        Click here to save the data locally</span></span>
+<span id="cb30-169"><a href="#cb30-169"></a><span class="vs">      &lt;/button&gt;</span></span>
+<span id="cb30-170"><a href="#cb30-170"></a><span class="vs">    &lt;/div&gt;</span></span>
+<span id="cb30-171"><a href="#cb30-171"></a><span class="vs">  `</span><span class="op">,</span></span>
+<span id="cb30-172"><a href="#cb30-172"></a>  <span class="dt">choices</span><span class="op">:</span> <span class="st">"NO_KEYS"</span><span class="op">,</span></span>
+<span id="cb30-173"><a href="#cb30-173"></a>  <span class="dt">trial_duration</span><span class="op">:</span> <span class="kw">null</span><span class="op">,</span></span>
+<span id="cb30-174"><a href="#cb30-174"></a>  <span class="dt">on_load</span><span class="op">:</span> <span class="kw">function</span>() {</span>
+<span id="cb30-175"><a href="#cb30-175"></a>    <span class="bu">document</span><span class="op">.</span><span class="fu">getElementById</span>(<span class="st">"save-btn"</span>)<span class="op">.</span><span class="fu">addEventListener</span>(<span class="st">"click"</span><span class="op">,</span> <span class="kw">function</span>() {</span>
+<span id="cb30-176"><a href="#cb30-176"></a>      jsPsych<span class="op">.</span><span class="at">data</span><span class="op">.</span><span class="fu">get</span>()<span class="op">.</span><span class="fu">localSave</span>(<span class="st">"csv"</span><span class="op">,</span> <span class="st">"attention_data.csv"</span>)<span class="op">;</span></span>
+<span id="cb30-177"><a href="#cb30-177"></a>    })<span class="op">;</span></span>
+<span id="cb30-178"><a href="#cb30-178"></a>  }</span>
+<span id="cb30-179"><a href="#cb30-179"></a>}<span class="op">;</span></span>
+<span id="cb30-180"><a href="#cb30-180"></a></span>
+<span id="cb30-181"><a href="#cb30-181"></a><span class="co">// 3. Run jsPsych with our trials</span></span>
+<span id="cb30-182"><a href="#cb30-182"></a>jsPsych<span class="op">.</span><span class="fu">run</span>([</span>
+<span id="cb30-183"><a href="#cb30-183"></a>  instructions<span class="op">,</span></span>
+<span id="cb30-184"><a href="#cb30-184"></a>  posnerExo<span class="op">,</span></span>
+<span id="cb30-185"><a href="#cb30-185"></a>  saveData</span>
+<span id="cb30-186"><a href="#cb30-186"></a>])<span class="op">;</span> </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div class="sourceCode" id="cb31"><pre class="sourceCode numberSource css number-lines code-with-copy"><code class="sourceCode css"><span id="cb31-1"><a href="#cb31-1"></a> body {</span>
+<span id="cb31-2"><a href="#cb31-2"></a>  <span class="kw">background-color</span><span class="ch">:</span> <span class="cn">#1a1a1a</span><span class="op">;</span></span>
+<span id="cb31-3"><a href="#cb31-3"></a>  <span class="kw">color</span><span class="ch">:</span> <span class="cn">#e0e0e0</span></span>
+<span id="cb31-4"><a href="#cb31-4"></a>}</span>
+<span id="cb31-5"><a href="#cb31-5"></a></span>
+<span id="cb31-6"><a href="#cb31-6"></a><span class="fu">.posner-container</span> {</span>
+<span id="cb31-7"><a href="#cb31-7"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb31-8"><a href="#cb31-8"></a>  <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">space-between</span><span class="op">;</span></span>
+<span id="cb31-9"><a href="#cb31-9"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">600</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb31-10"><a href="#cb31-10"></a>  <span class="kw">margin</span><span class="ch">:</span> <span class="dv">0</span> <span class="bu">auto</span><span class="op">;</span></span>
+<span id="cb31-11"><a href="#cb31-11"></a>  <span class="kw">font-size</span><span class="ch">:</span> <span class="dv">48</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb31-12"><a href="#cb31-12"></a>}</span>
+<span id="cb31-13"><a href="#cb31-13"></a></span>
+<span id="cb31-14"><a href="#cb31-14"></a><span class="fu">.posner-location</span> {</span>
+<span id="cb31-15"><a href="#cb31-15"></a>  <span class="kw">width</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb31-16"><a href="#cb31-16"></a>  <span class="kw">height</span><span class="ch">:</span> <span class="dv">100</span><span class="dt">px</span><span class="op">;</span></span>
+<span id="cb31-17"><a href="#cb31-17"></a>  <span class="kw">display</span><span class="ch">:</span> <span class="dv">flex</span><span class="op">;</span></span>
+<span id="cb31-18"><a href="#cb31-18"></a>  <span class="kw">align-items</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb31-19"><a href="#cb31-19"></a>  <span class="kw">justify-content</span><span class="ch">:</span> <span class="dv">center</span><span class="op">;</span></span>
+<span id="cb31-20"><a href="#cb31-20"></a>}</span>
+<span id="cb31-21"><a href="#cb31-21"></a></span>
+<span id="cb31-22"><a href="#cb31-22"></a><span class="fu">.posner-box</span> {</span>
+<span id="cb31-23"><a href="#cb31-23"></a>  <span class="kw">border</span><span class="ch">:</span> <span class="dv">2</span><span class="dt">px</span> <span class="dv">solid</span> <span class="cn">#e0e0e0</span><span class="op">;</span></span>
+<span id="cb31-24"><a href="#cb31-24"></a>} </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div id="tabset-10-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-4-tab">
+<div id="demo-container-10" style="border: 1px solid #ddd; border-radius: 8px; overflow: hidden; transition: box-shadow 0.2s ease;">
+<div style="background-color: #f8f9fa; padding: 8px 12px; border-bottom: 1px solid #ddd; display: flex; justify-content: space-between; align-items: center;">
+<div>
+<span style="font-weight: bold; color: #495057;">Live JsPsych Demo</span>
+<span class="focus-indicator-10" style="margin-left: 10px; font-size: 11px; color: #6c757d; font-style: italic;">Click inside the demo to activate demo</span>
+</div>
+<div style="display: flex; gap: 8px;">
+<button onclick="
+            console.log('Full screen button clicked');
+            var htmlContent = '<!DOCTYPE html>\n<html>\n  <head>\n    <title>Live JsPsych Demo</title>\n    <script src=\'https://unpkg.com/jspsych@8.2.2\' crossorigin></script>\n    <script src=\'https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0\' crossorigin></script>\n    <script src=\'https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0\' crossorigin></script>\n    <script src=\'https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.1.0\' crossorigin></script>\n    <script src=\'https://unpkg.com/@jspsych/plugin-preload@2.1.0\' crossorigin></script>\n    <script src=\'https://unpkg.com/@jspsych/plugin-instructions@2.1.0\' crossorigin></script>\n    <link href=\'https://unpkg.com/jspsych@8.2.2/css/jspsych.css\' rel=\'stylesheet\' type=\'text/css\' crossorigin />\n    <style>\n      body {\n  background-color: #1a1a1a;\n  color: #e0e0e0\n}\n\n.posner-container {\n  display: flex;\n  justify-content: space-between;\n  width: 600px;\n  margin: 0 auto;\n  font-size: 48px;\n}\n\n.posner-location {\n  width: 100px;\n  height: 100px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.posner-box {\n  border: 2px solid #e0e0e0;\n}\n    </style>\n    <style>\n      /* Paused overlay styles */\n      #paused-overlay {\n        position: fixed;\n        top: 0;\n        left: 0;\n        width: 100%;\n        height: 100%;\n        background-color: rgba(0, 0, 0, 0.7);\n        display: none;\n        justify-content: center;\n        align-items: center;\n        z-index: 9999;\n        font-family: Arial, sans-serif;\n      }\n\n      #paused-message {\n        background-color: white;\n        padding: 30px;\n        border-radius: 10px;\n        text-align: center;\n        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);\n        max-width: 300px;\n      }\n\n      #paused-message h2 {\n        margin-top: 0;\n        color: #dc3545;\n        font-size: 24px;\n      }\n\n      #paused-message p {\n        color: #666;\n        margin-bottom: 0;\n        font-size: 16px;\n      }\n\n      .pulse {\n        animation: pulse 2s infinite;\n      }\n\n      @keyframes pulse {\n        0% { opacity: 1; }\n        50% { opacity: 0.5; }\n        100% { opacity: 1; }\n      }\n    </style>\n  </head>\n  <body>\n    <!-- Paused overlay -->\n    <div id=\'paused-overlay\'>\n      <div id=\'paused-message\'>\n        <h2>Demo Paused</h2>\n        <p class=\'pulse\'>Click Anywhere to Resume</p>\n      </div>\n    </div>\n  </body>\n  <script>\n// Initialize jsPsych with interaction tracking and overlay control\nconst jsPsych = initJsPsych({\n  on_interaction_data_update: function(data) {\n    const overlay = document.getElementById(\'paused-overlay\');\n\n    if (data.event === \'blur\') {\n      // User clicked away - pause experiment and show overlay\n      jsPsych.pauseExperiment();\n      if (overlay) {\n        overlay.style.display = \'flex\';\n      }\n    } else if (data.event === \'focus\') {\n      // User returned - resume experiment and hide overlay\n      jsPsych.resumeExperiment();\n      if (overlay) {\n        overlay.style.display = \'none\';\n      }\n    }\n  }\n});\n\n// Make the overlay clickable to resume\ndocument.addEventListener(\'DOMContentLoaded\', function() {\n  const overlay = document.getElementById(\'paused-overlay\');\n  if (overlay) {\n    overlay.addEventListener(\'click\', function() {\n      // Focus the window and let the interaction handler resume\n      window.focus();\n    });\n  }\n});\n\n// 2. Define our trials\nconst instructions = {\n  type: jsPsychInstructions,\n  pages: [\n    `<p>Welcome to the Experiment!</p>\n     <p>Use the buttons below to navigate through the instructions</p>`,\n\n    `<p>On every trial, you will see a fixation point and two boxes</p>\n     <p>A target symbol  (&quot;X&quot;) will be presented in either the left or right box.</p>`,\n\n    `<p>Press the left key (&quot;A&quot;) if the X appears in the left box.</p>\n     <p>Press the right key (&quot;L&quot;) if the X appears in the right box.</p>`,\n\n    `<p>Every trial, you will also see a yellow box appear, which is a cue. </p>\n     <p>Do not respond to the yellow box, just ignore it!</p>\n     <p>Only respond to the X, using the left and right keys.</p>`,\n\n    `<p>Try to respond as quickly and as accurately as possible.</p>\n    <p>When you are ready to begin the first trial, press &quot;Next&quot;.</p>` \n  ],\n  show_clickable_nav: true\n}\n\nconst posnerExo = {\n  timeline: [\n    // 1. Fixation\n    {\n      type: jsPsychHtmlKeyboardResponse,\n      stimulus: function(){\n          let output \n\n          output = `<div class=&quot;posner-container&quot;>\n                      <div class=&quot;posner-location posner-box&quot;></div>\n                      <div class=&quot;posner-location&quot;>+</div>\n                      <div class=&quot;posner-location posner-box&quot;></div>\n                    </div>`\n\n          return output\n      },\n      trial_duration: 1000,\n      choices: &quot;NO_KEYS&quot;\n    },\n\n    // 2. Cue\n    {\n      type: jsPsychHtmlKeyboardResponse,\n      stimulus: function(){\n          let output \n          let cue_location = jsPsych.evaluateTimelineVariable(&quot;cue_location&quot;)\n          \n          if(cue_location === &quot;left&quot;){\n            output = `<div class=&quot;posner-container&quot;>\n                        <div class=&quot;posner-location posner-box&quot; style=&quot;background-color: yellow &quot;></div>\n                        <div class=&quot;posner-location&quot;>+</div>\n                        <div class=&quot;posner-location posner-box&quot;></div>\n                      </div>`\n\n          } else if(cue_location === &quot;right&quot;){\n            output = `<div class=&quot;posner-container&quot;>\n                        <div class=&quot;posner-location posner-box&quot;></div>\n                        <div class=&quot;posner-location&quot;>+</div>\n                        <div class=&quot;posner-location posner-box&quot; style=&quot;background-color: yellow &quot;></div>\n                      </div>`\n\n          }\n\n\n          return output\n      },\n      trial_duration: jsPsych.timelineVariable(&quot;cue_duration&quot;),\n      choices: &quot;NO_KEYS&quot;\n    },\n\n    // 3. Target\n    {\n      type: jsPsychHtmlKeyboardResponse,\n      stimulus: function(){\n         let output \n         let target_location = jsPsych.evaluateTimelineVariable(&quot;target_location&quot;)\n\n         if(target_location === &quot;left&quot;){\n            output = `<div class=&quot;posner-container&quot;>\n                        <div class=&quot;posner-location posner-box&quot;>X</div>\n                        <div class=&quot;posner-location&quot;>+</div>\n                        <div class=&quot;posner-location posner-box&quot;></div>\n                      </div>`\n\n          } else if(target_location === &quot;right&quot;){\n            output = `<div class=&quot;posner-container&quot;>\n                        <div class=&quot;posner-location posner-box&quot;></div>\n                        <div class=&quot;posner-location&quot;>+</div>\n                        <div class=&quot;posner-location posner-box&quot;>X</div>\n                      </div>`\n\n          }\n\n\n          return output\n      },\n      choices: [&quot;a&quot;, &quot;l&quot;]\n    },\n\n    // 4. Feedback\n    {\n      type: jsPsychHtmlKeyboardResponse,\n      stimulus: function(){\n          // get the response from the last trial\n          let last_trial = jsPsych.data.get().last(1).values()\n          let last_response = last_trial[0].response\n\n          // determine if the last response matches the correct response\n          let correct_response = jsPsych.evaluateTimelineVariable(&quot;correct_response&quot;)\n          let accuracy = jsPsych.pluginAPI.compareKeys(last_response, correct_response)\n      \n         // change output depending on accuracy\n         if(accuracy){\n            output = `<p style=&quot;color: ForestGreen; font-size: 48px;&quot;>Correct!</p>`\n\n          } else {\n            output = `<p style=&quot;color: LightCoral; font-size: 48px;&quot;>Incorrect!</p>`\n\n          }\n\n          return output\n      },\n      trial_duration: 1500,\n      choices: &quot;NO_KEYS&quot;\n    }\n  ],\n  timeline_variables: [\n    // 100 ms SOA\n    // valid trials 75%\n    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},\n    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},\n    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},\n\n    // invalid trials 25%\n    {cue_location: &quot;left&quot;, target_location: &quot;right&quot;, validity: &quot;invalid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;left&quot;, validity: &quot;invalid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},\n\n    // 300 ms SOA\n    // valid trials 75%\n    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;a&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},\n    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;a&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},\n    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;a&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},\n\n    // invalid trials 25%\n    {cue_location: &quot;left&quot;, target_location: &quot;right&quot;, validity: &quot;invalid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},\n    {cue_location: &quot;right&quot;, target_location: &quot;left&quot;, validity: &quot;invalid&quot;, cue_duration: 300, correct_response: &quot;a&quot;}\n  ],\n  randomize_order: true\n}\n\nconst saveData = {\n  type: jsPsychHtmlKeyboardResponse,\n  stimulus: `\n    <div style=&quot;text-align: center;&quot;>\n      <p>Experiment complete!</p>\n      <p>Click the button below to save your data locally:</p>\n      <button id=&quot;save-btn&quot; style=&quot;padding: 10px 20px; font-size: 16px; cursor: pointer;&quot;>\n        Click here to save the data locally\n      </button>\n    </div>\n  `,\n  choices: &quot;NO_KEYS&quot;,\n  trial_duration: null,\n  on_load: function() {\n    document.getElementById(&quot;save-btn&quot;).addEventListener(&quot;click&quot;, function() {\n      jsPsych.data.get().localSave(&quot;csv&quot;, &quot;attention_data.csv&quot;);\n    });\n  }\n};\n\n// 3. Run jsPsych with our trials\njsPsych.run([\n  instructions,\n  posnerExo,\n  saveData\n]);\n  </script>\n</html>';
+            var newWindow = window.open('', '_blank');
+            if (newWindow) {
+              newWindow.document.write(htmlContent);
+              newWindow.document.close();
+            } else {
+              alert('Pop-up blocked! Please allow pop-ups for this site.');
+            }
+          " style="background-color: #28a745; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">Open in New Tab</button>
+<button onclick="
+            var iframe = document.getElementById('demo-iframe-10');
+            var srcdoc = iframe.getAttribute('srcdoc');
+            iframe.setAttribute('srcdoc', '');
+            setTimeout(function() {
+              iframe.setAttribute('srcdoc', srcdoc);
+            }, 10);
+          " style="background-color: #007bff; color: white; border: none; padding: 4px 8px; border-radius: 4px; cursor: pointer; font-size: 12px;">Refresh</button>
+</div>
+</div>
+<iframe id="demo-iframe-10" srcdoc="<!DOCTYPE html>
+<html>
+  <head>
+    <title>Live JsPsych Demo</title>
+    <script src='https://unpkg.com/jspsych@8.2.2' crossorigin></script>
+    <script src='https://unpkg.com/@jspsych/plugin-html-button-response@2.1.0' crossorigin></script>
+    <script src='https://unpkg.com/@jspsych/plugin-html-keyboard-response@2.1.0' crossorigin></script>
+    <script src='https://unpkg.com/@jspsych/plugin-image-keyboard-response@2.1.0' crossorigin></script>
+    <script src='https://unpkg.com/@jspsych/plugin-preload@2.1.0' crossorigin></script>
+    <script src='https://unpkg.com/@jspsych/plugin-instructions@2.1.0' crossorigin></script>
+    <link href='https://unpkg.com/jspsych@8.2.2/css/jspsych.css' rel='stylesheet' type='text/css' crossorigin />
+    <style>
+      body {
+  background-color: #1a1a1a;
+  color: #e0e0e0
+}
+
+.posner-container {
+  display: flex;
+  justify-content: space-between;
+  width: 600px;
+  margin: 0 auto;
+  font-size: 48px;
+}
+
+.posner-location {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.posner-box {
+  border: 2px solid #e0e0e0;
+}
+    </style>
+    <style>
+      /* Paused overlay styles */
+      #paused-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.7);
+        display: none;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        font-family: Arial, sans-serif;
+      }
+
+      #paused-message {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        max-width: 300px;
+      }
+
+      #paused-message h2 {
+        margin-top: 0;
+        color: #dc3545;
+        font-size: 24px;
+      }
+
+      #paused-message p {
+        color: #666;
+        margin-bottom: 0;
+        font-size: 16px;
+      }
+
+      .pulse {
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% { opacity: 1; }
+        50% { opacity: 0.5; }
+        100% { opacity: 1; }
+      }
+    </style>
+  </head>
+  <body style='max-height: 300px'>
+    <!-- Paused overlay -->
+    <div id='paused-overlay'>
+      <div id='paused-message'>
+        <h2>Demo Paused</h2>
+        <p class='pulse'>Click Anywhere to Resume</p>
+      </div>
+    </div>
+  </body>
+  <script>
+// Initialize jsPsych with interaction tracking and overlay control
+const jsPsych = initJsPsych({
+  on_interaction_data_update: function(data) {
+    const overlay = document.getElementById('paused-overlay');
+
+    if (data.event === 'blur') {
+      // User clicked away - pause experiment and show overlay
+      jsPsych.pauseExperiment();
+      if (overlay) {
+        overlay.style.display = 'flex';
+      }
+    } else if (data.event === 'focus') {
+      // User returned - resume experiment and hide overlay
+      jsPsych.resumeExperiment();
+      if (overlay) {
+        overlay.style.display = 'none';
+      }
+    }
+  }
+});
+
+// Make the overlay clickable to resume
+document.addEventListener('DOMContentLoaded', function() {
+  const overlay = document.getElementById('paused-overlay');
+  if (overlay) {
+    overlay.addEventListener('click', function() {
+      // Focus the window and let the interaction handler resume
+      window.focus();
+    });
+  }
+});
+
+// 2. Define our trials
+const instructions = {
+  type: jsPsychInstructions,
+  pages: [
+    `<p>Welcome to the Experiment!</p>
+     <p>Use the buttons below to navigate through the instructions</p>`,
+
+    `<p>On every trial, you will see a fixation point and two boxes</p>
+     <p>A target symbol  (&quot;X&quot;) will be presented in either the left or right box.</p>`,
+
+    `<p>Press the left key (&quot;A&quot;) if the X appears in the left box.</p>
+     <p>Press the right key (&quot;L&quot;) if the X appears in the right box.</p>`,
+
+    `<p>Every trial, you will also see a yellow box appear, which is a cue. </p>
+     <p>Do not respond to the yellow box, just ignore it!</p>
+     <p>Only respond to the X, using the left and right keys.</p>`,
+
+    `<p>Try to respond as quickly and as accurately as possible.</p>
+    <p>When you are ready to begin the first trial, press &quot;Next&quot;.</p>` 
+  ],
+  show_clickable_nav: true
+}
+
+const posnerExo = {
+  timeline: [
+    // 1. Fixation
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: function(){
+          let output 
+
+          output = `<div class=&quot;posner-container&quot;>
+                      <div class=&quot;posner-location posner-box&quot;></div>
+                      <div class=&quot;posner-location&quot;>+</div>
+                      <div class=&quot;posner-location posner-box&quot;></div>
+                    </div>`
+
+          return output
+      },
+      trial_duration: 1000,
+      choices: &quot;NO_KEYS&quot;
+    },
+
+    // 2. Cue
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: function(){
+          let output 
+          let cue_location = jsPsych.evaluateTimelineVariable(&quot;cue_location&quot;)
+          
+          if(cue_location === &quot;left&quot;){
+            output = `<div class=&quot;posner-container&quot;>
+                        <div class=&quot;posner-location posner-box&quot; style=&quot;background-color: yellow &quot;></div>
+                        <div class=&quot;posner-location&quot;>+</div>
+                        <div class=&quot;posner-location posner-box&quot;></div>
+                      </div>`
+
+          } else if(cue_location === &quot;right&quot;){
+            output = `<div class=&quot;posner-container&quot;>
+                        <div class=&quot;posner-location posner-box&quot;></div>
+                        <div class=&quot;posner-location&quot;>+</div>
+                        <div class=&quot;posner-location posner-box&quot; style=&quot;background-color: yellow &quot;></div>
+                      </div>`
+
+          }
+
+
+          return output
+      },
+      trial_duration: jsPsych.timelineVariable(&quot;cue_duration&quot;),
+      choices: &quot;NO_KEYS&quot;
+    },
+
+    // 3. Target
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: function(){
+         let output 
+         let target_location = jsPsych.evaluateTimelineVariable(&quot;target_location&quot;)
+
+         if(target_location === &quot;left&quot;){
+            output = `<div class=&quot;posner-container&quot;>
+                        <div class=&quot;posner-location posner-box&quot;>X</div>
+                        <div class=&quot;posner-location&quot;>+</div>
+                        <div class=&quot;posner-location posner-box&quot;></div>
+                      </div>`
+
+          } else if(target_location === &quot;right&quot;){
+            output = `<div class=&quot;posner-container&quot;>
+                        <div class=&quot;posner-location posner-box&quot;></div>
+                        <div class=&quot;posner-location&quot;>+</div>
+                        <div class=&quot;posner-location posner-box&quot;>X</div>
+                      </div>`
+
+          }
+
+
+          return output
+      },
+      choices: [&quot;a&quot;, &quot;l&quot;]
+    },
+
+    // 4. Feedback
+    {
+      type: jsPsychHtmlKeyboardResponse,
+      stimulus: function(){
+          // get the response from the last trial
+          let last_trial = jsPsych.data.get().last(1).values()
+          let last_response = last_trial[0].response
+
+          // determine if the last response matches the correct response
+          let correct_response = jsPsych.evaluateTimelineVariable(&quot;correct_response&quot;)
+          let accuracy = jsPsych.pluginAPI.compareKeys(last_response, correct_response)
+      
+         // change output depending on accuracy
+         if(accuracy){
+            output = `<p style=&quot;color: ForestGreen; font-size: 48px;&quot;>Correct!</p>`
+
+          } else {
+            output = `<p style=&quot;color: LightCoral; font-size: 48px;&quot;>Incorrect!</p>`
+
+          }
+
+          return output
+      },
+      trial_duration: 1500,
+      choices: &quot;NO_KEYS&quot;
+    }
+  ],
+  timeline_variables: [
+    // 100 ms SOA
+    // valid trials 75%
+    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},
+    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},
+    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},
+
+    // invalid trials 25%
+    {cue_location: &quot;left&quot;, target_location: &quot;right&quot;, validity: &quot;invalid&quot;, cue_duration: 100, correct_response: &quot;l&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;left&quot;, validity: &quot;invalid&quot;, cue_duration: 100, correct_response: &quot;a&quot;},
+
+    // 300 ms SOA
+    // valid trials 75%
+    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;a&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},
+    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;a&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},
+    {cue_location: &quot;left&quot;, target_location: &quot;left&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;a&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;right&quot;, validity: &quot;valid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},
+
+    // invalid trials 25%
+    {cue_location: &quot;left&quot;, target_location: &quot;right&quot;, validity: &quot;invalid&quot;, cue_duration: 300, correct_response: &quot;l&quot;},
+    {cue_location: &quot;right&quot;, target_location: &quot;left&quot;, validity: &quot;invalid&quot;, cue_duration: 300, correct_response: &quot;a&quot;}
+  ],
+  randomize_order: true
+}
+
+const saveData = {
+  type: jsPsychHtmlKeyboardResponse,
+  stimulus: `
+    <div style=&quot;text-align: center;&quot;>
+      <p>Experiment complete!</p>
+      <p>Click the button below to save your data locally:</p>
+      <button id=&quot;save-btn&quot; style=&quot;padding: 10px 20px; font-size: 16px; cursor: pointer;&quot;>
+        Click here to save the data locally
+      </button>
+    </div>
+  `,
+  choices: &quot;NO_KEYS&quot;,
+  trial_duration: null,
+  on_load: function() {
+    document.getElementById(&quot;save-btn&quot;).addEventListener(&quot;click&quot;, function() {
+      jsPsych.data.get().localSave(&quot;csv&quot;, &quot;attention_data.csv&quot;);
+    });
+  }
+};
+
+// 3. Run jsPsych with our trials
+jsPsych.run([
+  instructions,
+  posnerExo,
+  saveData
+]);
+  </script>
+</html>" width="100%" height="300px" scrolling="yes" style="border: none; display: block;" onload="javascript:(function(iframe){
+        var container = document.getElementById(&quot;demo-container-10&quot;);
+        var indicator = container.querySelector(&quot;.focus-indicator-10&quot;);
+
+        function showFocus() {
+          container.style.boxShadow = &quot;0 0 0 3px #007bff&quot;;
+          if (indicator) {
+            indicator.textContent = &quot;✓ Demo Active&quot;;
+            indicator.style.color = &quot;#28a745&quot;;
+          }
+        }
+
+        function hideFocus() {
+          container.style.boxShadow = &quot;none&quot;;
+          if (indicator) {
+            indicator.textContent = &quot;Click inside the demo to activate&quot;;
+            indicator.style.color = &quot;#6c757d&quot;;
+          }
+        }
+
+        var iframeWindow = iframe.contentWindow;
+        if (iframeWindow) {
+          iframeWindow.onfocus = showFocus;
+          iframeWindow.onblur = hideFocus;
+          iframeWindow.document.addEventListener(&quot;click&quot;, function() {
+            iframeWindow.focus();
+            showFocus();
+          });
+          document.addEventListener(&quot;click&quot;, function(e) {
+            if (!container.contains(e.target)) {
+              iframeWindow.blur();
+              hideFocus();
+            }
+          });
+        }
+      }(this));"></iframe>
+</div>
+</div>
+</div>
+</div>
+</section>
 </section>
 <section id="stretch-goals" class="level2" data-number="18.3">
 <h2 data-number="18.3" class="anchored" data-anchor-id="stretch-goals"><span class="header-section-number">18.3</span> Stretch Goals</h2>
-<section id="add-feedback-following-each-trial" class="level3" data-number="18.3.1">
-<h3 data-number="18.3.1" class="anchored" data-anchor-id="add-feedback-following-each-trial"><span class="header-section-number">18.3.1</span> Add feedback following each trial</h3>
-<p>Add another display after they’ve responded which indicates whether they were correct or incorrect.</p>
-<p>To emphasize response speed, also add feedback that says “Too Slow! Respond Faster!” if they take longer than 1500 milliseconds.</p>
-<p>Have the feedback display be presented for only 1500 milliseconds before automatically going to the next trial.</p>
-</section>
-<section id="add-proper-data-labels" class="level3" data-number="18.3.2">
-<h3 data-number="18.3.2" class="anchored" data-anchor-id="add-proper-data-labels"><span class="header-section-number">18.3.2</span> Add proper data labels</h3>
+<section id="add-proper-data-labels" class="level3" data-number="18.3.1">
+<h3 data-number="18.3.1" class="anchored" data-anchor-id="add-proper-data-labels"><span class="header-section-number">18.3.1</span> Add proper data labels</h3>
 <p>Add data labels for:</p>
 <ul>
 <li>all the <code>timeline_variables</code></li>
@@ -4860,12 +5500,16 @@ jsPsych.run([
 <li><code>trial_part</code> (e.g., fixation, cue, target)</li>
 </ul>
 </section>
-<section id="create-a-block-of-trials-that-uses-an-endogenous-arrow-cue" class="level3" data-number="18.3.3">
-<h3 data-number="18.3.3" class="anchored" data-anchor-id="create-a-block-of-trials-that-uses-an-endogenous-arrow-cue"><span class="header-section-number">18.3.3</span> Create a block of trials that uses an endogenous arrow cue</h3>
+<section id="create-a-block-of-trials-that-uses-an-endogenous-arrow-cue" class="level3" data-number="18.3.2">
+<h3 data-number="18.3.2" class="anchored" data-anchor-id="create-a-block-of-trials-that-uses-an-endogenous-arrow-cue"><span class="header-section-number">18.3.2</span> Create a block of trials that uses an endogenous arrow cue</h3>
 <p>In the endogenous version of the task, there is not yellow box that flashes. Instead, an arrow at the center of the screen points left or right.</p>
 <p>Create another block of trials called <code>posnerEndo</code> that is identical to the exogenous block, except that an arrow is used as a cue instead of the yellow box.</p>
 <p>There are HTML codes for a variety of symbols, including arrows. To insert a right arrow like this <code>➡</code>, you can insert this HTML code <code>&amp;#10145;</code></p>
 <p>For a left arrow,<code>⬅</code> you can use <code>&amp;#11013;</code>.</p>
+</section>
+<section id="add-additional-feedback-logic" class="level3" data-number="18.3.3">
+<h3 data-number="18.3.3" class="anchored" data-anchor-id="add-additional-feedback-logic"><span class="header-section-number">18.3.3</span> Add Additional Feedback Logic</h3>
+<p>Update the trial feedback to emphasize speed. If they were accurate, but took longer than 1000ms to respond, then the feedback should be “Too Slow! Respond Faster” in a “PaleVioletRed” color.</p>
 
 
 </section>
